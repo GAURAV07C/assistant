@@ -196,6 +196,8 @@ class TTSPlayer {
         this.playing = false;
         this.enabled = true;   // TTS on by default
         this.stopped = false;
+        this.fallbackEnabled = true;
+        this.fallbackStreamBuffer = '';
         this.audio = document.createElement('audio');
         this.audio.preload = 'auto';
     }
@@ -269,6 +271,9 @@ class TTSPlayer {
         this.audio.pause();
         this.audio.removeAttribute('src');
         this.audio.load();                        // Fully resets the audio element
+        if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+        }
         this.queue = [];                           // Discard any pending audio chunks
         this.playing = false;
         if (ttsBtn) ttsBtn.classList.remove('tts-speaking');
@@ -287,6 +292,7 @@ class TTSPlayer {
     reset() {
         this.stop();
         this.stopped = false;
+        this.fallbackStreamBuffer = '';
     }
 
     /**
@@ -357,6 +363,71 @@ class TTSPlayer {
             const p = this.audio.play();
             if (p) p.catch(done);        // Handle play() rejection (e.g., autoplay block)
         });
+    }
+
+    /**
+     * Browser fallback TTS when backend audio chunks are unavailable.
+     * Uses SpeechSynthesis API and keeps orb/button speaking indicators.
+     */
+    speakFallback(text, append = false) {
+        if (!this.enabled || this.stopped || !this.fallbackEnabled) return;
+        if (!window.speechSynthesis || typeof window.SpeechSynthesisUtterance === 'undefined') return;
+        const content = String(text || '').trim();
+        if (!content) return;
+
+        const utterance = new SpeechSynthesisUtterance(content);
+        utterance.rate = 1;
+        utterance.pitch = 1;
+        // Prefer Hinglish-friendly Indian voices when browser supports them.
+        utterance.lang = 'hi-IN';
+        const voices = window.speechSynthesis.getVoices ? window.speechSynthesis.getVoices() : [];
+        const preferredVoice = voices.find(v => /^hi-IN$/i.test(v.lang))
+            || voices.find(v => /^en-IN$/i.test(v.lang))
+            || voices.find(v => /india|hindi|hinglish/i.test(`${v.name} ${v.lang}`));
+        if (preferredVoice) utterance.voice = preferredVoice;
+
+        if (ttsBtn) ttsBtn.classList.add('tts-speaking');
+        if (orbContainer) orbContainer.classList.add('speaking');
+        if (orb) orb.setActive(true);
+
+        utterance.onend = () => {
+            if (ttsBtn) ttsBtn.classList.remove('tts-speaking');
+            if (orbContainer) orbContainer.classList.remove('speaking');
+            if (orb) orb.setActive(false);
+        };
+        utterance.onerror = utterance.onend;
+
+        if (!append) window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+    }
+
+    cancelFallbackSpeech() {
+        if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+        }
+    }
+
+    pushFallbackChunk(chunk) {
+        if (!this.enabled || this.stopped || !this.fallbackEnabled) return false;
+        this.fallbackStreamBuffer += String(chunk || '');
+        const parts = this.fallbackStreamBuffer.split(/(?<=[.!?])\s+/);
+        if (parts.length <= 1) return false;
+        this.fallbackStreamBuffer = parts.pop() || '';
+
+        let spoke = false;
+        for (const sentence of parts) {
+            const s = sentence.trim();
+            if (!s) continue;
+            this.speakFallback(s, true);
+            spoke = true;
+        }
+        return spoke;
+    }
+
+    flushFallbackStream() {
+        const remaining = String(this.fallbackStreamBuffer || '').trim();
+        this.fallbackStreamBuffer = '';
+        if (remaining) this.speakFallback(remaining, true);
     }
 }
 
@@ -1103,6 +1174,8 @@ async function sendMessage(textOverride) {
         let sseBuffer = '';                         // Accumulates partial SSE lines between chunks
         let fullResponse = '';                      // The complete assistant response text so far
         let cursorEl = null;                        // The blinking "|" cursor shown during streaming
+        let receivedAudioChunk = false;             // Tracks whether backend supplied audio
+        let usedFallbackStreaming = false;          // Whether streaming fallback already started
 
         // Step 9: Read the stream in a loop until it's done
         while (true) {
@@ -1141,6 +1214,9 @@ async function sendMessage(textOverride) {
                         fullResponse += data.chunk;
                         const textSpan = contentEl.querySelector('.msg-stream-text');
                         if (textSpan) textSpan.textContent = fullResponse;
+                        if (ttsPlayer && ttsPlayer.enabled && !receivedAudioChunk) {
+                            usedFallbackStreaming = ttsPlayer.pushFallbackChunk(data.chunk) || usedFallbackStreaming;
+                        }
 
                         // Add a blinking cursor at the end (created once, on the first chunk)
                         if (!cursorEl) {
@@ -1154,6 +1230,11 @@ async function sendMessage(textOverride) {
 
                     // AUDIO CHUNK — Enqueue for TTS playback
                     if (data.audio && ttsPlayer) {
+                        if (!receivedAudioChunk) {
+                            ttsPlayer.cancelFallbackSpeech();
+                            ttsPlayer.fallbackStreamBuffer = '';
+                        }
+                        receivedAudioChunk = true;
                         ttsPlayer.enqueue(data.audio);
                     }
 
@@ -1176,6 +1257,13 @@ async function sendMessage(textOverride) {
         // If the server sent nothing, show a placeholder
         const textSpan = contentEl.querySelector('.msg-stream-text');
         if (textSpan && !fullResponse) textSpan.textContent = '(No response)';
+        if (ttsPlayer && ttsPlayer.enabled && !receivedAudioChunk) {
+            if (usedFallbackStreaming) {
+                ttsPlayer.flushFallbackStream();
+            } else if (fullResponse) {
+                ttsPlayer.speakFallback(fullResponse);
+            }
+        }
 
     } catch (err) {
         // On any error, remove the typing indicator and show the error

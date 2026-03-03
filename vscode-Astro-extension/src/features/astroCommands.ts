@@ -61,6 +61,22 @@ export function registerAstroCommands(
 ): void {
   context.subscriptions.push(
     inlineOutputDecoration,
+    vscode.commands.registerCommand('astro.quickActions', async () => {
+      const pick = await vscode.window.showQuickPick(
+        [
+          { label: 'Explain Selection', command: 'astro.explainSelection' },
+          { label: 'Refactor Selection', command: 'astro.refactorSelection' },
+          { label: 'Fix Selection', command: 'astro.fixSelection' },
+          { label: 'Bug Detection', command: 'astro.detectBugs' },
+          { label: 'Inline Output Preview', command: 'astro.outputPreview' },
+          { label: 'Ask Astro', command: 'astro.ask' },
+        ],
+        { placeHolder: 'Astro quick actions' },
+      );
+      if (!pick) return;
+      await vscode.commands.executeCommand(pick.command);
+    }),
+
     vscode.commands.registerCommand('astro.outputPreview', async () => {
       try {
         await runAnalyzeMode(backend, styles, suggestions, 'output_preview', 'Output preview');

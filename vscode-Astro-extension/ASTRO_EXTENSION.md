@@ -14,6 +14,9 @@ Astro is a VS Code/code-server extension for AI chat, mentoring, refactoring, di
 - Inline output preview
   - Command: `Astro: Inline Output Preview`
   - Predicted output shown inline beside current code line
+- Pointer-near quick actions
+  - Hover on code to get Astro action links (Explain/Refactor/Fix/Bug/Output)
+  - Command: `Astro: Quick Actions`
 - Refactoring and bug fixing suggestions
 - Bug detection command
 - Snippet generation and insert
@@ -46,6 +49,7 @@ Astro monitors supported files while you type:
 - `Astro: Refactor Selection`
 - `Astro: Fix Selection`
 - `Astro: Bug Detection`
+- `Astro: Quick Actions`
 - `Astro: Inline Output Preview`
 - `Astro: Generate Snippet`
 - `Astro: Git Automation`

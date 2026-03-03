@@ -5,6 +5,7 @@ import { ChatViewProvider } from './panels/chatViewProvider';
 import { JsonViewProvider } from './panels/jsonViewProvider';
 import { ErrorLensProvider } from './providers/errorLensProvider';
 import { LiveMonitor } from './providers/liveMonitor';
+import { registerQuickHoverProvider } from './providers/quickHoverProvider';
 import { registerCompletionProviders } from './providers/completionProviders';
 import { BackendClient } from './services/backendClient';
 import { StyleProfileStore } from './services/styleProfile';
@@ -24,6 +25,7 @@ export function activate(context: vscode.ExtensionContext): void {
   );
 
   registerCompletionProviders(context, backend, styles);
+  registerQuickHoverProvider(context);
   new ErrorLensProvider(context).register();
   new LiveMonitor(context, backend, styles, suggestions).register();
   registerAstroCommands(context, backend, plan, suggestions, styles);
