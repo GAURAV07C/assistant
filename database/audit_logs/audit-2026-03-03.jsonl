@@ -1,0 +1,6 @@
+{"ts":"2026-03-03T17:02:04.428Z","route":"/memory/profile","action":"memory_profile","status":"allowed"}
+{"ts":"2026-03-03T17:02:18.750Z","route":"/chat","action":"chat","status":"allowed","session_id":"27fdb5e7-197d-4972-8ff9-6c59791dd925","details":{"confidence":0.4,"citations":["system_context.txt","chat_chat_355ce7c25a254651a8a72b0eeb1d4aad.json","chat_chat_39c1aefacd914e7b9a06056aadd31e41.json","chat_chat_66f5d31733174c68bfd6feabd6be7fd4.json","chat_chat_9e29c7102e3146e2abc3a00025b79b73.json"]}}
+{"ts":"2026-03-03T17:02:19.435Z","route":"/memory/upsert","action":"memory_upsert","status":"allowed","details":{"statusCode":200}}
+{"ts":"2026-03-03T17:02:40.205Z","route":"/agent/execute","action":"execute","status":"blocked","session_id":"9d729621-5e5c-400e-b1b6-a4d50a19474a","details":{"reason":"Instruction matched blocked safety pattern."}}
+{"ts":"2026-03-03T17:02:40.206Z","route":"/agent/execute","action":"execute","status":"allowed","session_id":"9d729621-5e5c-400e-b1b6-a4d50a19474a","details":{"statusCode":403}}
+{"ts":"2026-03-03T17:03:19.765Z","route":"/memory/profile","action":"memory_profile","status":"allowed"}

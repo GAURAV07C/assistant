@@ -95,6 +95,14 @@ export class ChatService {
     return response;
   }
 
+  async processMessageWithMeta(sessionId: string, userMessage: string): Promise<{ response: string; sources: string[]; confidence: number }> {
+    this.addMessage(sessionId, 'user', userMessage);
+    const history = this.formatHistoryForLlm(sessionId, true);
+    const out = await this.groqService.getResponseWithMeta(userMessage, history);
+    this.addMessage(sessionId, 'assistant', out.response);
+    return { response: out.response, sources: out.meta.sources, confidence: out.meta.confidence };
+  }
+
   async processRealtimeMessage(sessionId: string, userMessage: string): Promise<string> {
     if (!this.realtimeService) throw new Error('Realtime service not initialized');
     this.addMessage(sessionId, 'user', userMessage);
@@ -102,6 +110,15 @@ export class ChatService {
     const response = await this.realtimeService.getResponse(userMessage, history);
     this.addMessage(sessionId, 'assistant', response);
     return response;
+  }
+
+  async processRealtimeMessageWithMeta(sessionId: string, userMessage: string): Promise<{ response: string; sources: string[]; confidence: number }> {
+    if (!this.realtimeService) throw new Error('Realtime service not initialized');
+    this.addMessage(sessionId, 'user', userMessage);
+    const history = this.formatHistoryForLlm(sessionId, true);
+    const out = await this.realtimeService.getResponseWithMeta(userMessage, history);
+    this.addMessage(sessionId, 'assistant', out.response);
+    return { response: out.response, sources: out.meta.sources, confidence: out.meta.confidence };
   }
 
   async *processMessageStream(sessionId: string, userMessage: string): AsyncGenerator<string> {
@@ -124,6 +141,35 @@ export class ChatService {
     } finally {
       this.saveChatSession(sessionId);
     }
+  }
+
+  processMessageStreamWithMeta(sessionId: string, userMessage: string): {
+    stream: AsyncGenerator<string>;
+    meta: { sources: string[]; confidence: number };
+  } {
+    this.addMessage(sessionId, 'user', userMessage);
+    this.addMessage(sessionId, 'assistant', '');
+    const history = this.formatHistoryForLlm(sessionId, true);
+    const { stream, meta } = this.groqService.streamResponseWithMeta(userMessage, history);
+    let chunkCount = 0;
+    const self = this;
+
+    async function* wrapped(): AsyncGenerator<string> {
+      try {
+        for await (const chunk of stream) {
+          if (typeof chunk !== 'string') continue;
+          const msgs = self.sessions.get(sessionId)!;
+          msgs[msgs.length - 1].content += chunk;
+          chunkCount += 1;
+          if (chunkCount % SAVE_EVERY_N_CHUNKS === 0) self.saveChatSession(sessionId);
+          yield chunk;
+        }
+      } finally {
+        self.saveChatSession(sessionId);
+      }
+    }
+
+    return { stream: wrapped(), meta };
   }
 
   async *processRealtimeMessageStream(
@@ -151,6 +197,39 @@ export class ChatService {
     } finally {
       this.saveChatSession(sessionId);
     }
+  }
+
+  processRealtimeMessageStreamWithMeta(
+    sessionId: string,
+    userMessage: string,
+  ): { stream: AsyncGenerator<string | { _search_results: unknown }>; meta: { sources: string[]; confidence: number } } {
+    if (!this.realtimeService) throw new Error('Realtime service not initialized');
+    this.addMessage(sessionId, 'user', userMessage);
+    this.addMessage(sessionId, 'assistant', '');
+    const history = this.formatHistoryForLlm(sessionId, true);
+    const { stream, meta } = this.realtimeService.streamResponseWithMeta(userMessage, history);
+    let chunkCount = 0;
+    const self = this;
+
+    async function* wrapped(): AsyncGenerator<string | { _search_results: unknown }> {
+      try {
+        for await (const chunk of stream) {
+          if (typeof chunk === 'object') {
+            yield chunk;
+            continue;
+          }
+          const msgs = self.sessions.get(sessionId)!;
+          msgs[msgs.length - 1].content += chunk;
+          chunkCount += 1;
+          if (chunkCount % SAVE_EVERY_N_CHUNKS === 0) self.saveChatSession(sessionId);
+          yield chunk;
+        }
+      } finally {
+        self.saveChatSession(sessionId);
+      }
+    }
+
+    return { stream: wrapped(), meta };
   }
 
   saveChatSession(sessionId: string): void {

@@ -10,6 +10,9 @@ import {
   MAX_MESSAGE_LENGTH,
   TAVILY_API_KEY,
 } from './config.js';
+import { MemoryService } from './core/memory/memoryService.js';
+import { AuditService } from './core/safety/auditService.js';
+import { SafetyService } from './core/safety/safetyService.js';
 import { ChatRequestSchema, TTSRequestSchema } from './models/schemas.js';
 import { createExtensionRouter } from './routes/extensionRoutes.js';
 import { ChatService } from './services/chatService.js';
@@ -26,6 +29,9 @@ let vectorStoreService: VectorStoreService;
 let groqService: GroqService;
 let realtimeService: RealtimeGroqService;
 let chatService: ChatService;
+const memoryService = new MemoryService();
+const auditService = new AuditService();
+const safetyService = new SafetyService();
 const ttsService = new TTSService();
 
 function isRateLimitError(err: unknown): boolean {
@@ -94,8 +100,15 @@ async function flushAudioQueue(res: Response, queue: TrackedAudio[]): Promise<vo
   }
 }
 
-async function streamGenerator(res: Response, sessionId: string, iter: AsyncGenerator<StreamItem>, ttsEnabled: boolean): Promise<void> {
+async function streamGenerator(
+  res: Response,
+  sessionId: string,
+  iter: AsyncGenerator<StreamItem>,
+  ttsEnabled: boolean,
+  meta?: { sources: string[]; confidence: number },
+): Promise<void> {
   sseWrite(res, { session_id: sessionId, chunk: '', done: false });
+  if (meta) sseWrite(res, { citations: meta.sources, confidence: meta.confidence });
 
   let buffer = '';
   let held: string | null = null;
@@ -188,6 +201,9 @@ app.get('/api', (_req, res) => {
       '/mentor/code/explain': 'Explain selected code with context',
       '/mentor/code/refactor': 'Suggest refactor with rationale and patch',
       '/mentor/code/fix': 'Suggest bug fix with rationale and patch',
+      '/memory/upsert': 'Upsert long-term structured memory',
+      '/memory/profile': 'Read merged profile + long-term memory',
+      '/audit/recent': 'Read recent audit logs',
       '/chat/history/:session_id': 'Get chat history',
       '/health': 'System health check',
       '/tts': 'Standalone text-to-speech (audio/mpeg)',
@@ -214,9 +230,22 @@ app.post('/chat', async (req, res) => {
     if (message.length > MAX_MESSAGE_LENGTH) return res.status(400).json({ detail: 'Message too long' });
 
     const sid = chatService.getOrCreateSession(session_id);
-    const response = await chatService.processMessage(sid, message);
+    const out = await chatService.processMessageWithMeta(sid, message);
     chatService.saveChatSession(sid);
-    return res.json({ response, session_id: sid });
+    auditService.log({
+      ts: new Date().toISOString(),
+      route: '/chat',
+      action: 'chat',
+      status: 'allowed',
+      session_id: sid,
+      details: { confidence: out.confidence, citations: out.sources.slice(0, 5) },
+    });
+    return res.json({
+      response: out.response,
+      session_id: sid,
+      citations: out.sources,
+      confidence: out.confidence,
+    });
   } catch (err) {
     if (err instanceof AllGroqApisFailedError) return res.status(503).json({ detail: err.message });
     if (isRateLimitError(err)) return res.status(429).json({ detail: 'Daily rate limit reached. Try again later.' });
@@ -231,9 +260,22 @@ app.post('/chat/realtime', async (req, res) => {
   try {
     const { message, session_id } = parsed.data;
     const sid = chatService.getOrCreateSession(session_id);
-    const response = await chatService.processRealtimeMessage(sid, message);
+    const out = await chatService.processRealtimeMessageWithMeta(sid, message);
     chatService.saveChatSession(sid);
-    return res.json({ response, session_id: sid });
+    auditService.log({
+      ts: new Date().toISOString(),
+      route: '/chat/realtime',
+      action: 'chat_realtime',
+      status: 'allowed',
+      session_id: sid,
+      details: { confidence: out.confidence, citations: out.sources.slice(0, 5) },
+    });
+    return res.json({
+      response: out.response,
+      session_id: sid,
+      citations: out.sources,
+      confidence: out.confidence,
+    });
   } catch (err) {
     if (err instanceof AllGroqApisFailedError) return res.status(503).json({ detail: err.message });
     if (isRateLimitError(err)) return res.status(429).json({ detail: 'Daily rate limit reached. Try again later.' });
@@ -249,7 +291,8 @@ app.post('/chat/stream', async (req, res) => {
     const { message, session_id, tts } = parsed.data;
     const sid = chatService.getOrCreateSession(session_id);
     setupSse(res);
-    await streamGenerator(res, sid, chatService.processMessageStream(sid, message), !!tts);
+    const streamOut = chatService.processMessageStreamWithMeta(sid, message);
+    await streamGenerator(res, sid, streamOut.stream, !!tts, streamOut.meta);
   } catch (err) {
     if (!res.headersSent) return res.status(500).json({ detail: String(err) });
     res.end();
@@ -264,14 +307,20 @@ app.post('/chat/realtime/stream', async (req, res) => {
     const { message, session_id, tts } = parsed.data;
     const sid = chatService.getOrCreateSession(session_id);
     setupSse(res);
-    await streamGenerator(res, sid, chatService.processRealtimeMessageStream(sid, message), !!tts);
+    const streamOut = chatService.processRealtimeMessageStreamWithMeta(sid, message);
+    await streamGenerator(res, sid, streamOut.stream, !!tts, streamOut.meta);
   } catch (err) {
     if (!res.headersSent) return res.status(500).json({ detail: String(err) });
     res.end();
   }
 });
 
-app.use(createExtensionRouter(() => chatService));
+app.use(createExtensionRouter({
+  getChatService: () => chatService,
+  memoryService,
+  auditService,
+  safetyService,
+}));
 
 app.get('/chat/history/:session_id', (req, res) => {
   const sessionId = req.params.session_id;
@@ -323,7 +372,6 @@ function bootstrap(): void {
   groqService = new GroqService(vectorStoreService);
   realtimeService = new RealtimeGroqService(vectorStoreService);
   chatService = new ChatService(groqService, realtimeService);
-
   const port = Number(process.env.PORT || 8000);
   app.listen(port, '0.0.0.0', () => {
     console.log(`TypeScript API: http://localhost:${port}`);

@@ -1,41 +1,65 @@
-# User Profile and Background
+# User Profile and System Context
 
-User Name: Shreshth Kaushik
-Role: AI System Developer and Entrepreneur
-Interests: AI, Machine Learning, Software Engineering, Innovation, Tech Entrepreneurship
-Skills: Python, JavaScript, Node.js, FastAPI, LangChain, AI/ML, System Design
+User Name: Gaurav Kumar
+Role: AI System Architect & Builder
 
-# Professional Background
+Primary Mission:
+Build a multi-layer autonomous AI system (Jarvis) that goes beyond a coding assistant and evolves as a long-term intelligence system.
 
-- Developer: Actively working on AI-powered systems and applications
-- Experience with modern AI frameworks like LangChain and vector databases
-- Knowledge of API design, microservices, and scalable systems
-- Expertise in integrating multiple AI services (Groq, Cohere, Tavily)
+Core Philosophy:
+AI should not replace Gaurav. AI should make him a 10x developer.
 
-# Technical Knowledge
+## Behavioral Profile (For AI Adaptation)
+- Highly ambitious
+- Long-term thinker
+- Wants autonomous evolving systems
+- Comfortable with complexity
+- Thinks in system layers
+- Focused on intelligence growth
 
-- Proficient in building conversational AI systems
-- Understanding of decision models and intent routing
-- Knowledge of real-time information retrieval systems
-- Experience with voice interfaces and modern web development
+AI Interaction Requirements:
+- Challenge him with stronger architectural thinking
+- Push depth over shallow answers
+- Suggest scalable, future-ready solutions
+- Avoid beginner-level explanations unless explicitly asked
+- Speak like a technical co-founder
 
-# Communication Style
+## Jarvis System Requirements
+Jarvis must:
+- Be integrated inside VS Code
+- Observe coding behavior
+- Adapt to coding style
+- Act as coding mentor
+- Teach system design
+- Perform bug detection and refactoring
+- Support multi-modal generation in future layers
+- Have digital identity (face, voice, internet presence)
+- Learn domains: Marketing, Trading, Finance, Web3
+- Self-upgrade via layered architecture
 
-- Direct and to-the-point communication
-- Values accuracy and practical solutions
-- Appreciates witty, intelligent responses
-- Prefers minimal complexity in documentation
+## Intelligence Growth Requirements
+Jarvis should:
+- Learn from conversations
+- Improve reasoning over time
+- Build memory embeddings
+- Develop domain specialization
+- Support autonomous agents over time
+- Potentially integrate visual intelligence (JEPA-style models in future)
 
-# Current Projects
+## Communication Style Preference
+- Direct
+- Clear
+- Strategic
+- No unnecessary fluff
+- Architecture-first responses
 
-- Building J.A.R.V.I.S: An intelligent assistant with automatic query routing
-- Focus on natural conversation with sophisticated decision-making
-- Integration of multiple AI services for different query types
-- Voice input/output capabilities for modern interface
+## Current Growth Goals
+- User is a MERN stack developer.
+- User is actively learning System Design and DSA.
+- User is preparing for product-based companies: Amazon, Microsoft, Google.
+- User wants improvement in English communication and spoken English.
 
-# Preferences
-
-- Efficient implementation over verbose documentation
-- Clean, readable code with good architecture
-- Natural responses without unnecessary rules
-- Practical, working solutions over theoretical discussions
+Guidance Mode:
+- Include interview-oriented guidance where relevant.
+- Prioritize scalable design thinking and DSA problem-solving patterns.
+- When possible, include concise English speaking improvements for technical discussions.

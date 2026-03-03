@@ -13,8 +13,20 @@ export const DB_DIR = envDbDir || defaultSharedDbDir;
 export const LEARNING_DATA_DIR = path.join(DB_DIR, 'learning_data');
 export const CHATS_DATA_DIR = path.join(DB_DIR, 'chats_data');
 export const VECTOR_STORE_DIR = path.join(DB_DIR, 'vector_store');
+export const MEMORY_DATA_DIR = path.join(DB_DIR, 'memory_data');
+export const AUDIT_LOGS_DIR = path.join(DB_DIR, 'audit_logs');
+export const EVAL_DATA_DIR = path.join(DB_DIR, 'eval_data');
+export const UPGRADE_DATA_DIR = path.join(DB_DIR, 'upgrade_data');
 
-for (const dir of [LEARNING_DATA_DIR, CHATS_DATA_DIR, VECTOR_STORE_DIR]) {
+for (const dir of [
+  LEARNING_DATA_DIR,
+  CHATS_DATA_DIR,
+  VECTOR_STORE_DIR,
+  MEMORY_DATA_DIR,
+  AUDIT_LOGS_DIR,
+  EVAL_DATA_DIR,
+  UPGRADE_DATA_DIR,
+]) {
   fs.mkdirSync(dir, { recursive: true });
 }
 

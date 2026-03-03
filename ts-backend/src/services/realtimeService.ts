@@ -120,6 +120,15 @@ export class RealtimeGroqService extends GroqService {
     }
   }
 
+  override async getResponseWithMeta(question: string, chatHistory?: Array<[string, string]>): Promise<{ response: string; meta: { sources: string[]; confidence: number } }> {
+    const query = await this.extractSearchQuery(question, chatHistory);
+    const { formatted } = await this.searchTavily(query, 7);
+    const extra = formatted ? [escapeCurlyBraces(formatted)] : undefined;
+    const { prompt, messages, meta } = this.buildPromptAndMessages(question, chatHistory, extra, REALTIME_CHAT_ADDENDUM);
+    const response = await this.invokeLlm(prompt, messages, question);
+    return { response, meta };
+  }
+
   async *streamResponse(question: string, chatHistory?: Array<[string, string]>): AsyncGenerator<StreamChunk> {
     const query = await this.extractSearchQuery(question, chatHistory);
     const { formatted, payload } = await this.searchTavily(query, 7);
@@ -131,5 +140,23 @@ export class RealtimeGroqService extends GroqService {
     const extra = formatted ? [escapeCurlyBraces(formatted)] : undefined;
     const { prompt, messages } = this.buildPromptAndMessages(question, chatHistory, extra, REALTIME_CHAT_ADDENDUM);
     yield* this.streamLlm(prompt, messages, question);
+  }
+
+  override streamResponseWithMeta(
+    question: string,
+    chatHistory?: Array<[string, string]>,
+  ): { stream: AsyncGenerator<StreamChunk>; meta: { sources: string[]; confidence: number } } {
+    const self = this;
+    async function* wrapped(): AsyncGenerator<StreamChunk> {
+      const query = await self.extractSearchQuery(question, chatHistory);
+      const { formatted, payload } = await self.searchTavily(query, 7);
+      if (payload) yield { _search_results: payload };
+      const extra = formatted ? [escapeCurlyBraces(formatted)] : undefined;
+      const { prompt, messages } = self.buildPromptAndMessages(question, chatHistory, extra, REALTIME_CHAT_ADDENDUM);
+      yield* self.streamLlm(prompt, messages, question);
+    }
+
+    const { meta } = this.buildPromptAndMessages(question, chatHistory, undefined, REALTIME_CHAT_ADDENDUM);
+    return { stream: wrapped(), meta };
   }
 }

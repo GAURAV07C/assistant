@@ -1,0 +1,14 @@
+{
+  "namespace": "profile",
+  "key": "target_roles",
+  "value": [
+    "amazon",
+    "microsoft",
+    "google"
+  ],
+  "tags": [
+    "career",
+    "faang"
+  ],
+  "updated_at": "2026-03-03T17:02:19.431Z"
+}

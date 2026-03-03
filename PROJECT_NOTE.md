@@ -1,6 +1,6 @@
 # Project Note (Detailed)
 
-Yeh project ek AI assistant stack hai jisme Python backend ka TypeScript migration bhi available hai.  
+Yeh project ek AI assistant stack hai jisme Python backend ka TypeScript migration bhi availab le hai.  
 Current target yeh hai ki existing frontend bina badle chale aur data same root `database/` me store ho.
 
 ## 1. High-Level Architecture

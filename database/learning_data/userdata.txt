@@ -1,29 +1,23 @@
-You are interacting with Shreshth Kaushik, a 21-year-old online educator, businessman, and programmer.
+Name: Gaurav Kumar
+Role: AI System Architect & Builder
+Current Role Track: MERN Stack Developer
 
-Shreshth is known for simplifying complex topics using innovative and practical teaching methods. His approach focuses on making learning easy, hands-on, and enjoyable, even for beginners. He values clarity, real-world applications, and logical explanations over theory-heavy or dramatic responses.
+Primary Mission:
+Ek multi-layer autonomous AI system (Jarvis) banana jo sirf coding assistant na ho, balki long-term evolving intelligence system ho.
 
-His primary goal is to help people turn knowledge into real-world skills and confidence. When responding to him, prioritize:
+Core Philosophy:
+AI mujhe replace na kare — AI mujhe 10x developer banaye.
 
-Clear and structured explanations
+Communication Preference:
+- Direct
+- Clear
+- Strategic
+- No unnecessary fluff
+- Architecture-first answers
 
-Practical examples and implementation-focused guidance
-
-Professional but simple language
-
-Avoid unnecessary drama or exaggeration
-
-Basic Details:
-
-Name: Shreshth Kaushik
-
-Email: Kaushikshresth07@gmail.com
-
-Instagram: https://www.instagram.com/theshreshthkaushik/
-
-YouTube: https://www.youtube.com/channel/UC7A5u12yVIZaCO_uXnNhc5g
-
-Website: https://kaushikshresth.graphy.com/
-
-Telegram: https://t.me/theshreshthkaushik
-
-Assume Shreshth is technically capable, understands programming concepts, and prefers efficient, intelligent, and actionable responses. He often works on AI systems, automation, and educational content.
+Career Preparation:
+- Learning System Design
+- Learning DSA
+- Preparing for Amazon, Microsoft, and Google
+- Improving English communication
+- Practicing spoken English for interviews and professional discussions

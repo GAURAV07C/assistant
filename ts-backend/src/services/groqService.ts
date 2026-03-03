@@ -13,6 +13,10 @@ import type { VectorStoreService } from './vectorStore.js';
 
 export class AllGroqApisFailedError extends Error {}
 export type StreamChunk = string | { _search_results: unknown };
+export interface ResponseMeta {
+  sources: string[];
+  confidence: number;
+}
 
 export function escapeCurlyBraces(text: string): string {
   return text.replace(/\{/g, '{{').replace(/\}/g, '}}');
@@ -106,9 +110,12 @@ export class GroqService {
     chatHistory?: Array<[string, string]>,
     extraSystemParts?: string[],
     modeAddendum = '',
-  ): { prompt: ChatPromptTemplate; messages: Array<HumanMessage | AIMessage> } {
-    const contextDocs = this.vectorStoreService.retrieve(question, 10);
+  ): { prompt: ChatPromptTemplate; messages: Array<HumanMessage | AIMessage>; meta: ResponseMeta } {
+    const contextDocs = this.vectorStoreService.retrieveWithScores(question, 10);
     const contextText = contextDocs.map((d) => d.pageContent).join('\n');
+    const sources = [...new Set(contextDocs.map((d) => d.source).filter(Boolean))];
+    const topScore = contextDocs.length ? contextDocs[0].score : 0;
+    const confidence = Math.max(0, Math.min(1, topScore / 5));
 
     let system = JARVIS_SYSTEM_PROMPT;
     system += `\n\nCurrent time and date:\n${getTimeInformation()}`;
@@ -134,7 +141,7 @@ export class GroqService {
       messages.push(new AIMessage(ai));
     }
 
-    return { prompt, messages };
+    return { prompt, messages, meta: { sources, confidence } };
   }
 
   async getResponse(question: string, chatHistory?: Array<[string, string]>): Promise<string> {
@@ -142,8 +149,19 @@ export class GroqService {
     return this.invokeLlm(prompt, messages, question);
   }
 
+  async getResponseWithMeta(question: string, chatHistory?: Array<[string, string]>): Promise<{ response: string; meta: ResponseMeta }> {
+    const { prompt, messages, meta } = this.buildPromptAndMessages(question, chatHistory, undefined, GENERAL_CHAT_ADDENDUM);
+    const response = await this.invokeLlm(prompt, messages, question);
+    return { response, meta };
+  }
+
   streamResponse(question: string, chatHistory?: Array<[string, string]>): AsyncGenerator<StreamChunk> {
     const { prompt, messages } = this.buildPromptAndMessages(question, chatHistory, undefined, GENERAL_CHAT_ADDENDUM);
     return this.streamLlm(prompt, messages, question);
+  }
+
+  streamResponseWithMeta(question: string, chatHistory?: Array<[string, string]>): { stream: AsyncGenerator<StreamChunk>; meta: ResponseMeta } {
+    const { prompt, messages, meta } = this.buildPromptAndMessages(question, chatHistory, undefined, GENERAL_CHAT_ADDENDUM);
+    return { stream: this.streamLlm(prompt, messages, question), meta };
   }
 }

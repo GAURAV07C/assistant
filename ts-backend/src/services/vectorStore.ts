@@ -6,6 +6,9 @@ export interface RetrievedDoc {
   pageContent: string;
   source: string;
 }
+export interface RetrievedDocScored extends RetrievedDoc {
+  score: number;
+}
 
 interface ChunkRecord extends RetrievedDoc {
   terms: Map<string, number>;
@@ -93,6 +96,10 @@ export class VectorStoreService {
   }
 
   retrieve(question: string, k = 10): RetrievedDoc[] {
+    return this.retrieveWithScores(question, k).map((s) => ({ pageContent: s.pageContent, source: s.source }));
+  }
+
+  retrieveWithScores(question: string, k = 10): RetrievedDocScored[] {
     const qTerms = termFreq(tokenize(question));
     const scores = this.chunks.map((chunk) => {
       let score = 0;
@@ -106,6 +113,6 @@ export class VectorStoreService {
     return scores
       .sort((a, b) => b.score - a.score)
       .slice(0, k)
-      .map((s) => ({ pageContent: s.chunk.pageContent, source: s.chunk.source }));
+      .map((s) => ({ pageContent: s.chunk.pageContent, source: s.chunk.source, score: s.score }));
   }
 }
