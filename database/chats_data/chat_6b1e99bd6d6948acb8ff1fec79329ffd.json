@@ -1,0 +1,21 @@
+{
+  "session_id": "6b1e99bd-6d69-48ac-b8ff-1fec79329ffd",
+  "messages": [
+    {
+      "role": "user",
+      "content": "hello"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello Shreshth, how can I assist you today?"
+    },
+    {
+      "role": "user",
+      "content": "who is Elon Musk and how much network"
+    },
+    {
+      "role": "assistant",
+      "content": "Elon Musk is a billionaire entrepreneur, founder of SpaceX and Tesla. His net worth is estimated to be around $852 billion as of February 2026."
+    }
+  ]
+}

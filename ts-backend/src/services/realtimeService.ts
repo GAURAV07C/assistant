@@ -1,0 +1,135 @@
+import { ChatGroq } from '@langchain/groq';
+import { GROQ_API_KEYS, GROQ_MODEL, REALTIME_CHAT_ADDENDUM, TAVILY_API_KEY } from '../config.js';
+import type { SearchPayload } from '../types/chat.js';
+import { withRetry } from '../utils/retry.js';
+import { AllGroqApisFailedError, escapeCurlyBraces, GroqService, type StreamChunk } from './groqService.js';
+import type { VectorStoreService } from './vectorStore.js';
+
+export class RealtimeGroqService extends GroqService {
+  private fastLlm: ChatGroq | null;
+
+  constructor(vectorStoreService: VectorStoreService) {
+    super(vectorStoreService);
+    this.fastLlm = GROQ_API_KEYS.length
+      ? new ChatGroq({
+          apiKey: GROQ_API_KEYS[0],
+          model: GROQ_MODEL,
+          temperature: 0,
+          timeout: 15_000,
+          maxTokens: 50,
+        })
+      : null;
+  }
+
+  private async extractSearchQuery(question: string, chatHistory?: Array<[string, string]>): Promise<string> {
+    if (!this.fastLlm) return question;
+    try {
+      const recent = (chatHistory || []).slice(-3);
+      const historyText = recent
+        .map(([u, a]) => `User: ${u.slice(0, 200)}\nAssistant: ${a.slice(0, 200)}`)
+        .join('\n');
+      const prompt = [
+        'You are a search query optimizer.',
+        'Create one short focused web search query (max 12 words).',
+        'Resolve references like him/it/that using recent context.',
+        'Output only the query.',
+        historyText ? `Recent conversation:\n${historyText}` : '',
+        `User message: ${question}`,
+        'Search query:',
+      ]
+        .filter(Boolean)
+        .join('\n\n');
+
+      const resp = await this.fastLlm.invoke(prompt);
+      const query = String(resp.content || '').trim().replace(/^['\"]|['\"]$/g, '');
+      if (query.length >= 3 && query.length <= 200) return query;
+      return question;
+    } catch {
+      return question;
+    }
+  }
+
+  async searchTavily(query: string, numResults = 7): Promise<{ formatted: string; payload: SearchPayload | null }> {
+    if (!TAVILY_API_KEY) return { formatted: '', payload: null };
+
+    try {
+      const response = await withRetry(async () => {
+        const r = await fetch('https://api.tavily.com/search', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            api_key: TAVILY_API_KEY,
+            query,
+            search_depth: 'advanced',
+            max_results: numResults,
+            include_answer: true,
+            include_raw_content: false,
+          }),
+        });
+        if (!r.ok) throw new Error(`Tavily HTTP ${r.status}`);
+        return (await r.json()) as {
+          answer?: string;
+          results?: Array<{ title?: string; content?: string; url?: string; score?: number }>;
+        };
+      }, 3, 1000);
+
+      const answer = response.answer || '';
+      const results = response.results || [];
+      if (!answer && results.length === 0) return { formatted: '', payload: null };
+
+      const payload: SearchPayload = {
+        query,
+        answer,
+        results: results.slice(0, numResults).map((r) => ({
+          title: r.title || 'No title',
+          content: (r.content || '').slice(0, 500),
+          url: r.url || '',
+          score: Number((r.score || 0).toFixed(2)),
+        })),
+      };
+
+      const parts: string[] = [`=== WEB SEARCH RESULTS FOR: ${query} ===\n`];
+      if (answer) parts.push(`AI-SYNTHESIZED ANSWER:\n${answer}\n`);
+      if (results.length) {
+        parts.push('INDIVIDUAL SOURCES:');
+        results.slice(0, numResults).forEach((r, idx) => {
+          parts.push(`\n[Source ${idx + 1}] (relevance: ${(r.score || 0).toFixed(2)})`);
+          parts.push(`Title: ${r.title || 'No title'}`);
+          if (r.content) parts.push(`Content: ${r.content}`);
+          if (r.url) parts.push(`URL: ${r.url}`);
+        });
+      }
+      parts.push('\n=== END SEARCH RESULTS ===');
+
+      return { formatted: parts.join('\n'), payload };
+    } catch {
+      return { formatted: '', payload: null };
+    }
+  }
+
+  override async getResponse(question: string, chatHistory?: Array<[string, string]>): Promise<string> {
+    try {
+      const query = await this.extractSearchQuery(question, chatHistory);
+      const { formatted } = await this.searchTavily(query, 7);
+      const extra = formatted ? [escapeCurlyBraces(formatted)] : undefined;
+      const { prompt, messages } = this.buildPromptAndMessages(question, chatHistory, extra, REALTIME_CHAT_ADDENDUM);
+      return this.invokeLlm(prompt, messages, question);
+    } catch (err) {
+      if (err instanceof AllGroqApisFailedError) throw err;
+      throw err;
+    }
+  }
+
+  async *streamResponse(question: string, chatHistory?: Array<[string, string]>): AsyncGenerator<StreamChunk> {
+    const query = await this.extractSearchQuery(question, chatHistory);
+    const { formatted, payload } = await this.searchTavily(query, 7);
+
+    if (payload) {
+      yield { _search_results: payload };
+    }
+
+    const extra = formatted ? [escapeCurlyBraces(formatted)] : undefined;
+    const { prompt, messages } = this.buildPromptAndMessages(question, chatHistory, extra, REALTIME_CHAT_ADDENDUM);
+    yield* this.streamLlm(prompt, messages, question);
+  }
+}

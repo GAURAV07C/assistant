@@ -1,0 +1,13 @@
+{
+  "session_id": "66f5d317-3317-4c68-bfd6-feabd6be7fd4",
+  "messages": [
+    {
+      "role": "user",
+      "content": "You are Astro code analyzer.\nReturn valid JSON only.\nExpected keys by mode:\n- security/performance/bug/refactor: findings (array of {title,severity,line,details,fix})\n- docs: summary, docstring, readme_section\n- output_preview: predicted_output, assumptions, confidence\n- api_db: contracts, queries, schema_notes, risks\nMode: bug\nLanguage: typescript\nFile: /tmp/a.ts\nStyle profile: none\nSelection:\nconst x:any = 1;\nFile Content:\nconst x:any = 1;"
+    },
+    {
+      "role": "assistant",
+      "content": "```json\n{\n  \"findings\": [\n    {\n      \"title\": \"Implicit any type\",\n      \"severity\": \"warning\",\n      \"line\": 1,\n      \"details\": \"The 'any' type is used implicitly, which can lead to type errors and make the code harder to maintain.\",\n      \"fix\": \"Consider using a more specific type instead of 'any'.\"\n    }\n  ]\n}\n```"
+    }
+  ]
+}

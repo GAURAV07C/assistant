@@ -1,0 +1,273 @@
+import { Router } from 'express';
+import { AllGroqApisFailedError } from '../services/groqService.js';
+import type { ChatService } from '../services/chatService.js';
+
+function safeText(value: unknown, max = 6000): string {
+  return String(value || '').slice(0, max);
+}
+
+function makeMentorPrompt(mode: 'explain' | 'refactor' | 'fix', payload: any): string {
+  const section = mode === 'explain'
+    ? 'Explain the selected code in practical terms.'
+    : mode === 'refactor'
+      ? 'Suggest a better refactor and provide a concise rationale.'
+      : 'Find likely bug(s) and propose a fix with rationale.';
+
+  return [
+    'You are Astro, a senior developer mentor.',
+    'Return concise, practical output.',
+    'Always include: summary, rationale, and concrete next action.',
+    section,
+    '',
+    `Language: ${payload.language || 'unknown'}`,
+    `File: ${payload.file_path || 'unknown'}`,
+    '',
+    'Selected Code:',
+    payload.selection || '(empty selection)',
+    '',
+    'File Context (truncated if long):',
+    safeText(payload.file_content),
+  ].join('\n');
+}
+
+async function askMentor(chatService: ChatService, sid: string, prompt: string): Promise<string> {
+  const response = await chatService.processMessage(sid, prompt);
+  chatService.saveChatSession(sid);
+  return response;
+}
+
+function styleProfileText(profile: unknown): string {
+  if (!profile) return 'none';
+  try {
+    return JSON.stringify(profile);
+  } catch {
+    return 'unserializable';
+  }
+}
+
+export function createExtensionRouter(getChatService: () => ChatService): Router {
+  const router = Router();
+
+  router.post('/agent/plan', async (req, res) => {
+    try {
+      const chatService = getChatService();
+      const body = req.body || {};
+      const sid = chatService.getOrCreateSession(body.session_id);
+      const userQuery = String(body.user_query || '').trim();
+      if (!userQuery) return res.status(400).json({ detail: 'user_query is required' });
+
+      const plannerPrompt = [
+        'Create a compact, execution-ready plan.',
+        'Return valid JSON only with keys: goal, steps, risks, success_criteria, tools.',
+        'Each step must contain: id, title, action, expected_output.',
+        `Task: ${userQuery}`,
+        `Context: ${JSON.stringify(body.context || {})}`,
+      ].join('\n');
+
+      const response = await askMentor(chatService, sid, plannerPrompt);
+      return res.json({
+        session_id: sid,
+        goal: userQuery,
+        raw_plan: response,
+        tools: ['chat', 'mentor', 'rag'],
+      });
+    } catch (err) {
+      if (err instanceof AllGroqApisFailedError) return res.status(503).json({ detail: err.message });
+      return res.status(500).json({ detail: String(err) });
+    }
+  });
+
+  router.post('/agent/execute', async (req, res) => {
+    try {
+      const chatService = getChatService();
+      const body = req.body || {};
+      const sid = chatService.getOrCreateSession(body.session_id);
+      const instruction = String(body.instruction || '').trim();
+      if (!instruction) return res.status(400).json({ detail: 'instruction is required' });
+
+      const response = await askMentor(
+        chatService,
+        sid,
+        `Execute this task safely and provide actionable feedback:\n${instruction}\n\nContext:\n${JSON.stringify(body.context || {})}`,
+      );
+
+      return res.json({ session_id: sid, result: response, status: 'completed' });
+    } catch (err) {
+      if (err instanceof AllGroqApisFailedError) return res.status(503).json({ detail: err.message });
+      return res.status(500).json({ detail: String(err) });
+    }
+  });
+
+  router.post('/mentor/code/explain', async (req, res) => {
+    try {
+      const chatService = getChatService();
+      const body = req.body || {};
+      const sid = chatService.getOrCreateSession(body.session_id);
+      const response = await askMentor(chatService, sid, makeMentorPrompt('explain', body));
+
+      return res.json({
+        session_id: sid,
+        mode: 'explain',
+        summary: response,
+        rationale: 'Generated from selected code + file context.',
+      });
+    } catch (err) {
+      if (err instanceof AllGroqApisFailedError) return res.status(503).json({ detail: err.message });
+      return res.status(500).json({ detail: String(err) });
+    }
+  });
+
+  router.post('/mentor/code/refactor', async (req, res) => {
+    try {
+      const chatService = getChatService();
+      const body = req.body || {};
+      const sid = chatService.getOrCreateSession(body.session_id);
+      const prompt = `${makeMentorPrompt('refactor', body)}\n\nAlso append a PATCH block in unified-diff style if possible.`;
+      const response = await askMentor(chatService, sid, prompt);
+
+      return res.json({
+        session_id: sid,
+        mode: 'refactor',
+        summary: response,
+        suggested_patch: response,
+        rationale: 'Refactor suggestion generated by mentor mode.',
+      });
+    } catch (err) {
+      if (err instanceof AllGroqApisFailedError) return res.status(503).json({ detail: err.message });
+      return res.status(500).json({ detail: String(err) });
+    }
+  });
+
+  router.post('/mentor/code/fix', async (req, res) => {
+    try {
+      const chatService = getChatService();
+      const body = req.body || {};
+      const sid = chatService.getOrCreateSession(body.session_id);
+      const prompt = `${makeMentorPrompt('fix', body)}\n\nAlso append a PATCH block in unified-diff style if possible.`;
+      const response = await askMentor(chatService, sid, prompt);
+
+      return res.json({
+        session_id: sid,
+        mode: 'fix',
+        summary: response,
+        suggested_patch: response,
+        rationale: 'Fix suggestion generated by mentor mode.',
+      });
+    } catch (err) {
+      if (err instanceof AllGroqApisFailedError) return res.status(503).json({ detail: err.message });
+      return res.status(500).json({ detail: String(err) });
+    }
+  });
+
+  router.post('/mentor/code/complete', async (req, res) => {
+    try {
+      const chatService = getChatService();
+      const body = req.body || {};
+      const sid = chatService.getOrCreateSession(body.session_id);
+      const language = String(body.language || 'unknown');
+      const prefix = safeText(body.prefix, 2500);
+      const suffix = safeText(body.suffix, 1200);
+
+      const prompt = [
+        'You are Astro autocomplete engine.',
+        'Return valid JSON only with key: suggestions (array of up to 3 strings).',
+        'Keep suggestions short, syntactically valid, and context-aware.',
+        `Language: ${language}`,
+        `Style profile: ${styleProfileText(body.style_profile)}`,
+        'Prefix:',
+        prefix,
+        'Suffix:',
+        suffix,
+      ].join('\n');
+
+      const raw = await askMentor(chatService, sid, prompt);
+      return res.json({ session_id: sid, raw, suggestions: [] });
+    } catch (err) {
+      if (err instanceof AllGroqApisFailedError) return res.status(503).json({ detail: err.message });
+      return res.status(500).json({ detail: String(err) });
+    }
+  });
+
+  router.post('/mentor/code/analyze', async (req, res) => {
+    try {
+      const chatService = getChatService();
+      const body = req.body || {};
+      const sid = chatService.getOrCreateSession(body.session_id);
+      const mode = String(body.mode || 'general');
+
+      const prompt = [
+        'You are Astro code analyzer.',
+        'Return valid JSON only.',
+        'Expected keys by mode:',
+        '- security/performance/bug/refactor: findings (array of {title,severity,line,details,fix})',
+        '- docs: summary, docstring, readme_section',
+        '- output_preview: predicted_output, assumptions, confidence',
+        '- api_db: contracts, queries, schema_notes, risks',
+        `Mode: ${mode}`,
+        `Language: ${body.language || 'unknown'}`,
+        `File: ${body.file_path || 'unknown'}`,
+        `Style profile: ${styleProfileText(body.style_profile)}`,
+        'Selection:',
+        safeText(body.selection, 4000),
+        'File Content:',
+        safeText(body.file_content, 7000),
+      ].join('\n');
+
+      const raw = await askMentor(chatService, sid, prompt);
+      return res.json({ session_id: sid, mode, raw, findings: [] });
+    } catch (err) {
+      if (err instanceof AllGroqApisFailedError) return res.status(503).json({ detail: err.message });
+      return res.status(500).json({ detail: String(err) });
+    }
+  });
+
+  router.post('/mentor/snippet/generate', async (req, res) => {
+    try {
+      const chatService = getChatService();
+      const body = req.body || {};
+      const sid = chatService.getOrCreateSession(body.session_id);
+      const request = String(body.request || '').trim();
+      if (!request) return res.status(400).json({ detail: 'request is required' });
+
+      const prompt = [
+        'You are Astro snippet generator.',
+        'Return valid JSON only with keys: title, prefix, body (array of lines), description.',
+        `Language: ${body.language || 'unknown'}`,
+        `Request: ${request}`,
+        `Style profile: ${styleProfileText(body.style_profile)}`,
+      ].join('\n');
+
+      const raw = await askMentor(chatService, sid, prompt);
+      return res.json({ session_id: sid, raw });
+    } catch (err) {
+      if (err instanceof AllGroqApisFailedError) return res.status(503).json({ detail: err.message });
+      return res.status(500).json({ detail: String(err) });
+    }
+  });
+
+  router.post('/mentor/git/commit-message', async (req, res) => {
+    try {
+      const chatService = getChatService();
+      const body = req.body || {};
+      const sid = chatService.getOrCreateSession(body.session_id);
+      const diff = safeText(body.diff, 12000);
+      if (!diff.trim()) return res.status(400).json({ detail: 'diff is required' });
+
+      const prompt = [
+        'You are Astro git assistant.',
+        'Write one clear commit message in Conventional Commits style.',
+        'Return valid JSON only with keys: type, scope, subject, body.',
+        'Diff:',
+        diff,
+      ].join('\n');
+
+      const raw = await askMentor(chatService, sid, prompt);
+      return res.json({ session_id: sid, raw });
+    } catch (err) {
+      if (err instanceof AllGroqApisFailedError) return res.status(503).json({ detail: err.message });
+      return res.status(500).json({ detail: String(err) });
+    }
+  });
+
+  return router;
+}

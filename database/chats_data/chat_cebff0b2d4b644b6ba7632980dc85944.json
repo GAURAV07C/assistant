@@ -1,0 +1,13 @@
+{
+  "session_id": "cebff0b2-d4b6-44b6-ba76-32980dc85944",
+  "messages": [
+    {
+      "role": "user",
+      "content": "You are Astro autocomplete engine.\nReturn valid JSON only with key: suggestions (array of up to 3 strings).\nKeep suggestions short, syntactically valid, and context-aware.\nLanguage: typescript\nStyle profile: {\"indent\":2,\"prefersSemicolon\":true}\nPrefix:\nfunction sum(a:number,b:number){\n  return \nSuffix:\n\n}"
+    },
+    {
+      "role": "assistant",
+      "content": "```json\n{\n  \"suggestions\": [\n    \"a + b;\",\n    \"a - b;\",\n    \"a * b;\"\n  ]\n}\n```"
+    }
+  ]
+}

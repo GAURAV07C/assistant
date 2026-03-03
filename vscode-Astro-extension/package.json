@@ -1,0 +1,113 @@
+{
+  "name": "astro-mentor-extension",
+  "displayName": "Astro Mentor",
+  "description": "AI dev mentor + assistant connected to Astro backend",
+  "version": "0.0.1",
+  "publisher": "astro-local",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:astro.ask",
+    "onCommand:astro.planTask",
+    "onCommand:astro.explainSelection",
+    "onCommand:astro.refactorSelection",
+    "onCommand:astro.fixSelection",
+    "onCommand:astro.detectBugs",
+    "onCommand:astro.outputPreview",
+    "onCommand:astro.generateSnippet",
+    "onCommand:astro.gitAutomation",
+    "onCommand:astro.apiDbAssist",
+    "onCommand:astro.securityScan",
+    "onCommand:astro.performanceScan",
+    "onCommand:astro.generateDocs",
+    "onCommand:astro.toggleLiveMonitor",
+    "onCommand:astro.agentModeFuture",
+    "onCommand:astro.multiFileFuture",
+    "onView:astroChatView",
+    "onView:astroPlanView",
+    "onView:astroSuggestionsView",
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:python"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      { "command": "astro.ask", "title": "Astro: Ask" },
+      { "command": "astro.planTask", "title": "Astro: Plan Task" },
+      { "command": "astro.explainSelection", "title": "Astro: Explain Selection" },
+      { "command": "astro.refactorSelection", "title": "Astro: Refactor Selection" },
+      { "command": "astro.fixSelection", "title": "Astro: Fix Selection" },
+      { "command": "astro.detectBugs", "title": "Astro: Bug Detection" },
+      { "command": "astro.outputPreview", "title": "Astro: Inline Output Preview" },
+      { "command": "astro.generateSnippet", "title": "Astro: Generate Snippet" },
+      { "command": "astro.gitAutomation", "title": "Astro: Git Automation" },
+      { "command": "astro.apiDbAssist", "title": "Astro: API & DB Assistant" },
+      { "command": "astro.securityScan", "title": "Astro: Security Analysis" },
+      { "command": "astro.performanceScan", "title": "Astro: Performance Optimization" },
+      { "command": "astro.generateDocs", "title": "Astro: Generate Documentation" },
+      { "command": "astro.toggleLiveMonitor", "title": "Astro: Toggle Live Monitor" },
+      { "command": "astro.agentModeFuture", "title": "Astro: Agent Mode (Future)" },
+      { "command": "astro.multiFileFuture", "title": "Astro: Multi-file Automation (Future)" }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "astroMentor",
+          "title": "Astro",
+          "icon": "media/astro.svg"
+        }
+      ]
+    },
+    "views": {
+      "astroMentor": [
+        { "id": "astroChatView", "name": "Chat" },
+        { "id": "astroPlanView", "name": "Plan" },
+        { "id": "astroSuggestionsView", "name": "Suggestions" }
+      ]
+    },
+    "configuration": {
+      "title": "Astro Mentor",
+      "properties": {
+        "astro.backendUrl": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "Astro backend base URL"
+        },
+        "astro.realtimeDefault": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use realtime mode by default in chat"
+        },
+        "astro.liveMonitorEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Astro live monitoring while you type."
+        },
+        "astro.liveMonitorDebounceMs": {
+          "type": "number",
+          "default": 1500,
+          "minimum": 400,
+          "description": "Debounce delay for live monitoring analysis requests."
+        },
+        "astro.liveMonitorAutoOpenSuggestions": {
+          "type": "boolean",
+          "default": false,
+          "description": "Auto-open suggestions panel when live monitor finds issues."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.5",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.6.2"
+  }
+}
