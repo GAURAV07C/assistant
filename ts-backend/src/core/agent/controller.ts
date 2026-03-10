@@ -49,6 +49,7 @@ import { CodeOptimizer } from '../../self_evolution/code_optimizer.js';
 import { PerformanceMonitor } from '../../self_evolution/performance_monitor.js';
 import { EvolutionPlanner } from '../../self_evolution/evolution_planner.js';
 import { UpgradeExecutor } from '../../self_evolution/upgrade_executor.js';
+import type { AgentOutput } from '../../agents/base_agent.js';
 
 export type AgentIntent =
   | 'coding'
@@ -125,6 +126,18 @@ export interface AgentExecutionResult {
     task_reuse_candidates?: number;
   };
 }
+
+type StepResult = { step: string; tool: string; ok: boolean; detail: string };
+
+type FinalizationParams = {
+  input: AgentRunInput;
+  contract: InternalContract;
+  semanticContext: string;
+  stepResults: StepResult[];
+  toolsUsed: string[];
+  agentOutputs: AgentOutput[];
+  activeAgents: string[];
+};
 
 interface AgentRunInput {
   sessionId: string;
@@ -380,12 +393,18 @@ export class AgentController {
       };
     }
 
-    const stepResults: Array<{ step: string; tool: string; ok: boolean; detail: string }> = [];
+    const retrievalDepth = this.isFastPath(contract) ? 4 : 6;
+    const retrievedMemory = this.retrievalEngine.retrieve(input.message, retrievalDepth);
+    const semanticContext = this.contextBuilder.build(retrievedMemory);
+
+    if (this.isFastPath(contract)) {
+      return this.runFastPath(input, contract, semanticContext);
+    }
+
+    const stepResults: StepResult[] = [];
     const toolsUsed: string[] = [];
     const orchestrated = await this.multiAgent.orchestrate(input.message, input.context);
     const agentOutputs = orchestrated.outputs;
-    const retrievedMemory = this.retrievalEngine.retrieve(input.message, 6);
-    const semanticContext = this.contextBuilder.build(retrievedMemory);
 
     for (const step of contract.plan.steps) {
       if (!step.toLowerCase().includes('execute toolchain')) continue;
@@ -419,6 +438,44 @@ export class AgentController {
         }
       }
     }
+
+    return this.finalizeExecution({
+      input,
+      contract,
+      semanticContext,
+      stepResults,
+      toolsUsed,
+      agentOutputs,
+      activeAgents: orchestrated.active_agents,
+    });
+  }
+
+  private isFastPath(contract: InternalContract): boolean {
+    return contract.intent === 'casual_conversation' && contract.selected_mode === 'casual';
+  }
+
+  private async runFastPath(input: AgentRunInput, contract: InternalContract, semanticContext: string): Promise<AgentExecutionResult> {
+    return this.finalizeExecution({
+      input,
+      contract,
+      semanticContext,
+      stepResults: [],
+      toolsUsed: [],
+      agentOutputs: [],
+      activeAgents: [],
+    });
+  }
+
+  private async finalizeExecution(params: FinalizationParams): Promise<AgentExecutionResult> {
+    const {
+      input,
+      contract,
+      semanticContext,
+      stepResults,
+      toolsUsed,
+      agentOutputs,
+      activeAgents,
+    } = params;
 
     const evaluation = this.evaluate(contract, toolsUsed, false);
     contract.tools_used = toolsUsed;
@@ -556,7 +613,7 @@ export class AgentController {
       research_gaps: autonomousResearch.topics_detected.filter((topic) => !autonomousResearch.built_topics.some((b) => b.topic === topic)),
       reasoning_fail_rate: performanceSnapshot.evaluation_score < 70 ? 0.4 : 0.1,
       tool_failure_rate: performanceSnapshot.tool_failure_rate,
-      active_agents: orchestrated.active_agents,
+      active_agents: activeAgents,
     });
 
     const knownConcepts = this.intelligenceGraph.snapshot().nodes.map((n) => n.id).slice(0, 300);
@@ -621,7 +678,7 @@ export class AgentController {
         selected_skills: selectedSkills,
         learned_skills: learned.detected,
         reflection_quality_score: reflection.quality_score,
-        active_agents: orchestrated.active_agents,
+        active_agents: activeAgents,
         curriculum_focus: curriculum.map((c) => c.skill).slice(0, 5),
         next_recommended_task: curriculum[0]?.skill || 'none',
         autonomous_research_topics: autonomousResearch.topics_detected,
