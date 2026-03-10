@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-03-10T04:05:14.090Z",
-  "count": 36,
+  "generated_at": "2026-03-10T15:39:05.471Z",
+  "count": 40,
   "items": [
     {
       "input": "architecture_idea: system_design",
@@ -299,6 +299,17 @@
       "input": "research_concept: general",
       "context": "autonomous_research, verified_web",
       "expected_output": "General means a high-ranking officer in the military, often overseeing large units or commands. It can also describe something broad or not specific. In general, it refers to something common or usual. Sources: https://www.dictionary.com/browse/general, https://webstersdictionary1828.com/Dictionary/general, https://dictionary.cambridge.org/us/dictionary/english/general, https://www.oxfordlearnersdictionaries.com/definition/english/general_1, https://www.vocabulary.com/dictionary/general",
+      "tags": [
+        "research_concept",
+        "general",
+        "autonomous_research",
+        "verified_web"
+      ]
+    },
+    {
+      "input": "research_concept: general",
+      "context": "autonomous_research, verified_web",
+      "expected_output": "General means relating to all or most people or things. In military, a general is a high-ranking officer. The General is also a car insurance company. Sources: https://www.dictionary.com/browse/general, https://dictionary.justia.com/general, https://dictionary.cambridge.org/us/dictionary/english/general, https://www.thegeneral.com/, https://www.gm.com/",
       "tags": [
         "research_concept",
         "general",
