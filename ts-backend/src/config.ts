@@ -122,6 +122,7 @@ export const TAVILY_API_KEY = TAVILY_API_KEYS[0] || '';
 
 export const TTS_VOICE = process.env.TTS_VOICE || 'en-GB-RyanNeural';
 export const TTS_RATE = process.env.TTS_RATE || '+22%';
+export const GITHUB_API_TOKEN = (process.env.GITHUB_API_TOKEN || '').trim();
 
 export const CHUNK_SIZE = 1000;
 export const CHUNK_OVERLAP = 200;

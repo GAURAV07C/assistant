@@ -31,6 +31,7 @@ import { SafetyService } from './core/safety/safetyService.js';
 import { RouterLogs } from './core/safety/router_logs.js';
 import { ChatRequestSchema, TTSRequestSchema } from './models/schemas.js';
 import { createExtensionRouter } from './routes/extensionRoutes.js';
+import { createLearningRouter } from './routes/learningRoutes.js';
 import { ChatService } from './services/chatService.js';
 import { AllGroqApisFailedError, GroqService } from './services/groqService.js';
 import { RealtimeGroqService } from './services/realtimeService.js';
@@ -1020,6 +1021,8 @@ app.use(createExtensionRouter({
   voiceService,
   agentController,
 }));
+
+app.use(createLearningRouter());
 
 app.get('/chat/history/:session_id', (req, res) => {
   const sessionId = req.params.session_id;

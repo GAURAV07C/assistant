@@ -9,6 +9,10 @@ import { EvaluationAgent } from './evaluation_agent.js';
 import { LearningAgent } from './learning_agent.js';
 import { PlanningAgent } from './planning_agent.js';
 import { ResearchAgent } from './research_agent.js';
+import { GitHubLearningAgent } from '../github_learning/githubLearningAgent.js';
+import { YouTubeLearningAgent } from '../youtube_learning/youtubeLearningAgent.js';
+import { WebLearningAgent } from '../web_learning/webLearningAgent.js';
+import { MultimodalLearningAgent } from '../multimodal_learning/multimodalAgent.js';
 
 const ACTIVITY_FILE = path.join(UPGRADE_DATA_DIR, 'agent_activity.json');
 
@@ -36,6 +40,10 @@ export class AgentOrchestrator {
   private readonly debugAgent = new DebugAgent();
   private readonly learningAgent = new LearningAgent();
   private readonly automationAgent = new AutomationAgent();
+  private readonly youtubeLearningAgent = new YouTubeLearningAgent();
+  private readonly webLearningAgent = new WebLearningAgent();
+  private readonly multimodalLearningAgent = new MultimodalLearningAgent();
+  private readonly githubLearningAgent = new GitHubLearningAgent();
   private readonly evaluationAgent = new EvaluationAgent();
 
   private readonly agents: EvolutionAgent[] = [
@@ -45,6 +53,10 @@ export class AgentOrchestrator {
     this.planningAgent,
     this.learningAgent,
     this.automationAgent,
+    this.youtubeLearningAgent,
+    this.webLearningAgent,
+    this.multimodalLearningAgent,
+    this.githubLearningAgent,
   ];
 
   async route(request: string, context?: Record<string, unknown>): Promise<AgentOutput[]> {
@@ -110,6 +122,10 @@ export class AgentOrchestrator {
       this.debugAgent.id,
       this.learningAgent.id,
       this.automationAgent.id,
+      this.youtubeLearningAgent.id,
+      this.webLearningAgent.id,
+      this.multimodalLearningAgent.id,
+      this.githubLearningAgent.id,
       this.evaluationAgent.id,
     ];
   }

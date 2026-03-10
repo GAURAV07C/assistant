@@ -9,6 +9,9 @@ import { EmbeddingEngine } from './embedding_engine.js';
 import { KnowledgeExtractor, type StructuredInsight } from './knowledge_extractor.js';
 import { KnowledgeGraph } from './knowledge_graph.js';
 import { MicroDatasetBuilder } from './micro_dataset_builder.js';
+import { GapDetector } from '../meta_intelligence/gap_detector.js';
+import { ImprovementEngine } from '../self_improvement/improvement_engine.js';
+import { EvolutionPlanner } from '../self_evolution/evolution_planner.js';
 
 interface CursorState {
   last_processed_ts: string;
@@ -25,6 +28,9 @@ export class LearningScheduler {
   private readonly behavior = new BehaviorLearning();
   private readonly research = new ResearchEngine();
   private readonly microDatasetBuilder = new MicroDatasetBuilder();
+  private readonly gapDetector = new GapDetector();
+  private readonly improvementEngine = new ImprovementEngine();
+  private readonly evolutionPlanner = new EvolutionPlanner();
 
   storeConversation(record: ConversationRecord): void {
     this.dataset.store(record);
@@ -59,6 +65,9 @@ export class LearningScheduler {
       this.microDatasetBuilder.build(records, insights);
 
       await this.autonomousExpansion(insights);
+      const gaps = this.gapDetector.detect();
+      if (gaps.length) this.improvementEngine.generateFromGaps(gaps);
+      this.evolutionPlanner.plan();
       this.writeCursor({ last_processed_ts: records[records.length - 1].timestamp });
     } catch (err) {
       console.warn(`[LEARNING] scheduler cycle failed: ${String(err)}`);

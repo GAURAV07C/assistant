@@ -1,6 +1,6 @@
 import { DatasetManager } from './dataset_manager.js';
 import { EmbeddingEngine } from './embedding_engine.js';
-import { KnowledgeExtractor } from './knowledge_extractor.js';
+import { KnowledgeExtractor, type StructuredInsight } from './knowledge_extractor.js';
 import { KnowledgeGraph } from './knowledge_graph.js';
 import { BehaviorLearning } from './behavior_learning.js';
 import { WebResearcher } from '../research/web_researcher.js';
@@ -37,6 +37,27 @@ export class ContinuousLearningEngine {
     if (!research || research.sources.length === 0) return { insights: insights.length, researched: false, skill_categories: skillCategories };
 
     return { insights: insights.length, researched: true, skill_categories: skillCategories };
+  }
+
+  async ingestKnowledgeArtifact(input: {
+    source: string;
+    title: string;
+    summary: string;
+    tags: string[];
+    timestamp?: string;
+    topic?: string;
+  }): Promise<void> {
+    const timestamp = input.timestamp || new Date().toISOString();
+    const insight: StructuredInsight = {
+      timestamp,
+      session_id: `learning:${input.source}`,
+      kind: 'research_concept',
+      topic: input.topic || 'learning',
+      summary: input.summary,
+      source_tags: input.tags,
+    };
+    this.embedding.upsertInsights([insight]);
+    this.graph.updateFromInsights([insight]);
   }
 
   private detectSkillCategories(message: string, tags: string[], topics: string[]): string[] {
