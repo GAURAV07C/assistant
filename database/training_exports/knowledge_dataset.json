@@ -1,0 +1,310 @@
+{
+  "generated_at": "2026-03-10T04:05:14.090Z",
+  "count": 36,
+  "items": [
+    {
+      "input": "architecture_idea: system_design",
+      "context": "chat",
+      "expected_output": "**Problem Framing:** It appears that you have activated the Strategic Mode, indicating a desire for a more structured and strategic approach to our conversation. This mode is ideal for tackling complex issues, exploring options, and making informed decisions. **Options:** To proceed, I can offer the following options: 1. **Clarify the Objective**: We can start by defining the specific objective or problem you'd like to address in this conversation. 2. **Explore Topics**: We can discuss various topics, such as System Design, DSA, or interview prep, and identify areas where you'd like to focus",
+      "tags": [
+        "architecture_idea",
+        "system_design",
+        "chat"
+      ]
+    },
+    {
+      "input": "research_concept: general",
+      "context": "chat",
+      "expected_output": "**Problem Framing:** It appears that you have activated the Strategic Mode, indicating a desire for a more structured and strategic approach to our conversation. This mode is ideal for tackling complex issues, exploring options, and making informed decisions. **Options:** To proceed, I can offer the following options: 1. **Clarify the Objective**: We can start by defining the specific objective or problem you'd like to address in this conversation. 2. **Explore Topics**: We can discuss various topics, such as System Design, DSA, or interview prep, and identify areas where you'd like to focus",
+      "tags": [
+        "research_concept",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "**Problem Framing:** You are inquiring about the operational status of the Department of Social Welfare, located at 20-21 Shopping Complex, Gulabi Bagh, near Super Bazar, New Delhi, Delhi 110007. Specifically, you want to know if the department is open today. **Assumptions:** 1. The department's operational hours are not explicitly stated. 2. The department's operational status may be affected by factors such as holidays, weekends, or unforeseen circumstances. 3. You are seeking information for the current day. **Constraints:** 1. Limited information is available about the department's ope",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "**Problem Framing:** It appears that you have initiated a conversation, but the objective or topic of discussion is not clear. To provide a structured response, I need to clarify the purpose of our conversation. **Ambiguity:** The current conversation lacks a clear objective or topic, making it challenging to provide a relevant response. **Clarification:** To provide a more accurate answer, I would like to know: What is the primary objective or topic you would like to discuss in this conversation (e.g., solving a problem, exploring a topic, or seeking advice)?",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "**Problem Framing:** You have initiated a conversation, but the objective or topic of discussion is unclear. To provide a structured response, I need to clarify the purpose of our conversation. **Ambiguity:** The current conversation lacks a clear objective or topic, making it challenging to provide a relevant response. **Clarification:** To provide a more accurate answer, I would like to know: What is the primary objective or topic you would like to discuss in this conversation (e.g., solving a problem, exploring a topic, or seeking advice)? Please provide a brief response to this question",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "**Problem Framing:** You have initiated a conversation with a greeting, but the objective or topic of discussion is not clear. To provide a structured response, I need to clarify the purpose of our conversation. **Ambiguity:** The current conversation lacks a clear objective or topic, making it challenging to provide a relevant response. **Clarification:** To provide a more accurate answer, I would like to know: Are you looking to discuss a specific topic, ask for advice, or simply engage in casual conversation? Please provide a brief response to this question, and I will proceed with a str",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "preference: general",
+      "context": "chat",
+      "expected_output": "You are ASTRO personal assistant. Give concise, helpful, natural response in conversational style. No over-structuring. No formal template headings. Do not imply emotional dependency, exclusivity, or physical existence. User request: Kaise ho",
+      "tags": [
+        "preference",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Hello! How's your day going so far?",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Main theek hoon, aap kaise ho?",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Main aapki madad karne ke liye yahaan hoon, aapko coding mein madad chahiye, ya kisi aur vishay mein jankari chahiye?",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Elon Musk ek bahut hi prasiddh udyami aur inventor hain, jo SpaceX aur Tesla jaise companies ke founder hain.",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Elon Musk ka net worth lagbhag 200-250 billion dollar hai, lekin yeh aankde samay-samay par badalte rehte hain.",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Aaj ki date 8 March 2026 hai.",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Haan, main apne features ke bare mein janati hoon, main aapko coding, DSA, aur anya technical topics mein madad kar sakti hoon, saath hi aapko general knowledge aur current affairs ke bare mein bhi jankari de sakti hoon.",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Main aapko jaldi aur sahi jankari dena chahti hoon, isliye main apne responses ko short aur concise rakhti hoon.",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "research_concept: general",
+      "context": "autonomous_research, verified_web",
+      "expected_output": "General means a high-ranking officer in the military. It can also describe something broad or not specific. The General is a car insurance company known for covering high-risk drivers. Sources: https://www.dictionary.com/browse/general, https://dictionary.cambridge.org/us/dictionary/english/general, https://www.vocabulary.com/dictionary/general, https://en.wikipedia.org/wiki/General_officer, https://www.thegeneral.com/",
+      "tags": [
+        "research_concept",
+        "general",
+        "autonomous_research",
+        "verified_web"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Hello! How are you doing today?",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "research_concept: general",
+      "context": "autonomous_research, verified_web",
+      "expected_output": "General means widespread or common, and in the military, it is the highest rank below five-star officers. It ranks above lieutenant general and is equivalent to admiral in other services. Sources: https://dictionary.cambridge.org/us/dictionary/english/general, https://en.wikipedia.org/wiki/General_(United_States), https://www.dictionary.com/browse/general, https://www.vocabulary.com/dictionary/general, https://en.wikipedia.org/wiki/General_officer",
+      "tags": [
+        "research_concept",
+        "general",
+        "autonomous_research",
+        "verified_web"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Hi! How's your day going so far?",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Bill Gates is the co-founder of Microsoft.",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "You're the user I'm chatting with, and I'm Astro, your personal assistant, here to help with any questions or tasks you have!",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Aap mere user ho, aur main aapka personal assistant hoon, aapki madad karne ke liye yahaan hoon!",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "research_concept: general",
+      "context": "autonomous_research, verified_web",
+      "expected_output": "A general is a high-ranking officer in the military, typically commanding large units or multiple service branches. In the U.S. Army, it is the fifth highest rank, below general of the army. Generals oversee large operations and strategic planning. Sources: https://www.dictionary.com/browse/general, https://dictionary.cambridge.org/us/dictionary/english/general, https://en.wikipedia.org/wiki/General_(United_States), https://www.vocabulary.com/dictionary/general, https://en.wikipedia.org/wiki/General_officer",
+      "tags": [
+        "research_concept",
+        "general",
+        "autonomous_research",
+        "verified_web"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Main bhi thik hoon, dhanyavad aapne puchha! Ab aap kya jaanna chahte hain, koi sawal hai ya kisi vishay par charcha karna chahte hain?",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Main Astro hoon, aapka personal assistant. Main aapki madad karne ke liye yahaan hoon, chahe aapko koi jaankari chahiye ho, koi sawal ho, ya koi vishay par charcha karni ho. Main Amazon, Microsoft, aur Google jaise companies ke baare mein bhi jaankari de sakta hoon, kyunki ve mere target roles hain.",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "research_concept: general",
+      "context": "chat",
+      "expected_output": "Aaj ka Nifty 50 ka price 24,028.05 hai, lekin yeh jaankari thodi purani hai, maine isse 10 March 2026 ko dekha tha. Agar aapko sabse latest update chahiye, to main aapko suggest karta hoon ki aap kisi reliable financial website ya news source par check karein.",
+      "tags": [
+        "research_concept",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Amazon ka current CEO Andy Jassy hai, jo July 2021 se isi pad par hain.",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "research_concept: general",
+      "context": "chat",
+      "expected_output": "Amazon ke current CEO Andy Jassy ka net worth lagbhag $507 million hai, lekin yeh aankde samay-samay par badalte rehte hain. Yeh jaankari mere paas 2026 ki shuruaat mein thi, agar aapko sabse latest update chahiye, to main aapko suggest karta hoon ki aap kisi reliable financial website ya news source par check karein.",
+      "tags": [
+        "research_concept",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "research_concept: general",
+      "context": "chat",
+      "expected_output": "Trading ke bare mein sikho! Main aapko kuchh basic concepts aur tips de sakta hoon. Trading mein, aapko share market mein stocks, commodities, ya currencies ko buy aur sell karna hota hai. Amazon, Microsoft, aur Google jaise companies ke shares ko trade karne ke liye, aapko unki financial performance, market trends, aur news ko follow karna hota hai. Aapko yeh bhi samajhna hoga ki trading mein risk hota hai, aur aapko apne investments ko diversify karna chahiye. Aapko yeh bhi decide karna hoga ki aap kis type ki trading karna chahte hain, jaise ki day trading, swing trading, ya long-term inve",
+      "tags": [
+        "research_concept",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "research_concept: general",
+      "context": "autonomous_research, verified_web",
+      "expected_output": "General means a high-ranking officer in the military, often overseeing large units or commands. It can also describe something broad or not specific. In general, it refers to something common or usual. Sources: https://www.dictionary.com/browse/general, https://webstersdictionary1828.com/Dictionary/general, https://dictionary.cambridge.org/us/dictionary/english/general, https://www.oxfordlearnersdictionaries.com/definition/english/general_1, https://www.vocabulary.com/dictionary/general",
+      "tags": [
+        "research_concept",
+        "general",
+        "autonomous_research",
+        "verified_web"
+      ]
+    }
+  ]
+}

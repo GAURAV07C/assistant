@@ -1,0 +1,12 @@
+{
+  "coding_style": {
+    "indentation": "unknown",
+    "semicolons": "no",
+    "quote_style": "mixed"
+  },
+  "framework_usage": {},
+  "architecture_patterns": {},
+  "tool_usage_patterns": {},
+  "explanation_style": "short",
+  "updated_at": "2026-03-10T04:05:05.299Z"
+}

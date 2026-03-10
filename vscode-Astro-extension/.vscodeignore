@@ -1,0 +1,9 @@
+.vscode/**
+src/**
+node_modules/**
+*.ts
+*.map
+*.log
+package-lock.json
+README.md
+ASTRO_EXTENSION.md

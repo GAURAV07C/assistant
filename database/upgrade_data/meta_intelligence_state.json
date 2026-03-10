@@ -1,0 +1,146 @@
+{
+  "generated_at": "2026-03-09T03:10:50.738Z",
+  "intelligence_score": 3,
+  "learning_goals": [
+    {
+      "id": "improve_response_quality",
+      "title": "Improve response quality and execution confidence",
+      "priority": "high",
+      "reason": "Recent evaluation score is 0",
+      "assigned_agent": "learning_agent"
+    },
+    {
+      "id": "skill_gap_coding",
+      "title": "Close skill gap: coding",
+      "priority": "medium",
+      "reason": "Skill intelligence is below target threshold",
+      "assigned_agent": "coding_agent"
+    },
+    {
+      "id": "skill_gap_research",
+      "title": "Close skill gap: research",
+      "priority": "medium",
+      "reason": "Skill intelligence is below target threshold",
+      "assigned_agent": "coding_agent"
+    },
+    {
+      "id": "skill_gap_automation",
+      "title": "Close skill gap: automation",
+      "priority": "medium",
+      "reason": "Skill intelligence is below target threshold",
+      "assigned_agent": "coding_agent"
+    },
+    {
+      "id": "research_ai_engineering_trends",
+      "title": "Research topic gap: ai engineering trends",
+      "priority": "medium",
+      "reason": "Topic appeared frequently without enough knowledge links",
+      "assigned_agent": "research_agent"
+    }
+  ],
+  "learning_tasks": [
+    {
+      "goal_id": "improve_response_quality",
+      "title": "Improve response quality and execution confidence",
+      "owner_agent": "learning_agent",
+      "steps": [
+        "Collect relevant logs, failures, and successful examples",
+        "Extract patterns and convert into structured insights",
+        "Update skill memory and graph links",
+        "Validate improvement with one measurable check"
+      ]
+    },
+    {
+      "goal_id": "skill_gap_coding",
+      "title": "Close skill gap: coding",
+      "owner_agent": "coding_agent",
+      "steps": [
+        "Collect relevant logs, failures, and successful examples",
+        "Extract patterns and convert into structured insights",
+        "Update skill memory and graph links",
+        "Validate improvement with one measurable check"
+      ]
+    },
+    {
+      "goal_id": "skill_gap_research",
+      "title": "Close skill gap: research",
+      "owner_agent": "coding_agent",
+      "steps": [
+        "Collect relevant logs, failures, and successful examples",
+        "Extract patterns and convert into structured insights",
+        "Update skill memory and graph links",
+        "Validate improvement with one measurable check"
+      ]
+    },
+    {
+      "goal_id": "skill_gap_automation",
+      "title": "Close skill gap: automation",
+      "owner_agent": "coding_agent",
+      "steps": [
+        "Collect relevant logs, failures, and successful examples",
+        "Extract patterns and convert into structured insights",
+        "Update skill memory and graph links",
+        "Validate improvement with one measurable check"
+      ]
+    },
+    {
+      "goal_id": "research_ai_engineering_trends",
+      "title": "Research topic gap: ai engineering trends",
+      "owner_agent": "research_agent",
+      "steps": [
+        "Collect relevant logs, failures, and successful examples",
+        "Extract patterns and convert into structured insights",
+        "Update skill memory and graph links",
+        "Validate improvement with one measurable check"
+      ]
+    }
+  ],
+  "skill_actions": [
+    {
+      "skill_id": "coding",
+      "action": "practice",
+      "reason": "Current intelligence score is 0"
+    },
+    {
+      "skill_id": "research",
+      "action": "practice",
+      "reason": "Current intelligence score is 0"
+    },
+    {
+      "skill_id": "automation",
+      "action": "practice",
+      "reason": "Current intelligence score is 0"
+    },
+    {
+      "skill_id": "data_analysis",
+      "action": "practice",
+      "reason": "Current intelligence score is 0"
+    },
+    {
+      "skill_id": "coding",
+      "action": "stabilize",
+      "reason": "High skill should be retained with periodic reinforcement"
+    },
+    {
+      "skill_id": "research",
+      "action": "stabilize",
+      "reason": "High skill should be retained with periodic reinforcement"
+    }
+  ],
+  "optimizer_directives": [
+    {
+      "id": "increase_reasoning_depth",
+      "strategy": "Route complex tasks to planning + evaluation agents before final response",
+      "impact": "high"
+    }
+  ],
+  "active_agents": [
+    "planning_agent",
+    "research_agent",
+    "coding_agent",
+    "debug_agent",
+    "learning_agent",
+    "automation_agent",
+    "evaluation_agent"
+  ]
+}

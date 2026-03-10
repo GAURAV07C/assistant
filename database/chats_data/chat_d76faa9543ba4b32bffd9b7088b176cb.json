@@ -1,0 +1,13 @@
+{
+  "session_id": "d76faa95-43ba-4b32-bffd-9b7088b176cb",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello stream"
+    },
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+}

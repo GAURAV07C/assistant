@@ -1,0 +1,80 @@
+[
+  {
+    "id": "coding",
+    "name": "coding",
+    "category": "coding",
+    "description": "Code implementation, debugging, refactor and API work.",
+    "enabled": true,
+    "level": "beginner",
+    "intelligence_score": 0,
+    "usage_count": 0,
+    "success_count": 0,
+    "failure_count": 0,
+    "updated_at": "2026-03-08T19:19:31.999Z"
+  },
+  {
+    "id": "research",
+    "name": "research",
+    "category": "research",
+    "description": "Research sources, compare options, validate facts.",
+    "enabled": true,
+    "level": "beginner",
+    "intelligence_score": 0,
+    "usage_count": 0,
+    "success_count": 0,
+    "failure_count": 0,
+    "updated_at": "2026-03-08T19:19:31.999Z"
+  },
+  {
+    "id": "automation",
+    "name": "automation",
+    "category": "automation",
+    "description": "Automate repetitive work using scripts/tools.",
+    "enabled": true,
+    "level": "beginner",
+    "intelligence_score": 0,
+    "usage_count": 0,
+    "success_count": 0,
+    "failure_count": 0,
+    "updated_at": "2026-03-08T19:19:31.999Z"
+  },
+  {
+    "id": "data_analysis",
+    "name": "data_analysis",
+    "category": "analysis",
+    "description": "Analyze data patterns and quality signals.",
+    "enabled": true,
+    "level": "beginner",
+    "intelligence_score": 0,
+    "usage_count": 0,
+    "success_count": 0,
+    "failure_count": 0,
+    "updated_at": "2026-03-08T19:19:31.999Z"
+  },
+  {
+    "id": "web_scraping",
+    "name": "web_scraping",
+    "category": "research",
+    "description": "Structured website/document extraction patterns.",
+    "enabled": true,
+    "level": "beginner",
+    "intelligence_score": 0,
+    "usage_count": 0,
+    "success_count": 0,
+    "failure_count": 0,
+    "updated_at": "2026-03-08T19:19:31.999Z"
+  },
+  {
+    "id": "prompt_engineering",
+    "name": "prompt_engineering",
+    "category": "productivity",
+    "description": "Prompt structuring and response optimization.",
+    "enabled": true,
+    "level": "beginner",
+    "intelligence_score": 0,
+    "usage_count": 0,
+    "success_count": 0,
+    "failure_count": 0,
+    "updated_at": "2026-03-08T19:19:31.999Z"
+  }
+]

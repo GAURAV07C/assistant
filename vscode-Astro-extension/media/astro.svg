@@ -1,0 +1,61 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Royal Feminine Core Gradient -->
+    <radialGradient id="coreGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="20%" stop-color="#FBCFE8"/>
+      <stop offset="45%" stop-color="#C084FC"/>
+      <stop offset="75%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#0B1022"/>
+    </radialGradient>
+
+    <!-- Orbit Gradient -->
+    <linearGradient id="orbitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F472B6"/>
+      <stop offset="50%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#60A5FA"/>
+    </linearGradient>
+
+    <!-- Stronger Glow for Dark Sidebar -->
+    <filter id="auraGlow">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Deep Cosmic Background -->
+  <rect width="256" height="256" rx="60" fill="#080C1A"/>
+
+  <!-- Main Energy Core -->
+  <circle cx="128" cy="128" r="66" fill="url(#coreGradient)" filter="url(#auraGlow)"/>
+
+  <!-- Crown Arc -->
+  <path d="M75 90 Q128 40 181 90"
+        fill="none"
+        stroke="#F9A8D4"
+        stroke-width="5"
+        stroke-linecap="round"
+        opacity="0.85"/>
+
+  <!-- Elegant Orbit -->
+  <path d="M28 160 C 85 5, 205 30, 230 125"
+        fill="none"
+        stroke="url(#orbitGradient)"
+        stroke-width="7"
+        stroke-linecap="round"
+        opacity="1"/>
+
+  <!-- Attitude Accent -->
+  <path d="M95 210 C 165 230, 220 150, 180 85"
+        fill="none"
+        stroke="#F472B6"
+        stroke-width="4"
+        stroke-linecap="round"
+        opacity="0.65"/>
+
+  <!-- Inner Intelligence Spark -->
+  <circle cx="128" cy="128" r="11" fill="#FFFFFF"/>
+</svg>

@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-03-10T04:05:14.088Z",
+  "count": 1,
+  "items": [
+    {
+      "input": "architecture_idea: system_design",
+      "context": "chat",
+      "expected_output": "**Problem Framing:** It appears that you have activated the Strategic Mode, indicating a desire for a more structured and strategic approach to our conversation. This mode is ideal for tackling complex issues, exploring options, and making informed decisions. **Options:** To proceed, I can offer the following options: 1. **Clarify the Objective**: We can start by defining the specific objective or problem you'd like to address in this conversation. 2. **Explore Topics**: We can discuss various topics, such as System Design, DSA, or interview prep, and identify areas where you'd like to focus",
+      "tags": [
+        "architecture_idea",
+        "system_design",
+        "chat"
+      ]
+    }
+  ]
+}

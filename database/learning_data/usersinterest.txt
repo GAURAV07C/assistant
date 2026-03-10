@@ -1,0 +1,47 @@
+Vision:
+- Personal AI CTO create karna
+- Self-evolving AI architecture build karna
+- Multi-layer intelligent system design karna
+- AI ko coding mentor + system designer + autonomous agent banana
+- Future-ready AI system (Web3, Trading, Marketing, Automation integrated)
+
+Long-term Goal:
+Jarvis = Personal Superintelligence Infrastructure
+
+Current Focus:
+- AI-powered VS Code Extension
+- Multi-layer AI architecture
+- Agent-based systems
+- Memory + RAG systems
+- Autonomous learning pipeline
+- MERN stack development skills
+- System Design preparation
+- DSA preparation
+- Interview preparation for Amazon, Microsoft, Google
+- English communication and spoken English improvement
+
+Working Stack:
+- TypeScript (Core backend architecture)
+- Node.js
+- API-based LLM integration (currently Grok API)
+- VS Code Extension Development
+- System Design (Layered architecture)
+
+Architecture Thinking:
+- Layer-based modular design
+- Separable intelligence components
+- Scalable backend core
+- AI as central reasoning engine
+- Long-term memory integration
+
+Learning Pattern:
+- Discussion-driven architecture thinking
+- Concept-first -> then implementation
+- Reverse-engineering systems
+- Practical building over theory
+- Big vision -> phased execution
+
+Prefers:
+- Strategic explanation
+- High-level architecture clarity
+- Then deep technical breakdown

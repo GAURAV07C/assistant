@@ -1,0 +1,22 @@
+{
+  "name": "assistant-monorepo",
+  "private": true,
+  "workspaces": [
+    "ts-backend",
+    "react-assistant-ui",
+    "vscode-Astro-extension"
+  ],
+  "scripts": {
+    "doctor": "node -e \"console.log('node',process.version); console.log('npm',process.env.npm_config_user_agent||'');\" && npm -w ts-backend run -s typecheck --if-present && npm -w react-assistant-ui run -s predev --if-present",
+    "dev:backend": "npm run dev -w ts-backend",
+    "dev:ui": "npm run dev -w react-assistant-ui",
+    "dev:extension": "npm run dev -w vscode-Astro-extension",
+    "dev": "concurrently -n backend,ui,extension -c blue,magenta,green \"npm run dev:backend\" \"npm run dev:ui\" \"npm run dev:extension\"",
+    "build": "npm run --if-present --workspace ts-backend --workspace react-assistant-ui --workspace vscode-Astro-extension build",
+    "typecheck": "npm run --if-present --workspace ts-backend --workspace react-assistant-ui --workspace vscode-Astro-extension typecheck",
+    "watch": "npm run --if-present --parallel --workspace ts-backend --workspace react-assistant-ui --workspace vscode-Astro-extension watch"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

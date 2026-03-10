@@ -1,0 +1,29 @@
+[
+  {
+    "id": "goal_coding_intelligence",
+    "title": "Improve coding intelligence",
+    "description": "Increase code quality and architecture reasoning depth.",
+    "status": "in_progress",
+    "progress": 35,
+    "created_at": "2026-03-08T19:19:04.930Z",
+    "updated_at": "2026-03-08T19:19:04.930Z"
+  },
+  {
+    "id": "goal_debugging_mastery",
+    "title": "Improve debugging skills",
+    "description": "Reduce repeated failure patterns and improve fix quality.",
+    "status": "in_progress",
+    "progress": 30,
+    "created_at": "2026-03-08T19:19:04.930Z",
+    "updated_at": "2026-03-08T19:19:04.930Z"
+  },
+  {
+    "id": "goal_research_depth",
+    "title": "Improve research depth",
+    "description": "Increase evidence-backed research quality and source linking.",
+    "status": "planned",
+    "progress": 20,
+    "created_at": "2026-03-08T19:19:04.930Z",
+    "updated_at": "2026-03-08T19:19:04.930Z"
+  }
+]

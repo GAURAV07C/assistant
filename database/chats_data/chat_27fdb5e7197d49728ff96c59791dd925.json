@@ -1,0 +1,13 @@
+{
+  "session_id": "27fdb5e7-197d-4972-8ff9-6c59791dd925",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Summarize my profile shortly"
+    },
+    {
+      "role": "assistant",
+      "content": "You're Gaurav Kumar, an AI System Architect & Builder, aiming to create a multi-layer autonomous AI system called Jarvis that enhances your development capabilities."
+    }
+  ]
+}
