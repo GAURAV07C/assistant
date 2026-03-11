@@ -32,6 +32,8 @@ import { RouterLogs } from './core/safety/router_logs.js';
 import { ChatRequestSchema, TTSRequestSchema } from './models/schemas.js';
 import { createExtensionRouter } from './routes/extensionRoutes.js';
 import { createLearningRouter } from './routes/learningRoutes.js';
+import { createCodebaseRouter } from './routes/codebaseRoutes.js';
+import { createArchitectureRouter } from './routes/architectureRoutes.js';
 import { ChatService } from './services/chatService.js';
 import { AllGroqApisFailedError, GroqService } from './services/groqService.js';
 import { RealtimeGroqService } from './services/realtimeService.js';
@@ -1023,6 +1025,8 @@ app.use(createExtensionRouter({
 }));
 
 app.use(createLearningRouter());
+app.use(createCodebaseRouter());
+app.use(createArchitectureRouter());
 
 app.get('/chat/history/:session_id', (req, res) => {
   const sessionId = req.params.session_id;

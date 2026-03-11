@@ -13,6 +13,9 @@ import { GitHubLearningAgent } from '../github_learning/githubLearningAgent.js';
 import { YouTubeLearningAgent } from '../youtube_learning/youtubeLearningAgent.js';
 import { WebLearningAgent } from '../web_learning/webLearningAgent.js';
 import { MultimodalLearningAgent } from '../multimodal_learning/multimodalAgent.js';
+import { SelfModificationAgent } from '../self_modification/selfModificationAgent.js';
+import { CodeAwarenessAgent } from '../code_awareness/codeAwarenessAgent.js';
+import { ArchitectureEvolutionAgent } from '../architecture_evolution/architectureEvolutionAgent.js';
 
 const ACTIVITY_FILE = path.join(UPGRADE_DATA_DIR, 'agent_activity.json');
 
@@ -44,6 +47,9 @@ export class AgentOrchestrator {
   private readonly webLearningAgent = new WebLearningAgent();
   private readonly multimodalLearningAgent = new MultimodalLearningAgent();
   private readonly githubLearningAgent = new GitHubLearningAgent();
+  private readonly selfModificationAgent = new SelfModificationAgent();
+  private readonly codeAwarenessAgent = new CodeAwarenessAgent();
+  private readonly architectureEvolutionAgent = new ArchitectureEvolutionAgent();
   private readonly evaluationAgent = new EvaluationAgent();
 
   private readonly agents: EvolutionAgent[] = [
@@ -57,6 +63,9 @@ export class AgentOrchestrator {
     this.webLearningAgent,
     this.multimodalLearningAgent,
     this.githubLearningAgent,
+    this.selfModificationAgent,
+    this.codeAwarenessAgent,
+    this.architectureEvolutionAgent,
   ];
 
   async route(request: string, context?: Record<string, unknown>): Promise<AgentOutput[]> {
@@ -126,6 +135,9 @@ export class AgentOrchestrator {
       this.webLearningAgent.id,
       this.multimodalLearningAgent.id,
       this.githubLearningAgent.id,
+      this.selfModificationAgent.id,
+      this.codeAwarenessAgent.id,
+      this.architectureEvolutionAgent.id,
       this.evaluationAgent.id,
     ];
   }
@@ -147,6 +159,8 @@ export class AgentOrchestrator {
     if (/research|compare|documentation|trend/.test(text)) return this.researchAgent.id;
     if (/bug|error|failure|fix|debug/.test(text)) return this.debugAgent.id;
     if (/learn|skill|roadmap|curriculum/.test(text)) return this.learningAgent.id;
+    if (/architecture|refactor|evolve/.test(text)) return this.architectureEvolutionAgent.id;
+    if (/codebase|awareness|map/.test(text)) return this.codeAwarenessAgent.id;
     if (/deploy|pipeline|automate|script|terminal|git/.test(text)) return this.automationAgent.id;
     return this.codingAgent.id;
   }

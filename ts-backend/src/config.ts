@@ -43,6 +43,7 @@ export const ANTI_PATTERNS_DIR = path.join(DB_DIR, 'anti_patterns');
 export const DOMAIN_INTEREST_DIR = path.join(DB_DIR, 'domain_interest');
 export const SKILLS_DATA_DIR = path.join(DB_DIR, 'skills_data');
 export const SKILLS_RUNTIME_DIR = path.join(DB_DIR, 'skills_runtime');
+export const CODE_KNOWLEDGE_DIR = path.join(DB_DIR, 'code_knowledge');
 
 for (const dir of [
   LEARNING_DATA_DIR,
@@ -69,6 +70,7 @@ for (const dir of [
   DOMAIN_INTEREST_DIR,
   SKILLS_DATA_DIR,
   SKILLS_RUNTIME_DIR,
+  CODE_KNOWLEDGE_DIR,
 ]) {
   fs.mkdirSync(dir, { recursive: true });
 }

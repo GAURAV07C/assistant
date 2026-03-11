@@ -3,8 +3,10 @@ import { YouTubeLearningAgent } from '../youtube_learning/youtubeLearningAgent.j
 import { WebLearningAgent } from '../web_learning/webLearningAgent.js';
 import { MultimodalLearningAgent } from '../multimodal_learning/multimodalAgent.js';
 import { GitHubLearningAgent } from '../github_learning/githubLearningAgent.js';
+import { SelfModificationAgent } from '../self_modification/selfModificationAgent.js';
 import { LearningStats } from '../learning/learning_stats.js';
 import { readLearningArtifacts } from '../learning/learning_storage.js';
+import { IntegrationManager } from '../self_modification/integrationManager.js';
 
 const router = Router();
 const youtubeAgent = new YouTubeLearningAgent();
@@ -12,6 +14,8 @@ const webAgent = new WebLearningAgent();
 const multimodalAgent = new MultimodalLearningAgent();
 const githubAgent = new GitHubLearningAgent();
 const stats = new LearningStats();
+const selfModificationAgent = new SelfModificationAgent();
+const integrationManager = new IntegrationManager();
 
 router.post('/learning/youtube', async (req, res) => {
   const url = String(req.body?.url || '').trim();
@@ -42,6 +46,18 @@ router.post('/learning/github', async (req, res) => {
   return res.json({ status: 'ok', summary: result.summary });
 });
 
+router.post('/agent/self-upgrade', async (req, res) => {
+  const featureRequest = String(req.body?.feature_request || '').trim();
+  if (!featureRequest) return res.status(400).json({ detail: 'feature_request is required' });
+  const context = {
+    reason: String(req.body?.reason || 'self upgrade requested by user').trim(),
+    steps: Array.isArray(req.body?.steps) ? req.body.steps.map(String) : undefined,
+    runTests: Boolean(req.body?.run_tests || req.body?.runTests),
+  };
+  const result = await selfModificationAgent.run({ request: featureRequest, context });
+  return res.json({ status: 'ok', summary: result.summary });
+});
+
 router.get('/learning/stats', (_req, res) => {
   return res.json({ status: 'ok', stats: stats.read() });
 });
@@ -66,6 +82,10 @@ router.get('/learning/github/stats', (_req, res) => {
       architectures: Array.from(architectureSet),
     },
   });
+});
+
+router.get('/evolution/upgrades', (_req, res) => {
+  return res.json({ status: 'ok', upgrades: integrationManager.history() });
 });
 
 export function createLearningRouter(): Router {
