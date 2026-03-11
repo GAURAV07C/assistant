@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-03-10T15:39:05.471Z",
-  "count": 40,
+  "generated_at": "2026-03-11T17:01:37.994Z",
+  "count": 53,
   "items": [
     {
       "input": "architecture_idea: system_design",
@@ -310,6 +310,39 @@
       "input": "research_concept: general",
       "context": "autonomous_research, verified_web",
       "expected_output": "General means relating to all or most people or things. In military, a general is a high-ranking officer. The General is also a car insurance company. Sources: https://www.dictionary.com/browse/general, https://dictionary.justia.com/general, https://dictionary.cambridge.org/us/dictionary/english/general, https://www.thegeneral.com/, https://www.gm.com/",
+      "tags": [
+        "research_concept",
+        "general",
+        "autonomous_research",
+        "verified_web"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat, coding",
+      "expected_output": "Mere code ke bare mein batana mushkil hai, kyunki main ek complex AI model hoon. Lekin main aapko yeh bata sakta hoon ki mere code mein kai tarah ke algorithms aur techniques ka istemal kiya gaya hai, jaise ki natural language processing (NLP), machine learning, aur deep learning. Mere code ko banane ke liye kai saare data sets ka istemal kiya gaya hai, jismein Amazon, Microsoft, aur Google jaise companies ke baare mein jaankari shamil hai. Mere code mein yeh bhi shamil hai ki main kaise aapke sawalon ka jawab dena chahta hoon aur kaise aapke liye helpful ban sakta hoon. Lekin yeh bhi import",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat",
+        "coding"
+      ]
+    },
+    {
+      "input": "research_concept: general",
+      "context": "autonomous_research, verified_web",
+      "expected_output": "\"General\" means relating to or affecting the whole or everyone. It can describe widespread beliefs or high-ranking military officers. The General is also a well-rated car insurance company known for affordable rates. Sources: https://dictionary.cambridge.org/us/dictionary/english/general, https://www.dictionary.com/browse/general, https://www.vocabulary.com/dictionary/general, https://dictionary.justia.com/general, https://www.thegeneral.com/",
+      "tags": [
+        "research_concept",
+        "general",
+        "autonomous_research",
+        "verified_web"
+      ]
+    },
+    {
+      "input": "research_concept: general",
+      "context": "autonomous_research, verified_web",
+      "expected_output": "A general is a high-ranking commissioned officer in the army, air force, or marine corps, ranking above a lieutenant general and symbolized by four stars. In the U.S. Army, a general is one of the five highest ranks, while in the Marine Corps, it is the highest rank. Generals oversee large units and strategic operations. Sources: https://www.dictionary.com/browse/general, https://dictionary.cambridge.org/us/dictionary/english/general, https://www.britannica.com/topic/general, https://www.oxfordlearnersdictionaries.com/definition/english/general_1, https://www.vocabulary.com/dictionary/general",
       "tags": [
         "research_concept",
         "general",

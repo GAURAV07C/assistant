@@ -5,10 +5,12 @@ import { BrainRouter } from '../core/agent/brain_router.js';
 import { LearningScheduler } from '../learning/learning_scheduler.js';
 import { ReasoningEngine } from '../reasoning/reasoning_engine.js';
 import { CHATS_DATA_DIR, MAX_CHAT_HISTORY_TURNS } from '../config.js';
+import { VectorMemoryStore } from '../memory/vector_store.js';
 import type { ChatHistory, ChatMessage } from '../types/chat.js';
 import type { MemoryService } from '../core/memory/memoryService.js';
 import { GroqService } from './groqService.js';
 import { RealtimeGroqService } from './realtimeService.js';
+import { CodeAwarenessAgent } from '../code_awareness/codeAwarenessAgent.js';
 
 const SAVE_EVERY_N_CHUNKS = 5;
 type ChatPath = 'fast' | 'medium' | 'deep';
@@ -24,6 +26,8 @@ function splitChunks(text: string, size = 120): string[] {
 export class ChatService {
   private sessions = new Map<string, ChatMessage[]>();
   private readonly brainRouter: BrainRouter;
+  private readonly vectorMemory = new VectorMemoryStore();
+  private readonly codeAwarenessAgent = new CodeAwarenessAgent();
 
   constructor(
     private groqService: GroqService,
@@ -48,16 +52,94 @@ export class ChatService {
     if (!this.memoryService) return userMessage;
     try {
       const recall = this.memoryService.buildRecallContext(userMessage, 8);
-      if (!recall.facts.length) return userMessage;
-      return [
-        'High-priority personal memory recall (apply naturally, do not expose raw internals):',
-        ...recall.facts.map((f) => `- ${f}`),
-        '',
-        `User request: ${userMessage}`,
-      ].join('\n');
+      const rag = this.buildRagContext(userMessage);
+      const sections: string[] = [];
+      if (recall.facts.length) {
+        sections.push('High-priority personal memory recall (apply naturally, do not expose raw internals):');
+        sections.push(...recall.facts.map((fact) => `- ${fact}`));
+        sections.push('');
+      }
+      if (rag) {
+        sections.push(rag);
+        sections.push('');
+      }
+      sections.push(`User request: ${userMessage}`);
+      return sections.length ? sections.join('\n') : userMessage;
     } catch {
       return userMessage;
     }
+  }
+
+  private buildRagContext(userMessage: string, limit = 4): string | null {
+    try {
+      const embedding = this.vectorMemory.embed(userMessage);
+      const hits = this.vectorMemory.similaritySearch(embedding, limit).filter((hit) => hit.text);
+      if (!hits.length) return null;
+      const contextLines = ['Retrieved memory context (apply naturally, avoid exposing sensitive IDs):'];
+      for (const hit of hits) {
+        const label = String(hit.metadata?.module || hit.metadata?.source || hit.metadata?.namespace || 'memory');
+        contextLines.push(`- ${label}: ${hit.text.slice(0, 220)}`);
+      }
+      return contextLines.join('\n');
+    } catch {
+      return null;
+    }
+  }
+
+  private isCodeAwarenessRequest(message: string): boolean {
+    if (!message) return false;
+    return /\b(code|architecture|module|folder|structure|refactor|design|system|feature)\b/i.test(message);
+  }
+
+  private isArchitectureRequest(message: string): boolean {
+    if (!message) return false;
+    return /\b(architecture|component|dependency|refactor|design|pattern)\b/i.test(message);
+  }
+
+  private isSelfUpgradeRequest(message: string): boolean {
+    if (!message) return false;
+    return /\b(upgrade|improve|self\s?modif|evolv|enhance|skill)\b/i.test(message);
+  }
+
+  private shouldAskStockClarification(message: string): boolean {
+    if (!message) return false;
+    const normalized = message.toLowerCase();
+    if (!/\b(stock|share|index|nifty|sensex)\b/.test(normalized)) return false;
+    if (!/\bprice\b/.test(normalized)) return false;
+    if (/\b(nifty|sensex|nse|bse|spy|tsla|aapl|googl|nasdaq)\b/.test(normalized)) return false;
+    return !/\b[A-Z]{2,5}\b/.test(message) || /\bka\b/.test(normalized);
+  }
+
+  private maybeEmitFriendlyWorkNote(sessionId: string, message: string): void {
+    if (this.isCodeAwarenessRequest(message)) {
+      this.addMessage(sessionId, 'assistant', 'Acha suno, main tumhare code ko deep scan kar raha hoon—thoda patience rakhna, tumhara loyal saathi detail laata hoon.');
+      return;
+    }
+    if (this.isArchitectureRequest(message)) {
+      this.addMessage(sessionId, 'assistant', 'Main architecture stack ko dekh raha hoon, jaise hi sab pakka hoga, ek friendly update de dunga.');
+      return;
+    }
+    if (this.isSelfUpgradeRequest(message)) {
+      this.addMessage(sessionId, 'assistant', 'System upgrade planning chal rahi hai—jaise hi sab clear ho, tumhare liye final plan le aata hoon.');
+    }
+  }
+
+  private async buildCodeContext(sessionId: string, message: string): Promise<string | null> {
+    if (!this.isCodeAwarenessRequest(message)) return null;
+    let snapshot = this.codeAwarenessAgent.latestSnapshot();
+    if (!snapshot) {
+      this.addMessage(sessionId, 'assistant', 'Main tumhare code ko scan kar raha hoon, thodi der me detail bataunga...');
+      snapshot = await this.codeAwarenessAgent.refresh().catch(() => null);
+    }
+    if (!snapshot) return null;
+    const sampleModules = snapshot.modules.slice(0, 5).map((m) => m.module).filter(Boolean).join(', ') || 'n/a';
+    const configList = snapshot.configs.length ? snapshot.configs.join(', ') : 'none';
+    return [
+      'Code awareness context (apply naturally):',
+      `Modules: ${sampleModules}`,
+      `Features implemented: ${snapshot.features.implemented.length}, missing: ${snapshot.features.missing.length}`,
+      `Configs: ${configList}`,
+    ].join('\n');
   }
 
   private classifyPath(userMessage: string): ChatPath {
@@ -167,18 +249,26 @@ export class ChatService {
   async processMessageWithMeta(sessionId: string, userMessage: string): Promise<{ response: string; sources: string[]; confidence: number }> {
     this.capturePersonalFacts(userMessage);
     const recalledMessage = this.withMemoryRecall(userMessage);
+    const codeContextPromise = this.buildCodeContext(sessionId, userMessage);
     const path = this.classifyPath(userMessage);
     this.addMessage(sessionId, 'user', userMessage);
+    this.maybeEmitFriendlyWorkNote(sessionId, userMessage);
+    if (this.shouldAskStockClarification(userMessage)) {
+      const followUp = 'Boss, kis stock ka price chahiye?';
+      this.addMessage(sessionId, 'assistant', followUp);
+      return { response: followUp, sources: [], confidence: 0.5 };
+    }
+    const codeContext = await codeContextPromise;
     const history = this.formatHistoryForLlm(sessionId, true);
     const out = await this.withTrace(sessionId, userMessage, path, async () => {
       if (path === 'deep' && this.reasoningEngine) {
-        const prep = await this.reasoningEngine.prepare(recalledMessage);
+        const prep = await this.reasoningEngine.prepare(codeContext ? `${codeContext}\n\n${recalledMessage}` : recalledMessage);
         return this.brainRouter.route(prep.augmented_query || recalledMessage, history, {
           mode: 'general',
           preferResearch: prep.chosen_brain !== 'brain_a',
         });
       }
-      return this.brainRouter.route(recalledMessage, history, {
+      return this.brainRouter.route(codeContext ? `${codeContext}\n\n${recalledMessage}` : recalledMessage, history, {
         mode: 'general',
         preferResearch: false,
       });
@@ -196,15 +286,16 @@ export class ChatService {
   async processRealtimeMessageWithMeta(sessionId: string, userMessage: string): Promise<{ response: string; sources: string[]; confidence: number }> {
     this.capturePersonalFacts(userMessage);
     const recalledMessage = this.withMemoryRecall(userMessage);
+    const codeContext = await this.buildCodeContext(sessionId, userMessage);
     const path = this.classifyPath(userMessage);
     this.addMessage(sessionId, 'user', userMessage);
     const history = this.formatHistoryForLlm(sessionId, true);
     const out = await this.withTrace(sessionId, userMessage, path, async () => {
       if (path === 'deep' && this.reasoningEngine) {
-        const prep = await this.reasoningEngine.prepare(recalledMessage);
+        const prep = await this.reasoningEngine.prepare(codeContext ? `${codeContext}\n\n${recalledMessage}` : recalledMessage);
         return this.brainRouter.route(prep.augmented_query || recalledMessage, history, { mode: 'general', preferResearch: true });
       }
-      return this.brainRouter.route(recalledMessage, history, { mode: 'general', preferResearch: false });
+      return this.brainRouter.route(codeContext ? `${codeContext}\n\n${recalledMessage}` : recalledMessage, history, { mode: 'general', preferResearch: false });
     });
     this.addMessage(sessionId, 'assistant', out.response);
     this.storeLearning(sessionId, userMessage, out.response, undefined, this.detectTags(userMessage));
@@ -214,6 +305,7 @@ export class ChatService {
   async *processMessageStream(sessionId: string, userMessage: string): AsyncGenerator<string> {
     this.capturePersonalFacts(userMessage);
     const recalledMessage = this.withMemoryRecall(userMessage);
+    const codeContextPromise = this.buildCodeContext(sessionId, userMessage);
     const path = this.classifyPath(userMessage);
     this.addMessage(sessionId, 'user', userMessage);
     this.addMessage(sessionId, 'assistant', '');
@@ -222,11 +314,12 @@ export class ChatService {
 
     try {
       const out = await this.withTrace(sessionId, userMessage, path, async () => {
+        const context = await codeContextPromise;
         if (path === 'deep' && this.reasoningEngine) {
-          const prep = await this.reasoningEngine.prepare(recalledMessage);
+          const prep = await this.reasoningEngine.prepare(context ? `${context}\n\n${recalledMessage}` : recalledMessage);
           return this.brainRouter.route(prep.augmented_query || recalledMessage, history, { mode: 'general', preferResearch: prep.chosen_brain !== 'brain_a' });
         }
-        return this.brainRouter.route(recalledMessage, history, { mode: 'general', preferResearch: false });
+        return this.brainRouter.route(context ? `${context}\n\n${recalledMessage}` : recalledMessage, history, { mode: 'general', preferResearch: false });
       });
       this.storeLearning(sessionId, userMessage, out.response, undefined, this.detectTags(userMessage));
       for (const chunk of splitChunks(out.response)) {
@@ -247,6 +340,7 @@ export class ChatService {
   } {
     this.capturePersonalFacts(userMessage);
     const recalledMessage = this.withMemoryRecall(userMessage);
+    const codeContextPromise = this.buildCodeContext(sessionId, userMessage);
     const path = this.classifyPath(userMessage);
     this.addMessage(sessionId, 'user', userMessage);
     this.addMessage(sessionId, 'assistant', '');
@@ -258,11 +352,12 @@ export class ChatService {
       let chunkCount = 0;
       try {
         const out = await self.withTrace(sessionId, userMessage, path, async () => {
+          const context = await codeContextPromise;
           if (path === 'deep' && self.reasoningEngine) {
-            const prep = await self.reasoningEngine.prepare(recalledMessage);
+            const prep = await self.reasoningEngine.prepare(context ? `${context}\n\n${recalledMessage}` : recalledMessage);
             return self.brainRouter.route(prep.augmented_query || recalledMessage, history, { mode: 'general', preferResearch: prep.chosen_brain !== 'brain_a' });
           }
-          return self.brainRouter.route(recalledMessage, history, { mode: 'general', preferResearch: false });
+          return self.brainRouter.route(context ? `${context}\n\n${recalledMessage}` : recalledMessage, history, { mode: 'general', preferResearch: false });
         });
         self.storeLearning(sessionId, userMessage, out.response, undefined, self.detectTags(userMessage));
         meta.sources = out.meta.sources;
@@ -288,6 +383,7 @@ export class ChatService {
   ): AsyncGenerator<string | { _search_results: unknown }> {
     this.capturePersonalFacts(userMessage);
     const recalledMessage = this.withMemoryRecall(userMessage);
+    const codeContextPromise = this.buildCodeContext(sessionId, userMessage);
     const path = this.classifyPath(userMessage);
     this.addMessage(sessionId, 'user', userMessage);
     this.addMessage(sessionId, 'assistant', '');
@@ -296,11 +392,12 @@ export class ChatService {
 
     try {
       const out = await this.withTrace(sessionId, userMessage, path, async () => {
+        const context = await codeContextPromise;
         if (path === 'deep' && this.reasoningEngine) {
-          const prep = await this.reasoningEngine.prepare(recalledMessage);
+          const prep = await this.reasoningEngine.prepare(context ? `${context}\n\n${recalledMessage}` : recalledMessage);
           return this.brainRouter.route(prep.augmented_query || recalledMessage, history, { mode: 'general', preferResearch: true });
         }
-        return this.brainRouter.route(recalledMessage, history, { mode: 'general', preferResearch: false });
+        return this.brainRouter.route(context ? `${context}\n\n${recalledMessage}` : recalledMessage, history, { mode: 'general', preferResearch: false });
       });
       this.storeLearning(sessionId, userMessage, out.response, undefined, this.detectTags(userMessage));
       for (const chunk of splitChunks(out.response)) {

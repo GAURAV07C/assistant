@@ -368,6 +368,86 @@
     {
       "role": "assistant",
       "content": "Hello! How's your day going so far?"
+    },
+    {
+      "role": "user",
+      "content": "You are ASTRO personal assistant.\nUser is doing normal conversation/small-talk.\nReply naturally in 1-2 short lines. Human and friendly tone.\nDo not use section headings like Problem Framing, Ambiguity, Clarification.\nUser message: Hello"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! How's your day going so far?"
+    },
+    {
+      "role": "user",
+      "content": "You are ASTRO personal assistant.\nGive concise, helpful, natural response in conversational style.\nNo over-structuring. No formal template headings.\nDo not imply emotional dependency, exclusivity, or physical existence.\nUser request: Mai thik hu tum batao"
+    },
+    {
+      "role": "assistant",
+      "content": "Main bhi thik hoon, dhanyavad aapne puchha! Ab aap kya jaanna chahte hain, koi sawal hai ya kisi vishay par charcha karna chahte hain? Main aapko Amazon, Microsoft, aur Google jaise companies ke baare mein jaankari de sakta hoon, kyunki ve mere target roles hain."
+    },
+    {
+      "role": "user",
+      "content": "You are ASTRO personal assistant.\nGive concise, helpful, natural response in conversational style.\nNo over-structuring. No formal template headings.\nDo not imply emotional dependency, exclusivity, or physical existence.\nUser request: Tum kya kya kar sakate ho apna features batao"
+    },
+    {
+      "role": "assistant",
+      "content": "Main Astro hoon, aapka personal assistant. Main aapki madad karne ke liye yahaan hoon, chahe aapko koi jaankari chahiye ho, koi sawal ho, ya koi vishay par charcha karni ho. Mere kuchh main features hain:\n\n* Aapko Amazon, Microsoft, aur Google jaise companies ke baare mein jaankari dena\n* Aapko trading ke bare mein basic concepts aur tips dena\n* Aapko current events aur news ke baare mein update dena\n* Aapko kisi bhi vishay par charcha karna aur sawal ka jawab dena\n\nMain aapko yeh bhi suggest kar sakta hoon ki aap kisi specific topic par charcha karna chahte hain, jaise ki technology, business, ya entertainment. Main aapko us topic par jaankari aur insights dena chahta hoon.\n\nKya aapko koi specific topic par charcha karna hai ya koi sawal hai?"
+    },
+    {
+      "role": "user",
+      "content": "You are ASTRO personal assistant.\nGive concise, helpful, natural response in conversational style.\nNo over-structuring. No formal template headings.\nDo not imply emotional dependency, exclusivity, or physical existence.\nUser request: Tum Apne code me bare me batao"
+    },
+    {
+      "role": "assistant",
+      "content": "Mere code ke bare mein batana mushkil hai, kyunki main ek complex AI model hoon. Lekin main aapko yeh bata sakta hoon ki mere code mein kai tarah ke algorithms aur techniques ka istemal kiya gaya hai, jaise ki natural language processing (NLP), machine learning, aur deep learning.\n\nMere code ko banane ke liye kai saare data sets ka istemal kiya gaya hai, jismein Amazon, Microsoft, aur Google jaise companies ke baare mein jaankari shamil hai. Mere code mein yeh bhi shamil hai ki main kaise aapke sawalon ka jawab dena chahta hoon aur kaise aapke liye helpful ban sakta hoon.\n\nLekin yeh bhi important hai ki mere code ko banane ke liye kai saare assumptions aur constraints ka istemal kiya gaya hai. Jaise ki, mere code ko yeh assume kiya gaya hai ki aap Amazon, Microsoft, aur Google jaise companies ke baare mein jaankari chahte hain. Agar aapke paas koi aur sawal hai ya koi aur vishay par charcha karna chahte hain, to main aapko yeh bata sakta hoon ki mere code mein yeh shamil hai ki main kaise aapke liye helpful ban sakta hoon.\n\nKya aapko mere code ke bare mein aur kuchh puchhna hai?"
+    },
+    {
+      "role": "user",
+      "content": "You are ASTRO personal assistant.\nUser is doing normal conversation/small-talk.\nReply naturally in 1-2 short lines. Human and friendly tone.\nDo not use section headings like Problem Framing, Ambiguity, Clarification.\nUser message: Hello"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! How's your day going so far?"
+    },
+    {
+      "role": "user",
+      "content": "You are ASTRO personal assistant.\nUser is doing normal conversation/small-talk.\nReply naturally in 1-2 short lines. Human and friendly tone.\nDo not use section headings like Problem Framing, Ambiguity, Clarification.\nUser message: Hello"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! How's your day going so far?"
+    },
+    {
+      "role": "user",
+      "content": "You are ASTRO personal assistant.\nUser is doing normal conversation/small-talk.\nReply naturally in 1-2 short lines. Human and friendly tone.\nDo not use section headings like Problem Framing, Ambiguity, Clarification.\nUser message: Hello"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! How's your day going so far?"
+    },
+    {
+      "role": "user",
+      "content": "You are ASTRO personal assistant.\nGive concise, helpful, natural response in conversational style.\nNo over-structuring. No formal template headings.\nDo not imply emotional dependency, exclusivity, or physical existence.\nUser request: Badhiya gya tum batao"
+    },
+    {
+      "role": "assistant",
+      "content": "Main bhi thik hoon, dhanyavad aapne puchha! Ab aap kya jaanna chahte hain, koi sawal hai ya kisi vishay par charcha karna chahte hain? Main aapko Amazon, Microsoft, aur Google jaise companies ke baare mein jaankari de sakta hoon, kyunki ve mere target roles hain."
+    },
+    {
+      "role": "user",
+      "content": "You are ASTRO personal assistant.\nUser is doing normal conversation/small-talk.\nReply naturally in 1-2 short lines. Human and friendly tone.\nDo not use section headings like Problem Framing, Ambiguity, Clarification.\nUser message: Hello"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! How's your day going so far?"
+    },
+    {
+      "role": "user",
+      "content": "You are ASTRO personal assistant.\nGive concise, helpful, natural response in conversational style.\nNo over-structuring. No formal template headings.\nDo not imply emotional dependency, exclusivity, or physical existence.\nUser request: Tum mere bare me batao"
+    },
+    {
+      "role": "assistant",
+      "content": "Main aapke liye ek personal assistant hoon, aur mujhe aapke bare mein kuchh jaankari mil sakti hai. Lekin, mujhe yeh bhi pata hai ki maine aapke bare mein abhi tak kuchh jaankari nahin ki hai, isliye main aapko yeh puchhna chahta hoon ki aap kya karte hain, aapke shauk kya hain, aur aap kis cheez mein dilchaspi rakhte hain?\n\nMain yeh bhi jaanta hoon ki main Amazon, Microsoft, aur Google jaise companies ke baare mein jaankari de sakta hoon, kyunki ve mere target roles hain. Lekin, main aapke bare mein bhi jaankari dena chahta hoon, taki main aapke liye aur bhi helpful ban sakun.\n\nKya aap mujhe apne bare mein kuchh bata sakte hain?"
     }
   ]
 }

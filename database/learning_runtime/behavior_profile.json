@@ -5,8 +5,10 @@
     "quote_style": "mixed"
   },
   "framework_usage": {},
-  "architecture_patterns": {},
+  "architecture_patterns": {
+    "event_driven": 1
+  },
   "tool_usage_patterns": {},
   "explanation_style": "short",
-  "updated_at": "2026-03-10T15:38:57.155Z"
+  "updated_at": "2026-03-11T17:01:26.010Z"
 }

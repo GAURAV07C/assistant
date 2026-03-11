@@ -9,6 +9,5 @@ export function resolveApiBase() {
     if (window.location.port === '3000' || window.location.port === '5174') return 'http://localhost:8000';
   }
 
-  return window.location.origin;
+  return 'http://localhost:8000';
 }
-

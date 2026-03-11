@@ -199,6 +199,32 @@ body,
   padding: 11px;
 }
 
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .left,
+  .right {
+    min-height: auto;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --panel: #050a16;
+  }
+  html,
+  body,
+  #__next {
+    font-size: 14px;
+  }
+  .window-shell {
+    border-radius: 0;
+    border: none;
+  }
+}
+
 .left {
   display: grid;
   grid-template-rows: 0.92fr 1.28fr;

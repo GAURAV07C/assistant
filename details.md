@@ -48,10 +48,11 @@ Yeh file poore project ka ek fresh snapshot deti hai: backend, UI, extension, le
 ---
 
 ## 3. `react-assistant-ui` Control Panel
-- Next.js App Router with modular components (tabs for Overview, Chat, Agents, Skills, Files, Voice, Logs).
-- Dark futuristic theme with neon glows, framer-motion animations, shadcn/ui primitives + Tailwind custom variables.
-- Real-time WebSocket integration for agent monitoring, logs, and reasoning steps; voice/TTS playback uses fallback for SSR-safe `Audio`.
+- Next.js App Router with modular components (tabs for Overview, Chat, Agents, Skills, Files, Voice, Logs) wrapped inside a responsive layout that also exposes a PWA install button.
+- Dark futuristic theme with neon glows, framer-motion animations, shadcn/ui primitives + Tailwind custom variables, now tuned to stay readable on phone screens.
+- Real-time WebSocket integration for agent monitoring, logs, and reasoning steps; voice/TTS playback uses fallback for SSR-safe `Audio` while the memory/awareness stack feeds content.
 - Chat tab handles streaming responses, `AI Thinking...` cues, reasoning steps, agent execution metadata, and toggle for `casual/strategic`.
+- Voice hub now floats at the center of the chat surface: a large icon opens mute/unmute controls, voice profile selection, and sample uploads so you can talk, upload clips, or change the assistant's voice; the assistant also states a friendly follow-up while heavy agents run so it feels like a real partner rather than a cold robot.
 - Updates panel shows system intelligence score, meta intelligence snapshot, autonomous research state, awareness gaps, vector memory usage, long-term goals, task memory analytics, evolution proposals, and skill progress bars.
 - Workspace & learning files editors hit backend safe file APIs; voice tab manages API keys, toggles, and custom uploads.
 

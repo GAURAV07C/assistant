@@ -1,0 +1,5794 @@
+{
+  "scanned_at": "2026-03-11T15:26:53.665Z",
+  "modules": [
+    {
+      "module": "src/config.ts",
+      "files": [
+        "src/config.ts"
+      ],
+      "features": [
+        "BASE_DIR",
+        "DB_DIR",
+        "LEARNING_DATA_DIR",
+        "CHATS_DATA_DIR",
+        "VECTOR_STORE_DIR",
+        "MEMORY_DATA_DIR",
+        "AUDIT_LOGS_DIR",
+        "EVAL_DATA_DIR",
+        "UPGRADE_DATA_DIR",
+        "VOICE_DATA_DIR",
+        "DATASET_DIR",
+        "DATASET_DAILY_LOGS_DIR",
+        "DATASET_HISTORY_DIR",
+        "DATASET_CODING_PATTERNS_DIR",
+        "DATASET_REASONING_EXAMPLES_DIR",
+        "DATASET_KNOWLEDGE_SUMMARIES_DIR",
+        "DATASET_USER_STYLE_DIR",
+        "LEARNING_DATA_RUNTIME_DIR",
+        "KNOWLEDGE_GRAPH_FILE",
+        "EMBEDDINGS_FILE",
+        "BEHAVIOR_PROFILE_FILE",
+        "LEARNING_CURSOR_FILE",
+        "TRAINING_EXPORTS_DIR",
+        "TRAINING_EXPORT_CODING_FILE",
+        "TRAINING_EXPORT_REASONING_FILE",
+        "TRAINING_EXPORT_KNOWLEDGE_FILE",
+        "PROFILES_DIR",
+        "CODING_STYLE_DIR",
+        "SKILL_PROGRESS_DIR",
+        "ANTI_PATTERNS_DIR",
+        "DOMAIN_INTEREST_DIR",
+        "SKILLS_DATA_DIR",
+        "SKILLS_RUNTIME_DIR",
+        "CODE_KNOWLEDGE_DIR",
+        "GROQ_API_KEYS",
+        "GROQ_MODEL",
+        "OPENROUTER_API_KEYS",
+        "OPENROUTER_API_KEY",
+        "OPENROUTER_MODEL",
+        "OPENROUTER_MODELS",
+        "GEMINI_API_KEYS",
+        "GEMINI_API_KEY",
+        "GEMINI_MODEL",
+        "TAVILY_API_KEYS",
+        "TAVILY_API_KEY",
+        "TTS_VOICE",
+        "TTS_RATE",
+        "GITHUB_API_TOKEN",
+        "CHUNK_SIZE",
+        "CHUNK_OVERLAP",
+        "MAX_CHAT_HISTORY_TURNS",
+        "MAX_MESSAGE_LENGTH",
+        "ASSISTANT_NAME",
+        "JARVIS_USER_TITLE",
+        "JARVIS_SYSTEM_PROMPT",
+        "GENERAL_CHAT_ADDENDUM",
+        "REALTIME_CHAT_ADDENDUM",
+        "EXTENSION_CODE_CHAT_ADDENDUM",
+        "loadUserContext"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 12 functions / 0 routes"
+    },
+    {
+      "module": "src/server.ts",
+      "files": [
+        "src/server.ts"
+      ],
+      "features": [
+        "app.get('/api'",
+        "app.get('/health'",
+        "app.get('/router/stats'",
+        "app.get('/session/active'",
+        "app.get('/assistant/reminders'",
+        "app.post('/assistant/reminders'",
+        "app.put('/assistant/reminders/:id/done'",
+        "app.get('/assistant/digest/daily'",
+        "app.get('/memory/confidence'",
+        "app.post('/memory/recall-debug'",
+        "app.post('/memory/cleanup'",
+        "app.put('/session/active'",
+        "app.post('/chat'",
+        "app.post('/chat/realtime'",
+        "app.post('/chat/stream'",
+        "app.post('/chat/realtime/stream'",
+        "app.post('/extension/chat/stream'",
+        "app.post('/extension/chat/realtime/stream'",
+        "app.get('/chat/history/:session_id'",
+        "app.post('/tts'",
+        "app.get('/app/*'",
+        "app.get('/'"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 24 functions / 22 routes"
+    },
+    {
+      "module": "src/agents/agent_orchestrator.ts",
+      "files": [
+        "src/agents/agent_orchestrator.ts"
+      ],
+      "features": [
+        "AgentOrchestrator"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/agents/automation_agent.ts",
+      "files": [
+        "src/agents/automation_agent.ts"
+      ],
+      "features": [
+        "AutomationAgent"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/agents/base_agent.ts",
+      "files": [
+        "src/agents/base_agent.ts"
+      ],
+      "features": [],
+      "status": "implemented",
+      "summary": "0 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/agents/coding_agent.ts",
+      "files": [
+        "src/agents/coding_agent.ts"
+      ],
+      "features": [
+        "CodingAgent"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/agents/debug_agent.ts",
+      "files": [
+        "src/agents/debug_agent.ts"
+      ],
+      "features": [
+        "DebugAgent"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/agents/evaluation_agent.ts",
+      "files": [
+        "src/agents/evaluation_agent.ts"
+      ],
+      "features": [
+        "EvaluationAgent"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/agents/learning_agent.ts",
+      "files": [
+        "src/agents/learning_agent.ts"
+      ],
+      "features": [
+        "LearningAgent"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/agents/multi_agent_orchestrator.ts",
+      "files": [
+        "src/agents/multi_agent_orchestrator.ts"
+      ],
+      "features": [
+        "MultiAgentOrchestrator"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/agents/planning_agent.ts",
+      "files": [
+        "src/agents/planning_agent.ts"
+      ],
+      "features": [
+        "PlanningAgent"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/agents/research_agent.ts",
+      "files": [
+        "src/agents/research_agent.ts"
+      ],
+      "features": [
+        "ResearchAgent"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/architecture_evolution/architectureAnalyzer.ts",
+      "files": [
+        "src/architecture_evolution/architectureAnalyzer.ts"
+      ],
+      "features": [
+        "ArchitectureAnalyzer"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/architecture_evolution/architectureEvolutionAgent.ts",
+      "files": [
+        "src/architecture_evolution/architectureEvolutionAgent.ts"
+      ],
+      "features": [
+        "ArchitectureEvolutionAgent"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/architecture_evolution/architectureGenerator.ts",
+      "files": [
+        "src/architecture_evolution/architectureGenerator.ts"
+      ],
+      "features": [
+        "ArchitectureGenerator"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/architecture_evolution/architectureValidator.ts",
+      "files": [
+        "src/architecture_evolution/architectureValidator.ts"
+      ],
+      "features": [
+        "ArchitectureValidator"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/architecture_evolution/refactorPlanner.ts",
+      "files": [
+        "src/architecture_evolution/refactorPlanner.ts"
+      ],
+      "features": [
+        "RefactorPlanner"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/architecture_evolution/sandboxRefactorExecutor.ts",
+      "files": [
+        "src/architecture_evolution/sandboxRefactorExecutor.ts"
+      ],
+      "features": [
+        "SandboxRefactorExecutor"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/autonomous_research/knowledge_builder.ts",
+      "files": [
+        "src/autonomous_research/knowledge_builder.ts"
+      ],
+      "features": [
+        "AutonomousKnowledgeBuilder"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/autonomous_research/research_scheduler.ts",
+      "files": [
+        "src/autonomous_research/research_scheduler.ts"
+      ],
+      "features": [
+        "ResearchScheduler"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/autonomous_research/topic_detector.ts",
+      "files": [
+        "src/autonomous_research/topic_detector.ts"
+      ],
+      "features": [
+        "TopicDetector"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/awareness/awareness_state.ts",
+      "files": [
+        "src/awareness/awareness_state.ts"
+      ],
+      "features": [
+        "AwarenessStateStore"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/awareness/curiosity_engine.ts",
+      "files": [
+        "src/awareness/curiosity_engine.ts"
+      ],
+      "features": [
+        "CuriosityEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/awareness/knowledge_gap_detector.ts",
+      "files": [
+        "src/awareness/knowledge_gap_detector.ts"
+      ],
+      "features": [
+        "KnowledgeGapDetector"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/awareness/question_generator.ts",
+      "files": [
+        "src/awareness/question_generator.ts"
+      ],
+      "features": [
+        "QuestionGenerator"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/awareness/self_awareness_engine.ts",
+      "files": [
+        "src/awareness/self_awareness_engine.ts"
+      ],
+      "features": [
+        "SelfAwarenessEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/code_awareness/architectureMapper.ts",
+      "files": [
+        "src/code_awareness/architectureMapper.ts"
+      ],
+      "features": [
+        "ArchitectureMapper"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/code_awareness/codeAwarenessAgent.ts",
+      "files": [
+        "src/code_awareness/codeAwarenessAgent.ts"
+      ],
+      "features": [
+        "CodeAwarenessAgent"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/code_awareness/codeKnowledgeStore.ts",
+      "files": [
+        "src/code_awareness/codeKnowledgeStore.ts"
+      ],
+      "features": [
+        "CodeKnowledgeStore"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/code_awareness/featureDetector.ts",
+      "files": [
+        "src/code_awareness/featureDetector.ts"
+      ],
+      "features": [
+        "FeatureDetector"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/code_awareness/fileAnalyzer.ts",
+      "files": [
+        "src/code_awareness/fileAnalyzer.ts"
+      ],
+      "features": [
+        "FileAnalyzer"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/code_awareness/repoScanner.ts",
+      "files": [
+        "src/code_awareness/repoScanner.ts"
+      ],
+      "features": [
+        "RepoScanner"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/curriculum/curriculum_engine.ts",
+      "files": [
+        "src/curriculum/curriculum_engine.ts"
+      ],
+      "features": [
+        "CurriculumEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/curriculum/progress_tracker.ts",
+      "files": [
+        "src/curriculum/progress_tracker.ts"
+      ],
+      "features": [
+        "ProgressTracker"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/curriculum/skill_tree.ts",
+      "files": [
+        "src/curriculum/skill_tree.ts"
+      ],
+      "features": [
+        "SkillTree"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/evaluation/performance_metrics.ts",
+      "files": [
+        "src/evaluation/performance_metrics.ts"
+      ],
+      "features": [
+        "PerformanceMetrics"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/evaluation/response_evaluator.ts",
+      "files": [
+        "src/evaluation/response_evaluator.ts"
+      ],
+      "features": [
+        "ResponseEvaluator"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/github_learning/architectureAnalyzer.ts",
+      "files": [
+        "src/github_learning/architectureAnalyzer.ts"
+      ],
+      "features": [
+        "ArchitectureAnalyzer"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/github_learning/codeParser.ts",
+      "files": [
+        "src/github_learning/codeParser.ts"
+      ],
+      "features": [
+        "CodeParser"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/github_learning/githubLearningAgent.ts",
+      "files": [
+        "src/github_learning/githubLearningAgent.ts"
+      ],
+      "features": [
+        "GitHubLearningAgent"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/github_learning/patternExtractor.ts",
+      "files": [
+        "src/github_learning/patternExtractor.ts"
+      ],
+      "features": [
+        "PatternExtractor"
+      ],
+      "status": "implemented",
+      "summary": "2 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/github_learning/repoCrawler.ts",
+      "files": [
+        "src/github_learning/repoCrawler.ts"
+      ],
+      "features": [
+        "RepoCrawler"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/goals/goal_evaluator.ts",
+      "files": [
+        "src/goals/goal_evaluator.ts"
+      ],
+      "features": [
+        "GoalEvaluator"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/goals/goal_registry.ts",
+      "files": [
+        "src/goals/goal_registry.ts"
+      ],
+      "features": [
+        "GoalRegistry"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/goals/goal_scheduler.ts",
+      "files": [
+        "src/goals/goal_scheduler.ts"
+      ],
+      "features": [
+        "GoalScheduler"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/goals/goal_tracker.ts",
+      "files": [
+        "src/goals/goal_tracker.ts"
+      ],
+      "features": [
+        "GoalTracker"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/guardrails/input_filter.ts",
+      "files": [
+        "src/guardrails/input_filter.ts"
+      ],
+      "features": [
+        "InputFilter"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/guardrails/output_filter.ts",
+      "files": [
+        "src/guardrails/output_filter.ts"
+      ],
+      "features": [
+        "OutputFilter"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/guardrails/policy_engine.ts",
+      "files": [
+        "src/guardrails/policy_engine.ts"
+      ],
+      "features": [
+        "PolicyEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/intelligence/intelligence_graph.ts",
+      "files": [
+        "src/intelligence/intelligence_graph.ts"
+      ],
+      "features": [
+        "IntelligenceGraph"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/knowledge/embedding_engine.ts",
+      "files": [
+        "src/knowledge/embedding_engine.ts"
+      ],
+      "features": [
+        "KnowledgeEmbeddingEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 2 functions / 0 routes"
+    },
+    {
+      "module": "src/knowledge/knowledge_compressor.ts",
+      "files": [
+        "src/knowledge/knowledge_compressor.ts"
+      ],
+      "features": [
+        "KnowledgeCompressor"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/knowledge/knowledge_extractor.ts",
+      "files": [
+        "src/knowledge/knowledge_extractor.ts"
+      ],
+      "features": [
+        "KnowledgeExtractor"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/knowledge/summarizer.ts",
+      "files": [
+        "src/knowledge/summarizer.ts"
+      ],
+      "features": [
+        "Summarizer"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/learning/behavior_learning.ts",
+      "files": [
+        "src/learning/behavior_learning.ts"
+      ],
+      "features": [
+        "BehaviorLearning"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 4 functions / 0 routes"
+    },
+    {
+      "module": "src/learning/continuous_learning_engine.ts",
+      "files": [
+        "src/learning/continuous_learning_engine.ts"
+      ],
+      "features": [
+        "ContinuousLearningEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/learning/dataset_manager.ts",
+      "files": [
+        "src/learning/dataset_manager.ts"
+      ],
+      "features": [
+        "DatasetManager"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 2 functions / 0 routes"
+    },
+    {
+      "module": "src/learning/embedding_engine.ts",
+      "files": [
+        "src/learning/embedding_engine.ts"
+      ],
+      "features": [
+        "EmbeddingEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 4 functions / 0 routes"
+    },
+    {
+      "module": "src/learning/knowledge_extractor.ts",
+      "files": [
+        "src/learning/knowledge_extractor.ts"
+      ],
+      "features": [
+        "KnowledgeExtractor"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 3 functions / 0 routes"
+    },
+    {
+      "module": "src/learning/knowledge_graph.ts",
+      "files": [
+        "src/learning/knowledge_graph.ts"
+      ],
+      "features": [
+        "KnowledgeGraph"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/learning/learning_scheduler.ts",
+      "files": [
+        "src/learning/learning_scheduler.ts"
+      ],
+      "features": [
+        "LearningScheduler"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/learning/learning_stats.ts",
+      "files": [
+        "src/learning/learning_stats.ts"
+      ],
+      "features": [
+        "LearningStats"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 2 functions / 0 routes"
+    },
+    {
+      "module": "src/learning/learning_storage.ts",
+      "files": [
+        "src/learning/learning_storage.ts"
+      ],
+      "features": [
+        "ensureLearningRuntimeDir",
+        "appendLearningArtifact",
+        "readLearningArtifacts"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 3 functions / 0 routes"
+    },
+    {
+      "module": "src/learning/micro_dataset_builder.ts",
+      "files": [
+        "src/learning/micro_dataset_builder.ts"
+      ],
+      "features": [
+        "MicroDatasetBuilder"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 4 functions / 0 routes"
+    },
+    {
+      "module": "src/memory/context_builder.ts",
+      "files": [
+        "src/memory/context_builder.ts"
+      ],
+      "features": [
+        "ContextBuilder"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/memory/retrieval_engine.ts",
+      "files": [
+        "src/memory/retrieval_engine.ts"
+      ],
+      "features": [
+        "RetrievalEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/memory/semantic_search.ts",
+      "files": [
+        "src/memory/semantic_search.ts"
+      ],
+      "features": [
+        "SemanticSearch"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/memory/vector_store.ts",
+      "files": [
+        "src/memory/vector_store.ts"
+      ],
+      "features": [
+        "VectorMemoryStore"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/meta_intelligence/gap_detector.ts",
+      "files": [
+        "src/meta_intelligence/gap_detector.ts"
+      ],
+      "features": [
+        "GapDetector"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/meta_intelligence/goal_manager.ts",
+      "files": [
+        "src/meta_intelligence/goal_manager.ts"
+      ],
+      "features": [
+        "GoalManager"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/meta_intelligence/learning_manager.ts",
+      "files": [
+        "src/meta_intelligence/learning_manager.ts"
+      ],
+      "features": [
+        "LearningManager"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/meta_intelligence/meta_controller.ts",
+      "files": [
+        "src/meta_intelligence/meta_controller.ts"
+      ],
+      "features": [
+        "MetaController"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/meta_intelligence/performance_analyzer.ts",
+      "files": [
+        "src/meta_intelligence/performance_analyzer.ts"
+      ],
+      "features": [
+        "MetaPerformanceAnalyzer"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/meta_intelligence/reflection_engine.ts",
+      "files": [
+        "src/meta_intelligence/reflection_engine.ts"
+      ],
+      "features": [
+        "ReflectionEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/meta_intelligence/skill_manager.ts",
+      "files": [
+        "src/meta_intelligence/skill_manager.ts"
+      ],
+      "features": [
+        "SkillManager"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/meta_intelligence/system_optimizer.ts",
+      "files": [
+        "src/meta_intelligence/system_optimizer.ts"
+      ],
+      "features": [
+        "SystemOptimizer"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/models/schemas.ts",
+      "files": [
+        "src/models/schemas.ts"
+      ],
+      "features": [
+        "ChatRequestSchema",
+        "TTSRequestSchema"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/multimodal_learning/codeAnalyzer.ts",
+      "files": [
+        "src/multimodal_learning/codeAnalyzer.ts"
+      ],
+      "features": [
+        "CodeAnalyzer"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/multimodal_learning/imageAnalyzer.ts",
+      "files": [
+        "src/multimodal_learning/imageAnalyzer.ts"
+      ],
+      "features": [
+        "ImageAnalyzer"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/multimodal_learning/multimodalAgent.ts",
+      "files": [
+        "src/multimodal_learning/multimodalAgent.ts"
+      ],
+      "features": [
+        "MultimodalLearningAgent"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/multimodal_learning/multimodalKnowledgeExtractor.ts",
+      "files": [
+        "src/multimodal_learning/multimodalKnowledgeExtractor.ts"
+      ],
+      "features": [
+        "MultimodalKnowledgeExtractor"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/planning/goal_parser.ts",
+      "files": [
+        "src/planning/goal_parser.ts"
+      ],
+      "features": [
+        "GoalParser"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/planning/step_executor.ts",
+      "files": [
+        "src/planning/step_executor.ts"
+      ],
+      "features": [
+        "StepExecutor"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/planning/task_planner.ts",
+      "files": [
+        "src/planning/task_planner.ts"
+      ],
+      "features": [
+        "TaskPlanningEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/reasoning/brain_router.ts",
+      "files": [
+        "src/reasoning/brain_router.ts"
+      ],
+      "features": [
+        "ReasoningBrainRouter"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/reasoning/intent_analyzer.ts",
+      "files": [
+        "src/reasoning/intent_analyzer.ts"
+      ],
+      "features": [
+        "IntentAnalyzer"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/reasoning/reasoning_engine.ts",
+      "files": [
+        "src/reasoning/reasoning_engine.ts"
+      ],
+      "features": [
+        "ReasoningEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/reasoning/task_planner.ts",
+      "files": [
+        "src/reasoning/task_planner.ts"
+      ],
+      "features": [
+        "TaskPlanner"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/reflection/self_reflection_system.ts",
+      "files": [
+        "src/reflection/self_reflection_system.ts"
+      ],
+      "features": [
+        "SelfReflectionSystem"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/research/document_reader.ts",
+      "files": [
+        "src/research/document_reader.ts"
+      ],
+      "features": [
+        "DocumentReader"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/research/knowledge_builder.ts",
+      "files": [
+        "src/research/knowledge_builder.ts"
+      ],
+      "features": [
+        "KnowledgeBuilder"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/research/research_engine.ts",
+      "files": [
+        "src/research/research_engine.ts"
+      ],
+      "features": [
+        "ResearchEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 2 functions / 0 routes"
+    },
+    {
+      "module": "src/research/web_researcher.ts",
+      "files": [
+        "src/research/web_researcher.ts"
+      ],
+      "features": [
+        "WebResearcher"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 2 functions / 0 routes"
+    },
+    {
+      "module": "src/routes/architectureRoutes.ts",
+      "files": [
+        "src/routes/architectureRoutes.ts"
+      ],
+      "features": [
+        "createArchitectureRouter",
+        "router.post('/agent/architecture/refactor'",
+        "router.get('/architecture/proposals'"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 1 functions / 2 routes"
+    },
+    {
+      "module": "src/routes/codebaseRoutes.ts",
+      "files": [
+        "src/routes/codebaseRoutes.ts"
+      ],
+      "features": [
+        "createCodebaseRouter",
+        "router.get('/codebase/map'",
+        "router.get('/codebase/features'",
+        "router.get('/codebase/search'",
+        "router.post('/codebase/refresh'"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 1 functions / 4 routes"
+    },
+    {
+      "module": "src/routes/extensionRoutes.ts",
+      "files": [
+        "src/routes/extensionRoutes.ts"
+      ],
+      "features": [
+        "createExtensionRouter",
+        "router.post('/agent/plan'",
+        "router.post('/agent/execute'",
+        "router.post('/mentor/code/explain'",
+        "router.post('/mentor/code/refactor'",
+        "router.post('/mentor/code/fix'",
+        "router.post('/mentor/code/complete'",
+        "router.post('/mentor/code/analyze'",
+        "router.post('/mentor/snippet/generate'",
+        "router.post('/mentor/git/commit-message'",
+        "router.post('/memory/upsert'",
+        "router.get('/memory/profile'",
+        "router.get('/learning/file'",
+        "router.get('/workspace/files'",
+        "router.get('/workspace/file'",
+        "router.put('/learning/file'",
+        "router.put('/workspace/file'",
+        "router.get('/voice/settings'",
+        "router.put('/voice/settings'",
+        "router.post('/voice/custom'",
+        "router.get('/audit/recent'",
+        "router.get('/evolution/status'",
+        "router.get('/reflection/recent'",
+        "router.get('/curriculum/next'",
+        "router.get('/skills/list'",
+        "router.get('/skills/detail/:skill_id'",
+        "router.put('/skills/toggle'",
+        "router.post('/skills/learn'",
+        "router.post('/skills/evolve'",
+        "router.post('/skills/execute'"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 14 functions / 29 routes"
+    },
+    {
+      "module": "src/routes/learningRoutes.ts",
+      "files": [
+        "src/routes/learningRoutes.ts"
+      ],
+      "features": [
+        "createLearningRouter",
+        "router.post('/learning/youtube'",
+        "router.post('/learning/web'",
+        "router.post('/learning/multimodal'",
+        "router.post('/learning/github'",
+        "router.post('/agent/self-upgrade'",
+        "router.get('/learning/stats'",
+        "router.get('/learning/github/stats'",
+        "router.get('/evolution/upgrades'"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 1 functions / 8 routes"
+    },
+    {
+      "module": "src/self_evolution/architecture_analyzer.ts",
+      "files": [
+        "src/self_evolution/architecture_analyzer.ts"
+      ],
+      "features": [
+        "ArchitectureAnalyzer"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/self_evolution/code_optimizer.ts",
+      "files": [
+        "src/self_evolution/code_optimizer.ts"
+      ],
+      "features": [
+        "CodeOptimizer"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/self_evolution/evolution_planner.ts",
+      "files": [
+        "src/self_evolution/evolution_planner.ts"
+      ],
+      "features": [
+        "EvolutionPlanner"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/self_evolution/performance_monitor.ts",
+      "files": [
+        "src/self_evolution/performance_monitor.ts"
+      ],
+      "features": [
+        "PerformanceMonitor"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/self_evolution/upgrade_executor.ts",
+      "files": [
+        "src/self_evolution/upgrade_executor.ts"
+      ],
+      "features": [
+        "UpgradeExecutor"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/self_improvement/improvement_engine.ts",
+      "files": [
+        "src/self_improvement/improvement_engine.ts"
+      ],
+      "features": [
+        "ImprovementEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/self_improvement/improvement_planner.ts",
+      "files": [
+        "src/self_improvement/improvement_planner.ts"
+      ],
+      "features": [
+        "ImprovementPlanner"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/self_improvement/mistake_detector.ts",
+      "files": [
+        "src/self_improvement/mistake_detector.ts"
+      ],
+      "features": [
+        "MistakeDetector"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/self_improvement/performance_analyzer.ts",
+      "files": [
+        "src/self_improvement/performance_analyzer.ts"
+      ],
+      "features": [
+        "PerformanceAnalyzer"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/self_modification/codeModifier.ts",
+      "files": [
+        "src/self_modification/codeModifier.ts"
+      ],
+      "features": [
+        "CodeModifier"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/self_modification/improvementPlanner.ts",
+      "files": [
+        "src/self_modification/improvementPlanner.ts"
+      ],
+      "features": [
+        "ImprovementPlanner"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/self_modification/integrationManager.ts",
+      "files": [
+        "src/self_modification/integrationManager.ts"
+      ],
+      "features": [
+        "IntegrationManager"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/self_modification/repoCloner.ts",
+      "files": [
+        "src/self_modification/repoCloner.ts"
+      ],
+      "features": [
+        "RepoCloner"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/self_modification/selfModificationAgent.ts",
+      "files": [
+        "src/self_modification/selfModificationAgent.ts"
+      ],
+      "features": [
+        "SelfModificationAgent"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/self_modification/testSandbox.ts",
+      "files": [
+        "src/self_modification/testSandbox.ts"
+      ],
+      "features": [
+        "TestSandbox"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/services/chatService.ts",
+      "files": [
+        "src/services/chatService.ts"
+      ],
+      "features": [
+        "ChatService"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 2 functions / 0 routes"
+    },
+    {
+      "module": "src/services/groqService.ts",
+      "files": [
+        "src/services/groqService.ts"
+      ],
+      "features": [
+        "AllGroqApisFailedError",
+        "escapeCurlyBraces",
+        "GroqService"
+      ],
+      "status": "implemented",
+      "summary": "2 classes / 4 functions / 0 routes"
+    },
+    {
+      "module": "src/services/realtimeService.ts",
+      "files": [
+        "src/services/realtimeService.ts"
+      ],
+      "features": [
+        "RealtimeGroqService"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/services/runtimeKeyStore.ts",
+      "files": [
+        "src/services/runtimeKeyStore.ts"
+      ],
+      "features": [
+        "getRuntimeProviderKeys",
+        "setRuntimeProviderKeys",
+        "maskedKeys",
+        "getRuntimeGroqKeys",
+        "setRuntimeGroqKeys",
+        "maskedGroqKeys"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 10 functions / 0 routes"
+    },
+    {
+      "module": "src/services/ttsService.ts",
+      "files": [
+        "src/services/ttsService.ts"
+      ],
+      "features": [
+        "TTSService",
+        "splitRegex",
+        "splitSentences",
+        "mergeShort"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 2 functions / 0 routes"
+    },
+    {
+      "module": "src/services/vectorStore.ts",
+      "files": [
+        "src/services/vectorStore.ts"
+      ],
+      "features": [
+        "VectorStoreService"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 5 functions / 0 routes"
+    },
+    {
+      "module": "src/skills/skill_engine.ts",
+      "files": [
+        "src/skills/skill_engine.ts"
+      ],
+      "features": [
+        "SkillEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/skills/skill_evolution.ts",
+      "files": [
+        "src/skills/skill_evolution.ts"
+      ],
+      "features": [
+        "SkillEvolutionEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/skills/skill_learning.ts",
+      "files": [
+        "src/skills/skill_learning.ts"
+      ],
+      "features": [
+        "SkillLearningEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/skills/skill_memory.ts",
+      "files": [
+        "src/skills/skill_memory.ts"
+      ],
+      "features": [
+        "SkillMemory"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/skills/skill_registry.ts",
+      "files": [
+        "src/skills/skill_registry.ts"
+      ],
+      "features": [
+        "builtinSkills",
+        "defaultSkillProfiles"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 2 functions / 0 routes"
+    },
+    {
+      "module": "src/skills/skill_system.ts",
+      "files": [
+        "src/skills/skill_system.ts"
+      ],
+      "features": [
+        "SkillSystem"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/skills/skill_tracker.ts",
+      "files": [
+        "src/skills/skill_tracker.ts"
+      ],
+      "features": [
+        "SkillTracker"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/skills/types.ts",
+      "files": [
+        "src/skills/types.ts"
+      ],
+      "features": [],
+      "status": "implemented",
+      "summary": "0 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/task_memory/task_patterns.ts",
+      "files": [
+        "src/task_memory/task_patterns.ts"
+      ],
+      "features": [
+        "TaskPatterns"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/task_memory/task_reuse.ts",
+      "files": [
+        "src/task_memory/task_reuse.ts"
+      ],
+      "features": [
+        "TaskReuse"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/task_memory/task_store.ts",
+      "files": [
+        "src/task_memory/task_store.ts"
+      ],
+      "features": [
+        "TaskStore"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/task_memory/task_success_rate.ts",
+      "files": [
+        "src/task_memory/task_success_rate.ts"
+      ],
+      "features": [
+        "TaskSuccessRate"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/tools/file_tools.ts",
+      "files": [
+        "src/tools/file_tools.ts"
+      ],
+      "features": [
+        "FileTools"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/tools/git_tools.ts",
+      "files": [
+        "src/tools/git_tools.ts"
+      ],
+      "features": [
+        "GitTools"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/tools/terminal_tools.ts",
+      "files": [
+        "src/tools/terminal_tools.ts"
+      ],
+      "features": [
+        "TerminalTools"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/tools/tool_executor.ts",
+      "files": [
+        "src/tools/tool_executor.ts"
+      ],
+      "features": [
+        "ToolExecutor"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/tools/tool_permissions.ts",
+      "files": [
+        "src/tools/tool_permissions.ts"
+      ],
+      "features": [
+        "ToolPermissions"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/tools/tool_registry.ts",
+      "files": [
+        "src/tools/tool_registry.ts"
+      ],
+      "features": [
+        "ToolRegistry"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/tools/tool_router.ts",
+      "files": [
+        "src/tools/tool_router.ts"
+      ],
+      "features": [
+        "AgentToolRouter"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/tools/web_tools.ts",
+      "files": [
+        "src/tools/web_tools.ts"
+      ],
+      "features": [
+        "WebTools"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 2 functions / 0 routes"
+    },
+    {
+      "module": "src/training/dataset_builder.ts",
+      "files": [
+        "src/training/dataset_builder.ts"
+      ],
+      "features": [
+        "TrainingDatasetBuilder"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/training/micro_model_trainer.ts",
+      "files": [
+        "src/training/micro_model_trainer.ts"
+      ],
+      "features": [
+        "MicroModelTrainer"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/types/chat.ts",
+      "files": [
+        "src/types/chat.ts"
+      ],
+      "features": [],
+      "status": "implemented",
+      "summary": "0 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/utils/retry.ts",
+      "files": [
+        "src/utils/retry.ts"
+      ],
+      "features": [],
+      "status": "implemented",
+      "summary": "0 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/utils/timeInfo.ts",
+      "files": [
+        "src/utils/timeInfo.ts"
+      ],
+      "features": [
+        "getTimeInformation"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 1 functions / 0 routes"
+    },
+    {
+      "module": "src/utils/upgradeStorage.ts",
+      "files": [
+        "src/utils/upgradeStorage.ts"
+      ],
+      "features": [
+        "appendUpgradeRecord",
+        "readUpgradeRecords"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 3 functions / 0 routes"
+    },
+    {
+      "module": "src/web_learning/crawler.ts",
+      "files": [
+        "src/web_learning/crawler.ts"
+      ],
+      "features": [
+        "WebCrawler"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/web_learning/htmlParser.ts",
+      "files": [
+        "src/web_learning/htmlParser.ts"
+      ],
+      "features": [
+        "HtmlParser"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/web_learning/knowledgeExtractor.ts",
+      "files": [
+        "src/web_learning/knowledgeExtractor.ts"
+      ],
+      "features": [
+        "KnowledgeExtractor"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/web_learning/webLearningAgent.ts",
+      "files": [
+        "src/web_learning/webLearningAgent.ts"
+      ],
+      "features": [
+        "WebLearningAgent"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/youtube_learning/transcriptExtractor.ts",
+      "files": [
+        "src/youtube_learning/transcriptExtractor.ts"
+      ],
+      "features": [
+        "TranscriptExtractor"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/youtube_learning/videoKnowledgeExtractor.ts",
+      "files": [
+        "src/youtube_learning/videoKnowledgeExtractor.ts"
+      ],
+      "features": [
+        "VideoKnowledgeExtractor"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/youtube_learning/youtubeCrawler.ts",
+      "files": [
+        "src/youtube_learning/youtubeCrawler.ts"
+      ],
+      "features": [
+        "YouTubeCrawler"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/youtube_learning/youtubeLearningAgent.ts",
+      "files": [
+        "src/youtube_learning/youtubeLearningAgent.ts"
+      ],
+      "features": [
+        "YouTubeLearningAgent"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/agent/brain_a_llm.ts",
+      "files": [
+        "src/core/agent/brain_a_llm.ts"
+      ],
+      "features": [
+        "BrainALLM"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/agent/brain_b_reasoning.ts",
+      "files": [
+        "src/core/agent/brain_b_reasoning.ts"
+      ],
+      "features": [
+        "BrainBReasoning"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/agent/brain_router.ts",
+      "files": [
+        "src/core/agent/brain_router.ts"
+      ],
+      "features": [
+        "BrainRouter"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/agent/controller.ts",
+      "files": [
+        "src/core/agent/controller.ts"
+      ],
+      "features": [
+        "AgentController"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/memory/memoryService.ts",
+      "files": [
+        "src/core/memory/memoryService.ts"
+      ],
+      "features": [
+        "MemoryService"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 6 functions / 0 routes"
+    },
+    {
+      "module": "src/core/memory/personalAssistantService.ts",
+      "files": [
+        "src/core/memory/personalAssistantService.ts"
+      ],
+      "features": [
+        "PersonalAssistantService"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 2 functions / 0 routes"
+    },
+    {
+      "module": "src/core/os/context_manager.ts",
+      "files": [
+        "src/core/os/context_manager.ts"
+      ],
+      "features": [
+        "ContextManager"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/os/core_controller.ts",
+      "files": [
+        "src/core/os/core_controller.ts"
+      ],
+      "features": [
+        "CoreController"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/os/system_state_manager.ts",
+      "files": [
+        "src/core/os/system_state_manager.ts"
+      ],
+      "features": [
+        "SystemStateManagerImpl"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/os/task_router.ts",
+      "files": [
+        "src/core/os/task_router.ts"
+      ],
+      "features": [
+        "TaskRouterImpl"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/safety/auditService.ts",
+      "files": [
+        "src/core/safety/auditService.ts"
+      ],
+      "features": [
+        "AuditService"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/safety/router_logs.ts",
+      "files": [
+        "src/core/safety/router_logs.ts"
+      ],
+      "features": [
+        "RouterLogs"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/safety/safetyService.ts",
+      "files": [
+        "src/core/safety/safetyService.ts"
+      ],
+      "features": [
+        "SafetyService"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/self_reflection/evaluator.ts",
+      "files": [
+        "src/core/self_reflection/evaluator.ts"
+      ],
+      "features": [
+        "ReflectionEvaluator"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/self_reflection/reflection_engine.ts",
+      "files": [
+        "src/core/self_reflection/reflection_engine.ts"
+      ],
+      "features": [
+        "ReflectionEngine"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/self_reflection/review_logs.ts",
+      "files": [
+        "src/core/self_reflection/review_logs.ts"
+      ],
+      "features": [
+        "ReflectionReviewLogs"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/core/voice/voiceService.ts",
+      "files": [
+        "src/core/voice/voiceService.ts"
+      ],
+      "features": [
+        "VoiceService"
+      ],
+      "status": "implemented",
+      "summary": "1 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/skills/analysis/index.ts",
+      "files": [
+        "src/skills/analysis/index.ts"
+      ],
+      "features": [
+        "analysisSkill"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/skills/automation/index.ts",
+      "files": [
+        "src/skills/automation/index.ts"
+      ],
+      "features": [
+        "automationSkill"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/skills/coding/index.ts",
+      "files": [
+        "src/skills/coding/index.ts"
+      ],
+      "features": [
+        "codingSkill"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/skills/productivity/index.ts",
+      "files": [
+        "src/skills/productivity/index.ts"
+      ],
+      "features": [
+        "productivitySkill"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 0 functions / 0 routes"
+    },
+    {
+      "module": "src/skills/research/index.ts",
+      "files": [
+        "src/skills/research/index.ts"
+      ],
+      "features": [
+        "researchSkill"
+      ],
+      "status": "implemented",
+      "summary": "0 classes / 0 functions / 0 routes"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "module": "src/config.ts",
+        "path": "src/config.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "dotenv"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/server.ts",
+        "path": "src/server.ts",
+        "imports": [
+          "cors",
+          "express",
+          "node:fs",
+          "node:http",
+          "node:os",
+          "node:path",
+          "node:url",
+          "ws",
+          "src/config.js",
+          "src/core/memory/memoryService.js",
+          "src/core/memory/personalAssistantService.js",
+          "src/core/agent/controller.js",
+          "src/core/voice/voiceService.js",
+          "src/core/safety/auditService.js",
+          "src/core/safety/safetyService.js",
+          "src/core/safety/router_logs.js",
+          "src/models/schemas.js",
+          "src/routes/extensionRoutes.js",
+          "src/routes/learningRoutes.js",
+          "src/routes/codebaseRoutes.js",
+          "src/routes/architectureRoutes.js",
+          "src/services/chatService.js",
+          "src/services/groqService.js",
+          "src/services/realtimeService.js",
+          "src/services/ttsService.js",
+          "src/services/vectorStore.js",
+          "src/services/runtimeKeyStore.js",
+          "src/learning/learning_scheduler.js",
+          "src/learning/embedding_engine.js",
+          "src/research/research_engine.js",
+          "src/reasoning/reasoning_engine.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/agents/agent_orchestrator.ts",
+        "path": "src/agents/agent_orchestrator.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js",
+          "src/agents/base_agent.js",
+          "src/agents/automation_agent.js",
+          "src/agents/coding_agent.js",
+          "src/agents/debug_agent.js",
+          "src/agents/evaluation_agent.js",
+          "src/agents/learning_agent.js",
+          "src/agents/planning_agent.js",
+          "src/agents/research_agent.js",
+          "src/github_learning/githubLearningAgent.js",
+          "src/youtube_learning/youtubeLearningAgent.js",
+          "src/web_learning/webLearningAgent.js",
+          "src/multimodal_learning/multimodalAgent.js",
+          "src/self_modification/selfModificationAgent.js",
+          "src/code_awareness/codeAwarenessAgent.js",
+          "src/architecture_evolution/architectureEvolutionAgent.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/agents/automation_agent.ts",
+        "path": "src/agents/automation_agent.ts",
+        "imports": [
+          "src/agents/base_agent.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/agents/base_agent.ts",
+        "path": "src/agents/base_agent.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/agents/coding_agent.ts",
+        "path": "src/agents/coding_agent.ts",
+        "imports": [
+          "src/agents/base_agent.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/agents/debug_agent.ts",
+        "path": "src/agents/debug_agent.ts",
+        "imports": [
+          "src/agents/base_agent.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/agents/evaluation_agent.ts",
+        "path": "src/agents/evaluation_agent.ts",
+        "imports": [
+          "src/agents/base_agent.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/agents/learning_agent.ts",
+        "path": "src/agents/learning_agent.ts",
+        "imports": [
+          "src/agents/base_agent.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/agents/multi_agent_orchestrator.ts",
+        "path": "src/agents/multi_agent_orchestrator.ts",
+        "imports": [
+          "src/agents/agent_orchestrator.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/agents/planning_agent.ts",
+        "path": "src/agents/planning_agent.ts",
+        "imports": [
+          "src/agents/base_agent.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/agents/research_agent.ts",
+        "path": "src/agents/research_agent.ts",
+        "imports": [
+          "src/agents/base_agent.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/architecture_evolution/architectureAnalyzer.ts",
+        "path": "src/architecture_evolution/architectureAnalyzer.ts",
+        "imports": [
+          "node:path",
+          "node:fs",
+          "src/code_awareness/repoScanner.js",
+          "src/code_awareness/fileAnalyzer.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/architecture_evolution/architectureEvolutionAgent.ts",
+        "path": "src/architecture_evolution/architectureEvolutionAgent.ts",
+        "imports": [
+          "node:path",
+          "src/agents/base_agent.js",
+          "src/architecture_evolution/architectureAnalyzer.js",
+          "src/architecture_evolution/refactorPlanner.js",
+          "src/architecture_evolution/architectureGenerator.js",
+          "src/architecture_evolution/sandboxRefactorExecutor.js",
+          "src/architecture_evolution/architectureValidator.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/architecture_evolution/architectureGenerator.ts",
+        "path": "src/architecture_evolution/architectureGenerator.ts",
+        "imports": [
+          "node:path",
+          "src/architecture_evolution/refactorPlanner.js",
+          "src/architecture_evolution/architectureAnalyzer.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/architecture_evolution/architectureValidator.ts",
+        "path": "src/architecture_evolution/architectureValidator.ts",
+        "imports": [
+          "node:path",
+          "src/self_modification/testSandbox.js",
+          "src/architecture_evolution/refactorPlanner.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/architecture_evolution/refactorPlanner.ts",
+        "path": "src/architecture_evolution/refactorPlanner.ts",
+        "imports": [
+          "src/architecture_evolution/architectureAnalyzer.js",
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/architecture_evolution/sandboxRefactorExecutor.ts",
+        "path": "src/architecture_evolution/sandboxRefactorExecutor.ts",
+        "imports": [
+          "node:path",
+          "src/self_modification/repoCloner.js",
+          "src/architecture_evolution/refactorPlanner.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/autonomous_research/knowledge_builder.ts",
+        "path": "src/autonomous_research/knowledge_builder.ts",
+        "imports": [
+          "src/research/research_engine.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/autonomous_research/research_scheduler.ts",
+        "path": "src/autonomous_research/research_scheduler.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js",
+          "src/autonomous_research/knowledge_builder.js",
+          "src/autonomous_research/topic_detector.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/autonomous_research/topic_detector.ts",
+        "path": "src/autonomous_research/topic_detector.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/awareness/awareness_state.ts",
+        "path": "src/awareness/awareness_state.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/awareness/curiosity_engine.ts",
+        "path": "src/awareness/curiosity_engine.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/awareness/knowledge_gap_detector.ts",
+        "path": "src/awareness/knowledge_gap_detector.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/awareness/question_generator.ts",
+        "path": "src/awareness/question_generator.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/awareness/self_awareness_engine.ts",
+        "path": "src/awareness/self_awareness_engine.ts",
+        "imports": [
+          "src/awareness/awareness_state.js",
+          "src/awareness/curiosity_engine.js",
+          "src/awareness/knowledge_gap_detector.js",
+          "src/awareness/question_generator.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/code_awareness/architectureMapper.ts",
+        "path": "src/code_awareness/architectureMapper.ts",
+        "imports": [
+          "node:path",
+          "src/code_awareness/fileAnalyzer.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/code_awareness/codeAwarenessAgent.ts",
+        "path": "src/code_awareness/codeAwarenessAgent.ts",
+        "imports": [
+          "node:path",
+          "src/agents/base_agent.js",
+          "src/code_awareness/repoScanner.js",
+          "src/code_awareness/fileAnalyzer.js",
+          "src/code_awareness/architectureMapper.js",
+          "src/code_awareness/featureDetector.js",
+          "src/code_awareness/codeKnowledgeStore.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/code_awareness/codeKnowledgeStore.ts",
+        "path": "src/code_awareness/codeKnowledgeStore.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js",
+          "src/memory/vector_store.js",
+          "src/code_awareness/architectureMapper.js",
+          "src/code_awareness/featureDetector.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/code_awareness/featureDetector.ts",
+        "path": "src/code_awareness/featureDetector.ts",
+        "imports": [
+          "src/code_awareness/fileAnalyzer.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/code_awareness/fileAnalyzer.ts",
+        "path": "src/code_awareness/fileAnalyzer.ts",
+        "imports": [
+          "node:fs",
+          "node:path"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/code_awareness/repoScanner.ts",
+        "path": "src/code_awareness/repoScanner.ts",
+        "imports": [
+          "node:fs",
+          "node:path"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/curriculum/curriculum_engine.ts",
+        "path": "src/curriculum/curriculum_engine.ts",
+        "imports": [
+          "src/skills/skill_tracker.js",
+          "src/curriculum/progress_tracker.js",
+          "src/curriculum/skill_tree.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/curriculum/progress_tracker.ts",
+        "path": "src/curriculum/progress_tracker.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/curriculum/skill_tree.ts",
+        "path": "src/curriculum/skill_tree.ts",
+        "imports": [
+          "src/skills/skill_tracker.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/evaluation/performance_metrics.ts",
+        "path": "src/evaluation/performance_metrics.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js",
+          "src/evaluation/response_evaluator.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/evaluation/response_evaluator.ts",
+        "path": "src/evaluation/response_evaluator.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/github_learning/architectureAnalyzer.ts",
+        "path": "src/github_learning/architectureAnalyzer.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/github_learning/codeParser.ts",
+        "path": "src/github_learning/codeParser.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/github_learning/githubLearningAgent.ts",
+        "path": "src/github_learning/githubLearningAgent.ts",
+        "imports": [
+          "src/agents/base_agent.js",
+          "src/github_learning/repoCrawler.js",
+          "src/github_learning/codeParser.js",
+          "src/github_learning/architectureAnalyzer.js",
+          "src/github_learning/patternExtractor.js",
+          "src/memory/vector_store.js",
+          "src/learning/continuous_learning_engine.js",
+          "src/research/knowledge_builder.js",
+          "src/learning/learning_storage.js",
+          "src/learning/learning_stats.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/github_learning/patternExtractor.ts",
+        "path": "src/github_learning/patternExtractor.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/github_learning/repoCrawler.ts",
+        "path": "src/github_learning/repoCrawler.ts",
+        "imports": [
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/goals/goal_evaluator.ts",
+        "path": "src/goals/goal_evaluator.ts",
+        "imports": [
+          "src/goals/goal_registry.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/goals/goal_registry.ts",
+        "path": "src/goals/goal_registry.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/goals/goal_scheduler.ts",
+        "path": "src/goals/goal_scheduler.ts",
+        "imports": [
+          "src/goals/goal_registry.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/goals/goal_tracker.ts",
+        "path": "src/goals/goal_tracker.ts",
+        "imports": [
+          "src/goals/goal_registry.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/guardrails/input_filter.ts",
+        "path": "src/guardrails/input_filter.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/guardrails/output_filter.ts",
+        "path": "src/guardrails/output_filter.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/guardrails/policy_engine.ts",
+        "path": "src/guardrails/policy_engine.ts",
+        "imports": [
+          "src/guardrails/input_filter.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/intelligence/intelligence_graph.ts",
+        "path": "src/intelligence/intelligence_graph.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/knowledge/embedding_engine.ts",
+        "path": "src/knowledge/embedding_engine.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/knowledge/knowledge_compressor.ts",
+        "path": "src/knowledge/knowledge_compressor.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js",
+          "src/knowledge/embedding_engine.js",
+          "src/knowledge/knowledge_extractor.js",
+          "src/knowledge/summarizer.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/knowledge/knowledge_extractor.ts",
+        "path": "src/knowledge/knowledge_extractor.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/knowledge/summarizer.ts",
+        "path": "src/knowledge/summarizer.ts",
+        "imports": [
+          "src/knowledge/knowledge_extractor.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/learning/behavior_learning.ts",
+        "path": "src/learning/behavior_learning.ts",
+        "imports": [
+          "node:fs",
+          "src/config.js",
+          "src/learning/dataset_manager.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/learning/continuous_learning_engine.ts",
+        "path": "src/learning/continuous_learning_engine.ts",
+        "imports": [
+          "src/learning/dataset_manager.js",
+          "src/learning/embedding_engine.js",
+          "src/learning/knowledge_extractor.js",
+          "src/learning/knowledge_graph.js",
+          "src/learning/behavior_learning.js",
+          "src/research/web_researcher.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/learning/dataset_manager.ts",
+        "path": "src/learning/dataset_manager.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/learning/embedding_engine.ts",
+        "path": "src/learning/embedding_engine.ts",
+        "imports": [
+          "node:fs",
+          "src/config.js",
+          "src/learning/knowledge_extractor.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/learning/knowledge_extractor.ts",
+        "path": "src/learning/knowledge_extractor.ts",
+        "imports": [
+          "src/learning/dataset_manager.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/learning/knowledge_graph.ts",
+        "path": "src/learning/knowledge_graph.ts",
+        "imports": [
+          "node:fs",
+          "src/config.js",
+          "src/learning/knowledge_extractor.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/learning/learning_scheduler.ts",
+        "path": "src/learning/learning_scheduler.ts",
+        "imports": [
+          "node:fs",
+          "src/config.js",
+          "src/research/research_engine.js",
+          "src/learning/dataset_manager.js",
+          "src/learning/behavior_learning.js",
+          "src/learning/embedding_engine.js",
+          "src/learning/knowledge_extractor.js",
+          "src/learning/knowledge_graph.js",
+          "src/learning/micro_dataset_builder.js",
+          "src/meta_intelligence/gap_detector.js",
+          "src/self_improvement/improvement_engine.js",
+          "src/self_evolution/evolution_planner.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/learning/learning_stats.ts",
+        "path": "src/learning/learning_stats.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/learning/learning_storage.ts",
+        "path": "src/learning/learning_storage.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/learning/micro_dataset_builder.ts",
+        "path": "src/learning/micro_dataset_builder.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js",
+          "src/learning/dataset_manager.js",
+          "src/learning/knowledge_extractor.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/memory/context_builder.ts",
+        "path": "src/memory/context_builder.ts",
+        "imports": [
+          "src/memory/vector_store.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/memory/retrieval_engine.ts",
+        "path": "src/memory/retrieval_engine.ts",
+        "imports": [
+          "src/memory/vector_store.js",
+          "src/memory/semantic_search.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/memory/semantic_search.ts",
+        "path": "src/memory/semantic_search.ts",
+        "imports": [
+          "src/memory/vector_store.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/memory/vector_store.ts",
+        "path": "src/memory/vector_store.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/meta_intelligence/gap_detector.ts",
+        "path": "src/meta_intelligence/gap_detector.ts",
+        "imports": [
+          "src/task_memory/task_store.js",
+          "src/utils/upgradeStorage.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/meta_intelligence/goal_manager.ts",
+        "path": "src/meta_intelligence/goal_manager.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/meta_intelligence/learning_manager.ts",
+        "path": "src/meta_intelligence/learning_manager.ts",
+        "imports": [
+          "src/meta_intelligence/goal_manager.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/meta_intelligence/meta_controller.ts",
+        "path": "src/meta_intelligence/meta_controller.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js",
+          "src/meta_intelligence/goal_manager.js",
+          "src/meta_intelligence/learning_manager.js",
+          "src/meta_intelligence/skill_manager.js",
+          "src/meta_intelligence/system_optimizer.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/meta_intelligence/performance_analyzer.ts",
+        "path": "src/meta_intelligence/performance_analyzer.ts",
+        "imports": [
+          "src/utils/upgradeStorage.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/meta_intelligence/reflection_engine.ts",
+        "path": "src/meta_intelligence/reflection_engine.ts",
+        "imports": [
+          "src/task_memory/task_store.js",
+          "src/self_improvement/performance_analyzer.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/meta_intelligence/skill_manager.ts",
+        "path": "src/meta_intelligence/skill_manager.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/meta_intelligence/system_optimizer.ts",
+        "path": "src/meta_intelligence/system_optimizer.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/models/schemas.ts",
+        "path": "src/models/schemas.ts",
+        "imports": [
+          "zod",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/multimodal_learning/codeAnalyzer.ts",
+        "path": "src/multimodal_learning/codeAnalyzer.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/multimodal_learning/imageAnalyzer.ts",
+        "path": "src/multimodal_learning/imageAnalyzer.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/multimodal_learning/multimodalAgent.ts",
+        "path": "src/multimodal_learning/multimodalAgent.ts",
+        "imports": [
+          "src/agents/base_agent.js",
+          "src/multimodal_learning/imageAnalyzer.js",
+          "src/multimodal_learning/codeAnalyzer.js",
+          "src/multimodal_learning/multimodalKnowledgeExtractor.js",
+          "src/memory/vector_store.js",
+          "src/learning/continuous_learning_engine.js",
+          "src/learning/learning_storage.js",
+          "src/learning/learning_stats.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/multimodal_learning/multimodalKnowledgeExtractor.ts",
+        "path": "src/multimodal_learning/multimodalKnowledgeExtractor.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/planning/goal_parser.ts",
+        "path": "src/planning/goal_parser.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/planning/step_executor.ts",
+        "path": "src/planning/step_executor.ts",
+        "imports": [
+          "src/planning/task_planner.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/planning/task_planner.ts",
+        "path": "src/planning/task_planner.ts",
+        "imports": [
+          "src/planning/goal_parser.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/reasoning/brain_router.ts",
+        "path": "src/reasoning/brain_router.ts",
+        "imports": [
+          "src/reasoning/intent_analyzer.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/reasoning/intent_analyzer.ts",
+        "path": "src/reasoning/intent_analyzer.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/reasoning/reasoning_engine.ts",
+        "path": "src/reasoning/reasoning_engine.ts",
+        "imports": [
+          "src/learning/embedding_engine.js",
+          "src/research/research_engine.js",
+          "src/reasoning/intent_analyzer.js",
+          "src/reasoning/task_planner.js",
+          "src/reasoning/brain_router.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/reasoning/task_planner.ts",
+        "path": "src/reasoning/task_planner.ts",
+        "imports": [
+          "src/reasoning/intent_analyzer.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/reflection/self_reflection_system.ts",
+        "path": "src/reflection/self_reflection_system.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/research/document_reader.ts",
+        "path": "src/research/document_reader.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/research/knowledge_builder.ts",
+        "path": "src/research/knowledge_builder.ts",
+        "imports": [
+          "src/knowledge/knowledge_compressor.js",
+          "src/research/document_reader.js",
+          "src/research/web_researcher.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/research/research_engine.ts",
+        "path": "src/research/research_engine.ts",
+        "imports": [
+          "src/config.js",
+          "src/learning/knowledge_extractor.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/research/web_researcher.ts",
+        "path": "src/research/web_researcher.ts",
+        "imports": [
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/routes/architectureRoutes.ts",
+        "path": "src/routes/architectureRoutes.ts",
+        "imports": [
+          "express",
+          "src/architecture_evolution/architectureEvolutionAgent.js",
+          "src/architecture_evolution/refactorPlanner.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/routes/codebaseRoutes.ts",
+        "path": "src/routes/codebaseRoutes.ts",
+        "imports": [
+          "express",
+          "src/code_awareness/codeAwarenessAgent.js",
+          "src/code_awareness/codeKnowledgeStore.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/routes/extensionRoutes.ts",
+        "path": "src/routes/extensionRoutes.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "express",
+          "src/config.js",
+          "src/core/memory/memoryService.js",
+          "src/core/safety/auditService.js",
+          "src/core/safety/safetyService.js",
+          "src/core/agent/controller.js",
+          "src/services/groqService.js",
+          "src/services/chatService.js",
+          "src/core/voice/voiceService.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/routes/learningRoutes.ts",
+        "path": "src/routes/learningRoutes.ts",
+        "imports": [
+          "express",
+          "src/youtube_learning/youtubeLearningAgent.js",
+          "src/web_learning/webLearningAgent.js",
+          "src/multimodal_learning/multimodalAgent.js",
+          "src/github_learning/githubLearningAgent.js",
+          "src/self_modification/selfModificationAgent.js",
+          "src/learning/learning_stats.js",
+          "src/learning/learning_storage.js",
+          "src/self_modification/integrationManager.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/self_evolution/architecture_analyzer.ts",
+        "path": "src/self_evolution/architecture_analyzer.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/self_evolution/code_optimizer.ts",
+        "path": "src/self_evolution/code_optimizer.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/self_evolution/evolution_planner.ts",
+        "path": "src/self_evolution/evolution_planner.ts",
+        "imports": [
+          "src/utils/upgradeStorage.js",
+          "src/self_improvement/improvement_engine.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/self_evolution/performance_monitor.ts",
+        "path": "src/self_evolution/performance_monitor.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/self_evolution/upgrade_executor.ts",
+        "path": "src/self_evolution/upgrade_executor.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/self_improvement/improvement_engine.ts",
+        "path": "src/self_improvement/improvement_engine.ts",
+        "imports": [
+          "src/utils/upgradeStorage.js",
+          "src/meta_intelligence/reflection_engine.js",
+          "src/meta_intelligence/performance_analyzer.js",
+          "src/meta_intelligence/gap_detector.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/self_improvement/improvement_planner.ts",
+        "path": "src/self_improvement/improvement_planner.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js",
+          "src/self_improvement/mistake_detector.js",
+          "src/self_improvement/performance_analyzer.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/self_improvement/mistake_detector.ts",
+        "path": "src/self_improvement/mistake_detector.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/self_improvement/performance_analyzer.ts",
+        "path": "src/self_improvement/performance_analyzer.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/self_modification/codeModifier.ts",
+        "path": "src/self_modification/codeModifier.ts",
+        "imports": [
+          "node:fs",
+          "node:path"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/self_modification/improvementPlanner.ts",
+        "path": "src/self_modification/improvementPlanner.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/self_modification/integrationManager.ts",
+        "path": "src/self_modification/integrationManager.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js",
+          "src/self_modification/improvementPlanner.js",
+          "src/self_modification/testSandbox.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/self_modification/repoCloner.ts",
+        "path": "src/self_modification/repoCloner.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/self_modification/selfModificationAgent.ts",
+        "path": "src/self_modification/selfModificationAgent.ts",
+        "imports": [
+          "src/agents/base_agent.js",
+          "src/self_modification/improvementPlanner.js",
+          "src/self_modification/repoCloner.js",
+          "src/self_modification/codeModifier.js",
+          "src/self_modification/testSandbox.js",
+          "src/self_modification/integrationManager.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/self_modification/testSandbox.ts",
+        "path": "src/self_modification/testSandbox.ts",
+        "imports": [
+          "node:child_process"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/services/chatService.ts",
+        "path": "src/services/chatService.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "uuid",
+          "src/core/agent/brain_router.js",
+          "src/learning/learning_scheduler.js",
+          "src/reasoning/reasoning_engine.js",
+          "src/config.js",
+          "src/memory/vector_store.js",
+          "src/types/chat.js",
+          "src/core/memory/memoryService.js",
+          "src/services/groqService.js",
+          "src/services/realtimeService.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/services/groqService.ts",
+        "path": "src/services/groqService.ts",
+        "imports": [
+          "@langchain/groq",
+          "@langchain/core/prompts",
+          "@langchain/core/messages",
+          "node:async_hooks",
+          "src/config.js",
+          "src/utils/timeInfo.js",
+          "src/utils/retry.js",
+          "src/services/vectorStore.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/services/realtimeService.ts",
+        "path": "src/services/realtimeService.ts",
+        "imports": [
+          "@langchain/groq",
+          "src/config.js",
+          "src/types/chat.js",
+          "src/utils/retry.js",
+          "src/services/groqService.js",
+          "src/services/vectorStore.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/services/runtimeKeyStore.ts",
+        "path": "src/services/runtimeKeyStore.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/services/ttsService.ts",
+        "path": "src/services/ttsService.ts",
+        "imports": [
+          "edge-tts/out/index.js",
+          "src/core/voice/voiceService.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/services/vectorStore.ts",
+        "path": "src/services/vectorStore.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/skills/skill_engine.ts",
+        "path": "src/skills/skill_engine.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js",
+          "src/skills/skill_registry.js",
+          "src/skills/skill_learning.js",
+          "src/skills/skill_memory.js",
+          "src/skills/skill_evolution.js",
+          "src/skills/skill_system.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/skills/skill_evolution.ts",
+        "path": "src/skills/skill_evolution.ts",
+        "imports": [
+          "src/skills/skill_registry.js",
+          "src/skills/skill_memory.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/skills/skill_learning.ts",
+        "path": "src/skills/skill_learning.ts",
+        "imports": [
+          "src/skills/skill_registry.js",
+          "src/skills/skill_memory.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/skills/skill_memory.ts",
+        "path": "src/skills/skill_memory.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/skills/skill_registry.ts",
+        "path": "src/skills/skill_registry.ts",
+        "imports": [
+          "src/skills/analysis/index.js",
+          "src/skills/automation/index.js",
+          "src/skills/coding/index.js",
+          "src/skills/productivity/index.js",
+          "src/skills/research/index.js",
+          "src/skills/types.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/skills/skill_system.ts",
+        "path": "src/skills/skill_system.ts",
+        "imports": [
+          "src/skills/skill_registry.js",
+          "src/skills/types.js",
+          "src/skills/skill_tracker.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/skills/skill_tracker.ts",
+        "path": "src/skills/skill_tracker.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/skills/types.ts",
+        "path": "src/skills/types.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/task_memory/task_patterns.ts",
+        "path": "src/task_memory/task_patterns.ts",
+        "imports": [
+          "src/task_memory/task_store.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/task_memory/task_reuse.ts",
+        "path": "src/task_memory/task_reuse.ts",
+        "imports": [
+          "src/task_memory/task_store.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/task_memory/task_store.ts",
+        "path": "src/task_memory/task_store.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/task_memory/task_success_rate.ts",
+        "path": "src/task_memory/task_success_rate.ts",
+        "imports": [
+          "src/task_memory/task_store.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/tools/file_tools.ts",
+        "path": "src/tools/file_tools.ts",
+        "imports": [
+          "node:fs",
+          "node:path"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/tools/git_tools.ts",
+        "path": "src/tools/git_tools.ts",
+        "imports": [
+          "node:child_process"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/tools/terminal_tools.ts",
+        "path": "src/tools/terminal_tools.ts",
+        "imports": [
+          "node:child_process"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/tools/tool_executor.ts",
+        "path": "src/tools/tool_executor.ts",
+        "imports": [
+          "src/tools/tool_registry.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/tools/tool_permissions.ts",
+        "path": "src/tools/tool_permissions.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/tools/tool_registry.ts",
+        "path": "src/tools/tool_registry.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/tools/tool_router.ts",
+        "path": "src/tools/tool_router.ts",
+        "imports": [
+          "src/tools/tool_executor.js",
+          "src/tools/tool_permissions.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/tools/web_tools.ts",
+        "path": "src/tools/web_tools.ts",
+        "imports": [
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/training/dataset_builder.ts",
+        "path": "src/training/dataset_builder.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/training/micro_model_trainer.ts",
+        "path": "src/training/micro_model_trainer.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/types/chat.ts",
+        "path": "src/types/chat.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/utils/retry.ts",
+        "path": "src/utils/retry.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/utils/timeInfo.ts",
+        "path": "src/utils/timeInfo.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/utils/upgradeStorage.ts",
+        "path": "src/utils/upgradeStorage.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/web_learning/crawler.ts",
+        "path": "src/web_learning/crawler.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/web_learning/htmlParser.ts",
+        "path": "src/web_learning/htmlParser.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/web_learning/knowledgeExtractor.ts",
+        "path": "src/web_learning/knowledgeExtractor.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/web_learning/webLearningAgent.ts",
+        "path": "src/web_learning/webLearningAgent.ts",
+        "imports": [
+          "src/agents/base_agent.js",
+          "src/web_learning/crawler.js",
+          "src/web_learning/htmlParser.js",
+          "src/web_learning/knowledgeExtractor.js",
+          "src/memory/vector_store.js",
+          "src/learning/continuous_learning_engine.js",
+          "src/learning/learning_storage.js",
+          "src/learning/learning_stats.js",
+          "src/research/knowledge_builder.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/youtube_learning/transcriptExtractor.ts",
+        "path": "src/youtube_learning/transcriptExtractor.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/youtube_learning/videoKnowledgeExtractor.ts",
+        "path": "src/youtube_learning/videoKnowledgeExtractor.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/youtube_learning/youtubeCrawler.ts",
+        "path": "src/youtube_learning/youtubeCrawler.ts",
+        "imports": [
+          "node:url"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/youtube_learning/youtubeLearningAgent.ts",
+        "path": "src/youtube_learning/youtubeLearningAgent.ts",
+        "imports": [
+          "src/agents/base_agent.js",
+          "src/youtube_learning/youtubeCrawler.js",
+          "src/youtube_learning/transcriptExtractor.js",
+          "src/youtube_learning/videoKnowledgeExtractor.js",
+          "src/memory/vector_store.js",
+          "src/learning/continuous_learning_engine.js",
+          "src/learning/learning_storage.js",
+          "src/learning/learning_stats.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/core/agent/brain_a_llm.ts",
+        "path": "src/core/agent/brain_a_llm.ts",
+        "imports": [
+          "src/services/groqService.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/core/agent/brain_b_reasoning.ts",
+        "path": "src/core/agent/brain_b_reasoning.ts",
+        "imports": [
+          "src/services/groqService.js",
+          "src/services/realtimeService.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/core/agent/brain_router.ts",
+        "path": "src/core/agent/brain_router.ts",
+        "imports": [
+          "src/guardrails/input_filter.js",
+          "src/guardrails/output_filter.js",
+          "src/guardrails/policy_engine.js",
+          "src/services/groqService.js",
+          "src/services/realtimeService.js",
+          "src/core/agent/brain_a_llm.js",
+          "src/core/agent/brain_b_reasoning.js",
+          "src/core/safety/router_logs.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/core/agent/controller.ts",
+        "path": "src/core/agent/controller.ts",
+        "imports": [
+          "src/core/safety/auditService.js",
+          "src/core/safety/safetyService.js",
+          "src/core/memory/memoryService.js",
+          "src/services/chatService.js",
+          "src/evaluation/performance_metrics.js",
+          "src/evaluation/response_evaluator.js",
+          "src/knowledge/knowledge_compressor.js",
+          "src/planning/step_executor.js",
+          "src/planning/task_planner.js",
+          "src/research/knowledge_builder.js",
+          "src/skills/skill_system.js",
+          "src/skills/skill_tracker.js",
+          "src/skills/skill_engine.js",
+          "src/training/dataset_builder.js",
+          "src/training/micro_model_trainer.js",
+          "src/tools/file_tools.js",
+          "src/tools/git_tools.js",
+          "src/tools/terminal_tools.js",
+          "src/tools/web_tools.js",
+          "src/core/self_reflection/reflection_engine.js",
+          "src/curriculum/curriculum_engine.js",
+          "src/agents/agent_orchestrator.js",
+          "src/intelligence/intelligence_graph.js",
+          "src/learning/continuous_learning_engine.js",
+          "src/meta_intelligence/meta_controller.js",
+          "src/autonomous_research/research_scheduler.js",
+          "src/self_improvement/performance_analyzer.js",
+          "src/self_improvement/mistake_detector.js",
+          "src/self_improvement/improvement_planner.js",
+          "src/awareness/self_awareness_engine.js",
+          "src/memory/vector_store.js",
+          "src/memory/semantic_search.js",
+          "src/memory/retrieval_engine.js",
+          "src/memory/context_builder.js",
+          "src/goals/goal_registry.js",
+          "src/goals/goal_scheduler.js",
+          "src/goals/goal_tracker.js",
+          "src/goals/goal_evaluator.js",
+          "src/tools/tool_registry.js",
+          "src/tools/tool_permissions.js",
+          "src/tools/tool_executor.js",
+          "src/tools/tool_router.js",
+          "src/task_memory/task_store.js",
+          "src/task_memory/task_patterns.js",
+          "src/task_memory/task_success_rate.js",
+          "src/task_memory/task_reuse.js",
+          "src/self_evolution/architecture_analyzer.js",
+          "src/self_evolution/code_optimizer.js",
+          "src/self_evolution/performance_monitor.js",
+          "src/self_evolution/evolution_planner.js",
+          "src/self_evolution/upgrade_executor.js",
+          "src/agents/base_agent.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/core/memory/memoryService.ts",
+        "path": "src/core/memory/memoryService.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/core/memory/personalAssistantService.ts",
+        "path": "src/core/memory/personalAssistantService.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/core/os/context_manager.ts",
+        "path": "src/core/os/context_manager.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/core/os/core_controller.ts",
+        "path": "src/core/os/core_controller.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/core/os/system_state_manager.ts",
+        "path": "src/core/os/system_state_manager.ts",
+        "imports": [
+          "src/core/os/core_controller.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/core/os/task_router.ts",
+        "path": "src/core/os/task_router.ts",
+        "imports": [
+          "src/core/os/core_controller.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/core/safety/auditService.ts",
+        "path": "src/core/safety/auditService.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/core/safety/router_logs.ts",
+        "path": "src/core/safety/router_logs.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/core/safety/safetyService.ts",
+        "path": "src/core/safety/safetyService.ts",
+        "imports": [
+          "node:path"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/core/self_reflection/evaluator.ts",
+        "path": "src/core/self_reflection/evaluator.ts",
+        "imports": [],
+        "dependents": []
+      },
+      {
+        "module": "src/core/self_reflection/reflection_engine.ts",
+        "path": "src/core/self_reflection/reflection_engine.ts",
+        "imports": [
+          "src/core/self_reflection/evaluator.js",
+          "src/core/self_reflection/review_logs.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/core/self_reflection/review_logs.ts",
+        "path": "src/core/self_reflection/review_logs.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/core/voice/voiceService.ts",
+        "path": "src/core/voice/voiceService.ts",
+        "imports": [
+          "node:fs",
+          "node:path",
+          "src/config.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/skills/analysis/index.ts",
+        "path": "src/skills/analysis/index.ts",
+        "imports": [
+          "src/skills/types.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/skills/automation/index.ts",
+        "path": "src/skills/automation/index.ts",
+        "imports": [
+          "src/skills/types.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/skills/coding/index.ts",
+        "path": "src/skills/coding/index.ts",
+        "imports": [
+          "src/skills/types.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/skills/productivity/index.ts",
+        "path": "src/skills/productivity/index.ts",
+        "imports": [
+          "src/skills/types.js"
+        ],
+        "dependents": []
+      },
+      {
+        "module": "src/skills/research/index.ts",
+        "path": "src/skills/research/index.ts",
+        "imports": [
+          "src/skills/types.js"
+        ],
+        "dependents": []
+      }
+    ],
+    "edges": [
+      {
+        "from": "src/config.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/config.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/config.ts",
+        "to": "dotenv"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "cors"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "express"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "node:http"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "node:os"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "node:url"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "ws"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/core/memory/memoryService.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/core/memory/personalAssistantService.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/core/agent/controller.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/core/voice/voiceService.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/core/safety/auditService.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/core/safety/safetyService.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/core/safety/router_logs.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/models/schemas.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/routes/extensionRoutes.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/routes/learningRoutes.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/routes/codebaseRoutes.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/routes/architectureRoutes.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/services/chatService.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/services/groqService.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/services/realtimeService.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/services/ttsService.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/services/vectorStore.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/services/runtimeKeyStore.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/learning/learning_scheduler.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/learning/embedding_engine.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/research/research_engine.js"
+      },
+      {
+        "from": "src/server.ts",
+        "to": "src/reasoning/reasoning_engine.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/agents/automation_agent.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/agents/coding_agent.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/agents/debug_agent.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/agents/evaluation_agent.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/agents/learning_agent.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/agents/planning_agent.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/agents/research_agent.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/github_learning/githubLearningAgent.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/youtube_learning/youtubeLearningAgent.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/web_learning/webLearningAgent.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/multimodal_learning/multimodalAgent.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/self_modification/selfModificationAgent.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/code_awareness/codeAwarenessAgent.js"
+      },
+      {
+        "from": "src/agents/agent_orchestrator.ts",
+        "to": "src/architecture_evolution/architectureEvolutionAgent.js"
+      },
+      {
+        "from": "src/agents/automation_agent.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/agents/coding_agent.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/agents/debug_agent.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/agents/evaluation_agent.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/agents/learning_agent.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/agents/multi_agent_orchestrator.ts",
+        "to": "src/agents/agent_orchestrator.js"
+      },
+      {
+        "from": "src/agents/planning_agent.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/agents/research_agent.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/architecture_evolution/architectureAnalyzer.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/architecture_evolution/architectureAnalyzer.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/architecture_evolution/architectureAnalyzer.ts",
+        "to": "src/code_awareness/repoScanner.js"
+      },
+      {
+        "from": "src/architecture_evolution/architectureAnalyzer.ts",
+        "to": "src/code_awareness/fileAnalyzer.js"
+      },
+      {
+        "from": "src/architecture_evolution/architectureEvolutionAgent.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/architecture_evolution/architectureEvolutionAgent.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/architecture_evolution/architectureEvolutionAgent.ts",
+        "to": "src/architecture_evolution/architectureAnalyzer.js"
+      },
+      {
+        "from": "src/architecture_evolution/architectureEvolutionAgent.ts",
+        "to": "src/architecture_evolution/refactorPlanner.js"
+      },
+      {
+        "from": "src/architecture_evolution/architectureEvolutionAgent.ts",
+        "to": "src/architecture_evolution/architectureGenerator.js"
+      },
+      {
+        "from": "src/architecture_evolution/architectureEvolutionAgent.ts",
+        "to": "src/architecture_evolution/sandboxRefactorExecutor.js"
+      },
+      {
+        "from": "src/architecture_evolution/architectureEvolutionAgent.ts",
+        "to": "src/architecture_evolution/architectureValidator.js"
+      },
+      {
+        "from": "src/architecture_evolution/architectureGenerator.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/architecture_evolution/architectureGenerator.ts",
+        "to": "src/architecture_evolution/refactorPlanner.js"
+      },
+      {
+        "from": "src/architecture_evolution/architectureGenerator.ts",
+        "to": "src/architecture_evolution/architectureAnalyzer.js"
+      },
+      {
+        "from": "src/architecture_evolution/architectureValidator.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/architecture_evolution/architectureValidator.ts",
+        "to": "src/self_modification/testSandbox.js"
+      },
+      {
+        "from": "src/architecture_evolution/architectureValidator.ts",
+        "to": "src/architecture_evolution/refactorPlanner.js"
+      },
+      {
+        "from": "src/architecture_evolution/refactorPlanner.ts",
+        "to": "src/architecture_evolution/architectureAnalyzer.js"
+      },
+      {
+        "from": "src/architecture_evolution/refactorPlanner.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/architecture_evolution/refactorPlanner.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/architecture_evolution/refactorPlanner.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/architecture_evolution/sandboxRefactorExecutor.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/architecture_evolution/sandboxRefactorExecutor.ts",
+        "to": "src/self_modification/repoCloner.js"
+      },
+      {
+        "from": "src/architecture_evolution/sandboxRefactorExecutor.ts",
+        "to": "src/architecture_evolution/refactorPlanner.js"
+      },
+      {
+        "from": "src/autonomous_research/knowledge_builder.ts",
+        "to": "src/research/research_engine.js"
+      },
+      {
+        "from": "src/autonomous_research/research_scheduler.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/autonomous_research/research_scheduler.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/autonomous_research/research_scheduler.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/autonomous_research/research_scheduler.ts",
+        "to": "src/autonomous_research/knowledge_builder.js"
+      },
+      {
+        "from": "src/autonomous_research/research_scheduler.ts",
+        "to": "src/autonomous_research/topic_detector.js"
+      },
+      {
+        "from": "src/awareness/awareness_state.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/awareness/awareness_state.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/awareness/awareness_state.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/awareness/self_awareness_engine.ts",
+        "to": "src/awareness/awareness_state.js"
+      },
+      {
+        "from": "src/awareness/self_awareness_engine.ts",
+        "to": "src/awareness/curiosity_engine.js"
+      },
+      {
+        "from": "src/awareness/self_awareness_engine.ts",
+        "to": "src/awareness/knowledge_gap_detector.js"
+      },
+      {
+        "from": "src/awareness/self_awareness_engine.ts",
+        "to": "src/awareness/question_generator.js"
+      },
+      {
+        "from": "src/code_awareness/architectureMapper.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/code_awareness/architectureMapper.ts",
+        "to": "src/code_awareness/fileAnalyzer.js"
+      },
+      {
+        "from": "src/code_awareness/codeAwarenessAgent.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/code_awareness/codeAwarenessAgent.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/code_awareness/codeAwarenessAgent.ts",
+        "to": "src/code_awareness/repoScanner.js"
+      },
+      {
+        "from": "src/code_awareness/codeAwarenessAgent.ts",
+        "to": "src/code_awareness/fileAnalyzer.js"
+      },
+      {
+        "from": "src/code_awareness/codeAwarenessAgent.ts",
+        "to": "src/code_awareness/architectureMapper.js"
+      },
+      {
+        "from": "src/code_awareness/codeAwarenessAgent.ts",
+        "to": "src/code_awareness/featureDetector.js"
+      },
+      {
+        "from": "src/code_awareness/codeAwarenessAgent.ts",
+        "to": "src/code_awareness/codeKnowledgeStore.js"
+      },
+      {
+        "from": "src/code_awareness/codeKnowledgeStore.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/code_awareness/codeKnowledgeStore.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/code_awareness/codeKnowledgeStore.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/code_awareness/codeKnowledgeStore.ts",
+        "to": "src/memory/vector_store.js"
+      },
+      {
+        "from": "src/code_awareness/codeKnowledgeStore.ts",
+        "to": "src/code_awareness/architectureMapper.js"
+      },
+      {
+        "from": "src/code_awareness/codeKnowledgeStore.ts",
+        "to": "src/code_awareness/featureDetector.js"
+      },
+      {
+        "from": "src/code_awareness/featureDetector.ts",
+        "to": "src/code_awareness/fileAnalyzer.js"
+      },
+      {
+        "from": "src/code_awareness/fileAnalyzer.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/code_awareness/fileAnalyzer.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/code_awareness/repoScanner.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/code_awareness/repoScanner.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/curriculum/curriculum_engine.ts",
+        "to": "src/skills/skill_tracker.js"
+      },
+      {
+        "from": "src/curriculum/curriculum_engine.ts",
+        "to": "src/curriculum/progress_tracker.js"
+      },
+      {
+        "from": "src/curriculum/curriculum_engine.ts",
+        "to": "src/curriculum/skill_tree.js"
+      },
+      {
+        "from": "src/curriculum/progress_tracker.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/curriculum/progress_tracker.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/curriculum/progress_tracker.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/curriculum/skill_tree.ts",
+        "to": "src/skills/skill_tracker.js"
+      },
+      {
+        "from": "src/evaluation/performance_metrics.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/evaluation/performance_metrics.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/evaluation/performance_metrics.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/evaluation/performance_metrics.ts",
+        "to": "src/evaluation/response_evaluator.js"
+      },
+      {
+        "from": "src/github_learning/githubLearningAgent.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/github_learning/githubLearningAgent.ts",
+        "to": "src/github_learning/repoCrawler.js"
+      },
+      {
+        "from": "src/github_learning/githubLearningAgent.ts",
+        "to": "src/github_learning/codeParser.js"
+      },
+      {
+        "from": "src/github_learning/githubLearningAgent.ts",
+        "to": "src/github_learning/architectureAnalyzer.js"
+      },
+      {
+        "from": "src/github_learning/githubLearningAgent.ts",
+        "to": "src/github_learning/patternExtractor.js"
+      },
+      {
+        "from": "src/github_learning/githubLearningAgent.ts",
+        "to": "src/memory/vector_store.js"
+      },
+      {
+        "from": "src/github_learning/githubLearningAgent.ts",
+        "to": "src/learning/continuous_learning_engine.js"
+      },
+      {
+        "from": "src/github_learning/githubLearningAgent.ts",
+        "to": "src/research/knowledge_builder.js"
+      },
+      {
+        "from": "src/github_learning/githubLearningAgent.ts",
+        "to": "src/learning/learning_storage.js"
+      },
+      {
+        "from": "src/github_learning/githubLearningAgent.ts",
+        "to": "src/learning/learning_stats.js"
+      },
+      {
+        "from": "src/github_learning/repoCrawler.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/goals/goal_evaluator.ts",
+        "to": "src/goals/goal_registry.js"
+      },
+      {
+        "from": "src/goals/goal_registry.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/goals/goal_registry.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/goals/goal_registry.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/goals/goal_scheduler.ts",
+        "to": "src/goals/goal_registry.js"
+      },
+      {
+        "from": "src/goals/goal_tracker.ts",
+        "to": "src/goals/goal_registry.js"
+      },
+      {
+        "from": "src/guardrails/policy_engine.ts",
+        "to": "src/guardrails/input_filter.js"
+      },
+      {
+        "from": "src/intelligence/intelligence_graph.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/intelligence/intelligence_graph.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/intelligence/intelligence_graph.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/knowledge/knowledge_compressor.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/knowledge/knowledge_compressor.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/knowledge/knowledge_compressor.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/knowledge/knowledge_compressor.ts",
+        "to": "src/knowledge/embedding_engine.js"
+      },
+      {
+        "from": "src/knowledge/knowledge_compressor.ts",
+        "to": "src/knowledge/knowledge_extractor.js"
+      },
+      {
+        "from": "src/knowledge/knowledge_compressor.ts",
+        "to": "src/knowledge/summarizer.js"
+      },
+      {
+        "from": "src/knowledge/summarizer.ts",
+        "to": "src/knowledge/knowledge_extractor.js"
+      },
+      {
+        "from": "src/learning/behavior_learning.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/learning/behavior_learning.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/learning/behavior_learning.ts",
+        "to": "src/learning/dataset_manager.js"
+      },
+      {
+        "from": "src/learning/continuous_learning_engine.ts",
+        "to": "src/learning/dataset_manager.js"
+      },
+      {
+        "from": "src/learning/continuous_learning_engine.ts",
+        "to": "src/learning/embedding_engine.js"
+      },
+      {
+        "from": "src/learning/continuous_learning_engine.ts",
+        "to": "src/learning/knowledge_extractor.js"
+      },
+      {
+        "from": "src/learning/continuous_learning_engine.ts",
+        "to": "src/learning/knowledge_graph.js"
+      },
+      {
+        "from": "src/learning/continuous_learning_engine.ts",
+        "to": "src/learning/behavior_learning.js"
+      },
+      {
+        "from": "src/learning/continuous_learning_engine.ts",
+        "to": "src/research/web_researcher.js"
+      },
+      {
+        "from": "src/learning/dataset_manager.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/learning/dataset_manager.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/learning/dataset_manager.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/learning/embedding_engine.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/learning/embedding_engine.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/learning/embedding_engine.ts",
+        "to": "src/learning/knowledge_extractor.js"
+      },
+      {
+        "from": "src/learning/knowledge_extractor.ts",
+        "to": "src/learning/dataset_manager.js"
+      },
+      {
+        "from": "src/learning/knowledge_graph.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/learning/knowledge_graph.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/learning/knowledge_graph.ts",
+        "to": "src/learning/knowledge_extractor.js"
+      },
+      {
+        "from": "src/learning/learning_scheduler.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/learning/learning_scheduler.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/learning/learning_scheduler.ts",
+        "to": "src/research/research_engine.js"
+      },
+      {
+        "from": "src/learning/learning_scheduler.ts",
+        "to": "src/learning/dataset_manager.js"
+      },
+      {
+        "from": "src/learning/learning_scheduler.ts",
+        "to": "src/learning/behavior_learning.js"
+      },
+      {
+        "from": "src/learning/learning_scheduler.ts",
+        "to": "src/learning/embedding_engine.js"
+      },
+      {
+        "from": "src/learning/learning_scheduler.ts",
+        "to": "src/learning/knowledge_extractor.js"
+      },
+      {
+        "from": "src/learning/learning_scheduler.ts",
+        "to": "src/learning/knowledge_graph.js"
+      },
+      {
+        "from": "src/learning/learning_scheduler.ts",
+        "to": "src/learning/micro_dataset_builder.js"
+      },
+      {
+        "from": "src/learning/learning_scheduler.ts",
+        "to": "src/meta_intelligence/gap_detector.js"
+      },
+      {
+        "from": "src/learning/learning_scheduler.ts",
+        "to": "src/self_improvement/improvement_engine.js"
+      },
+      {
+        "from": "src/learning/learning_scheduler.ts",
+        "to": "src/self_evolution/evolution_planner.js"
+      },
+      {
+        "from": "src/learning/learning_stats.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/learning/learning_stats.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/learning/learning_stats.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/learning/learning_storage.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/learning/learning_storage.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/learning/learning_storage.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/learning/micro_dataset_builder.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/learning/micro_dataset_builder.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/learning/micro_dataset_builder.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/learning/micro_dataset_builder.ts",
+        "to": "src/learning/dataset_manager.js"
+      },
+      {
+        "from": "src/learning/micro_dataset_builder.ts",
+        "to": "src/learning/knowledge_extractor.js"
+      },
+      {
+        "from": "src/memory/context_builder.ts",
+        "to": "src/memory/vector_store.js"
+      },
+      {
+        "from": "src/memory/retrieval_engine.ts",
+        "to": "src/memory/vector_store.js"
+      },
+      {
+        "from": "src/memory/retrieval_engine.ts",
+        "to": "src/memory/semantic_search.js"
+      },
+      {
+        "from": "src/memory/semantic_search.ts",
+        "to": "src/memory/vector_store.js"
+      },
+      {
+        "from": "src/memory/vector_store.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/memory/vector_store.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/memory/vector_store.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/meta_intelligence/gap_detector.ts",
+        "to": "src/task_memory/task_store.js"
+      },
+      {
+        "from": "src/meta_intelligence/gap_detector.ts",
+        "to": "src/utils/upgradeStorage.js"
+      },
+      {
+        "from": "src/meta_intelligence/learning_manager.ts",
+        "to": "src/meta_intelligence/goal_manager.js"
+      },
+      {
+        "from": "src/meta_intelligence/meta_controller.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/meta_intelligence/meta_controller.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/meta_intelligence/meta_controller.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/meta_intelligence/meta_controller.ts",
+        "to": "src/meta_intelligence/goal_manager.js"
+      },
+      {
+        "from": "src/meta_intelligence/meta_controller.ts",
+        "to": "src/meta_intelligence/learning_manager.js"
+      },
+      {
+        "from": "src/meta_intelligence/meta_controller.ts",
+        "to": "src/meta_intelligence/skill_manager.js"
+      },
+      {
+        "from": "src/meta_intelligence/meta_controller.ts",
+        "to": "src/meta_intelligence/system_optimizer.js"
+      },
+      {
+        "from": "src/meta_intelligence/performance_analyzer.ts",
+        "to": "src/utils/upgradeStorage.js"
+      },
+      {
+        "from": "src/meta_intelligence/reflection_engine.ts",
+        "to": "src/task_memory/task_store.js"
+      },
+      {
+        "from": "src/meta_intelligence/reflection_engine.ts",
+        "to": "src/self_improvement/performance_analyzer.js"
+      },
+      {
+        "from": "src/models/schemas.ts",
+        "to": "zod"
+      },
+      {
+        "from": "src/models/schemas.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/multimodal_learning/multimodalAgent.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/multimodal_learning/multimodalAgent.ts",
+        "to": "src/multimodal_learning/imageAnalyzer.js"
+      },
+      {
+        "from": "src/multimodal_learning/multimodalAgent.ts",
+        "to": "src/multimodal_learning/codeAnalyzer.js"
+      },
+      {
+        "from": "src/multimodal_learning/multimodalAgent.ts",
+        "to": "src/multimodal_learning/multimodalKnowledgeExtractor.js"
+      },
+      {
+        "from": "src/multimodal_learning/multimodalAgent.ts",
+        "to": "src/memory/vector_store.js"
+      },
+      {
+        "from": "src/multimodal_learning/multimodalAgent.ts",
+        "to": "src/learning/continuous_learning_engine.js"
+      },
+      {
+        "from": "src/multimodal_learning/multimodalAgent.ts",
+        "to": "src/learning/learning_storage.js"
+      },
+      {
+        "from": "src/multimodal_learning/multimodalAgent.ts",
+        "to": "src/learning/learning_stats.js"
+      },
+      {
+        "from": "src/planning/step_executor.ts",
+        "to": "src/planning/task_planner.js"
+      },
+      {
+        "from": "src/planning/task_planner.ts",
+        "to": "src/planning/goal_parser.js"
+      },
+      {
+        "from": "src/reasoning/brain_router.ts",
+        "to": "src/reasoning/intent_analyzer.js"
+      },
+      {
+        "from": "src/reasoning/reasoning_engine.ts",
+        "to": "src/learning/embedding_engine.js"
+      },
+      {
+        "from": "src/reasoning/reasoning_engine.ts",
+        "to": "src/research/research_engine.js"
+      },
+      {
+        "from": "src/reasoning/reasoning_engine.ts",
+        "to": "src/reasoning/intent_analyzer.js"
+      },
+      {
+        "from": "src/reasoning/reasoning_engine.ts",
+        "to": "src/reasoning/task_planner.js"
+      },
+      {
+        "from": "src/reasoning/reasoning_engine.ts",
+        "to": "src/reasoning/brain_router.js"
+      },
+      {
+        "from": "src/reasoning/task_planner.ts",
+        "to": "src/reasoning/intent_analyzer.js"
+      },
+      {
+        "from": "src/reflection/self_reflection_system.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/reflection/self_reflection_system.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/reflection/self_reflection_system.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/research/knowledge_builder.ts",
+        "to": "src/knowledge/knowledge_compressor.js"
+      },
+      {
+        "from": "src/research/knowledge_builder.ts",
+        "to": "src/research/document_reader.js"
+      },
+      {
+        "from": "src/research/knowledge_builder.ts",
+        "to": "src/research/web_researcher.js"
+      },
+      {
+        "from": "src/research/research_engine.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/research/research_engine.ts",
+        "to": "src/learning/knowledge_extractor.js"
+      },
+      {
+        "from": "src/research/web_researcher.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/routes/architectureRoutes.ts",
+        "to": "express"
+      },
+      {
+        "from": "src/routes/architectureRoutes.ts",
+        "to": "src/architecture_evolution/architectureEvolutionAgent.js"
+      },
+      {
+        "from": "src/routes/architectureRoutes.ts",
+        "to": "src/architecture_evolution/refactorPlanner.js"
+      },
+      {
+        "from": "src/routes/codebaseRoutes.ts",
+        "to": "express"
+      },
+      {
+        "from": "src/routes/codebaseRoutes.ts",
+        "to": "src/code_awareness/codeAwarenessAgent.js"
+      },
+      {
+        "from": "src/routes/codebaseRoutes.ts",
+        "to": "src/code_awareness/codeKnowledgeStore.js"
+      },
+      {
+        "from": "src/routes/extensionRoutes.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/routes/extensionRoutes.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/routes/extensionRoutes.ts",
+        "to": "express"
+      },
+      {
+        "from": "src/routes/extensionRoutes.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/routes/extensionRoutes.ts",
+        "to": "src/core/memory/memoryService.js"
+      },
+      {
+        "from": "src/routes/extensionRoutes.ts",
+        "to": "src/core/safety/auditService.js"
+      },
+      {
+        "from": "src/routes/extensionRoutes.ts",
+        "to": "src/core/safety/safetyService.js"
+      },
+      {
+        "from": "src/routes/extensionRoutes.ts",
+        "to": "src/core/agent/controller.js"
+      },
+      {
+        "from": "src/routes/extensionRoutes.ts",
+        "to": "src/services/groqService.js"
+      },
+      {
+        "from": "src/routes/extensionRoutes.ts",
+        "to": "src/services/chatService.js"
+      },
+      {
+        "from": "src/routes/extensionRoutes.ts",
+        "to": "src/core/voice/voiceService.js"
+      },
+      {
+        "from": "src/routes/learningRoutes.ts",
+        "to": "express"
+      },
+      {
+        "from": "src/routes/learningRoutes.ts",
+        "to": "src/youtube_learning/youtubeLearningAgent.js"
+      },
+      {
+        "from": "src/routes/learningRoutes.ts",
+        "to": "src/web_learning/webLearningAgent.js"
+      },
+      {
+        "from": "src/routes/learningRoutes.ts",
+        "to": "src/multimodal_learning/multimodalAgent.js"
+      },
+      {
+        "from": "src/routes/learningRoutes.ts",
+        "to": "src/github_learning/githubLearningAgent.js"
+      },
+      {
+        "from": "src/routes/learningRoutes.ts",
+        "to": "src/self_modification/selfModificationAgent.js"
+      },
+      {
+        "from": "src/routes/learningRoutes.ts",
+        "to": "src/learning/learning_stats.js"
+      },
+      {
+        "from": "src/routes/learningRoutes.ts",
+        "to": "src/learning/learning_storage.js"
+      },
+      {
+        "from": "src/routes/learningRoutes.ts",
+        "to": "src/self_modification/integrationManager.js"
+      },
+      {
+        "from": "src/self_evolution/evolution_planner.ts",
+        "to": "src/utils/upgradeStorage.js"
+      },
+      {
+        "from": "src/self_evolution/evolution_planner.ts",
+        "to": "src/self_improvement/improvement_engine.js"
+      },
+      {
+        "from": "src/self_evolution/upgrade_executor.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/self_evolution/upgrade_executor.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/self_evolution/upgrade_executor.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/self_improvement/improvement_engine.ts",
+        "to": "src/utils/upgradeStorage.js"
+      },
+      {
+        "from": "src/self_improvement/improvement_engine.ts",
+        "to": "src/meta_intelligence/reflection_engine.js"
+      },
+      {
+        "from": "src/self_improvement/improvement_engine.ts",
+        "to": "src/meta_intelligence/performance_analyzer.js"
+      },
+      {
+        "from": "src/self_improvement/improvement_engine.ts",
+        "to": "src/meta_intelligence/gap_detector.js"
+      },
+      {
+        "from": "src/self_improvement/improvement_planner.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/self_improvement/improvement_planner.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/self_improvement/improvement_planner.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/self_improvement/improvement_planner.ts",
+        "to": "src/self_improvement/mistake_detector.js"
+      },
+      {
+        "from": "src/self_improvement/improvement_planner.ts",
+        "to": "src/self_improvement/performance_analyzer.js"
+      },
+      {
+        "from": "src/self_modification/codeModifier.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/self_modification/codeModifier.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/self_modification/improvementPlanner.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/self_modification/improvementPlanner.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/self_modification/improvementPlanner.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/self_modification/integrationManager.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/self_modification/integrationManager.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/self_modification/integrationManager.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/self_modification/integrationManager.ts",
+        "to": "src/self_modification/improvementPlanner.js"
+      },
+      {
+        "from": "src/self_modification/integrationManager.ts",
+        "to": "src/self_modification/testSandbox.js"
+      },
+      {
+        "from": "src/self_modification/repoCloner.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/self_modification/repoCloner.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/self_modification/repoCloner.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/self_modification/selfModificationAgent.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/self_modification/selfModificationAgent.ts",
+        "to": "src/self_modification/improvementPlanner.js"
+      },
+      {
+        "from": "src/self_modification/selfModificationAgent.ts",
+        "to": "src/self_modification/repoCloner.js"
+      },
+      {
+        "from": "src/self_modification/selfModificationAgent.ts",
+        "to": "src/self_modification/codeModifier.js"
+      },
+      {
+        "from": "src/self_modification/selfModificationAgent.ts",
+        "to": "src/self_modification/testSandbox.js"
+      },
+      {
+        "from": "src/self_modification/selfModificationAgent.ts",
+        "to": "src/self_modification/integrationManager.js"
+      },
+      {
+        "from": "src/self_modification/testSandbox.ts",
+        "to": "node:child_process"
+      },
+      {
+        "from": "src/services/chatService.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/services/chatService.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/services/chatService.ts",
+        "to": "uuid"
+      },
+      {
+        "from": "src/services/chatService.ts",
+        "to": "src/core/agent/brain_router.js"
+      },
+      {
+        "from": "src/services/chatService.ts",
+        "to": "src/learning/learning_scheduler.js"
+      },
+      {
+        "from": "src/services/chatService.ts",
+        "to": "src/reasoning/reasoning_engine.js"
+      },
+      {
+        "from": "src/services/chatService.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/services/chatService.ts",
+        "to": "src/memory/vector_store.js"
+      },
+      {
+        "from": "src/services/chatService.ts",
+        "to": "src/types/chat.js"
+      },
+      {
+        "from": "src/services/chatService.ts",
+        "to": "src/core/memory/memoryService.js"
+      },
+      {
+        "from": "src/services/chatService.ts",
+        "to": "src/services/groqService.js"
+      },
+      {
+        "from": "src/services/chatService.ts",
+        "to": "src/services/realtimeService.js"
+      },
+      {
+        "from": "src/services/groqService.ts",
+        "to": "@langchain/groq"
+      },
+      {
+        "from": "src/services/groqService.ts",
+        "to": "@langchain/core/prompts"
+      },
+      {
+        "from": "src/services/groqService.ts",
+        "to": "@langchain/core/messages"
+      },
+      {
+        "from": "src/services/groqService.ts",
+        "to": "node:async_hooks"
+      },
+      {
+        "from": "src/services/groqService.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/services/groqService.ts",
+        "to": "src/utils/timeInfo.js"
+      },
+      {
+        "from": "src/services/groqService.ts",
+        "to": "src/utils/retry.js"
+      },
+      {
+        "from": "src/services/groqService.ts",
+        "to": "src/services/vectorStore.js"
+      },
+      {
+        "from": "src/services/realtimeService.ts",
+        "to": "@langchain/groq"
+      },
+      {
+        "from": "src/services/realtimeService.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/services/realtimeService.ts",
+        "to": "src/types/chat.js"
+      },
+      {
+        "from": "src/services/realtimeService.ts",
+        "to": "src/utils/retry.js"
+      },
+      {
+        "from": "src/services/realtimeService.ts",
+        "to": "src/services/groqService.js"
+      },
+      {
+        "from": "src/services/realtimeService.ts",
+        "to": "src/services/vectorStore.js"
+      },
+      {
+        "from": "src/services/runtimeKeyStore.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/services/runtimeKeyStore.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/services/runtimeKeyStore.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/services/ttsService.ts",
+        "to": "edge-tts/out/index.js"
+      },
+      {
+        "from": "src/services/ttsService.ts",
+        "to": "src/core/voice/voiceService.js"
+      },
+      {
+        "from": "src/services/vectorStore.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/services/vectorStore.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/services/vectorStore.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/skills/skill_engine.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/skills/skill_engine.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/skills/skill_engine.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/skills/skill_engine.ts",
+        "to": "src/skills/skill_registry.js"
+      },
+      {
+        "from": "src/skills/skill_engine.ts",
+        "to": "src/skills/skill_learning.js"
+      },
+      {
+        "from": "src/skills/skill_engine.ts",
+        "to": "src/skills/skill_memory.js"
+      },
+      {
+        "from": "src/skills/skill_engine.ts",
+        "to": "src/skills/skill_evolution.js"
+      },
+      {
+        "from": "src/skills/skill_engine.ts",
+        "to": "src/skills/skill_system.js"
+      },
+      {
+        "from": "src/skills/skill_evolution.ts",
+        "to": "src/skills/skill_registry.js"
+      },
+      {
+        "from": "src/skills/skill_evolution.ts",
+        "to": "src/skills/skill_memory.js"
+      },
+      {
+        "from": "src/skills/skill_learning.ts",
+        "to": "src/skills/skill_registry.js"
+      },
+      {
+        "from": "src/skills/skill_learning.ts",
+        "to": "src/skills/skill_memory.js"
+      },
+      {
+        "from": "src/skills/skill_memory.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/skills/skill_memory.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/skills/skill_memory.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/skills/skill_registry.ts",
+        "to": "src/skills/analysis/index.js"
+      },
+      {
+        "from": "src/skills/skill_registry.ts",
+        "to": "src/skills/automation/index.js"
+      },
+      {
+        "from": "src/skills/skill_registry.ts",
+        "to": "src/skills/coding/index.js"
+      },
+      {
+        "from": "src/skills/skill_registry.ts",
+        "to": "src/skills/productivity/index.js"
+      },
+      {
+        "from": "src/skills/skill_registry.ts",
+        "to": "src/skills/research/index.js"
+      },
+      {
+        "from": "src/skills/skill_registry.ts",
+        "to": "src/skills/types.js"
+      },
+      {
+        "from": "src/skills/skill_system.ts",
+        "to": "src/skills/skill_registry.js"
+      },
+      {
+        "from": "src/skills/skill_system.ts",
+        "to": "src/skills/types.js"
+      },
+      {
+        "from": "src/skills/skill_system.ts",
+        "to": "src/skills/skill_tracker.js"
+      },
+      {
+        "from": "src/skills/skill_tracker.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/skills/skill_tracker.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/skills/skill_tracker.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/task_memory/task_patterns.ts",
+        "to": "src/task_memory/task_store.js"
+      },
+      {
+        "from": "src/task_memory/task_reuse.ts",
+        "to": "src/task_memory/task_store.js"
+      },
+      {
+        "from": "src/task_memory/task_store.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/task_memory/task_store.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/task_memory/task_store.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/task_memory/task_success_rate.ts",
+        "to": "src/task_memory/task_store.js"
+      },
+      {
+        "from": "src/tools/file_tools.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/tools/file_tools.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/tools/git_tools.ts",
+        "to": "node:child_process"
+      },
+      {
+        "from": "src/tools/terminal_tools.ts",
+        "to": "node:child_process"
+      },
+      {
+        "from": "src/tools/tool_executor.ts",
+        "to": "src/tools/tool_registry.js"
+      },
+      {
+        "from": "src/tools/tool_router.ts",
+        "to": "src/tools/tool_executor.js"
+      },
+      {
+        "from": "src/tools/tool_router.ts",
+        "to": "src/tools/tool_permissions.js"
+      },
+      {
+        "from": "src/tools/web_tools.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/training/dataset_builder.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/training/dataset_builder.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/training/dataset_builder.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/utils/upgradeStorage.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/utils/upgradeStorage.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/utils/upgradeStorage.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/web_learning/webLearningAgent.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/web_learning/webLearningAgent.ts",
+        "to": "src/web_learning/crawler.js"
+      },
+      {
+        "from": "src/web_learning/webLearningAgent.ts",
+        "to": "src/web_learning/htmlParser.js"
+      },
+      {
+        "from": "src/web_learning/webLearningAgent.ts",
+        "to": "src/web_learning/knowledgeExtractor.js"
+      },
+      {
+        "from": "src/web_learning/webLearningAgent.ts",
+        "to": "src/memory/vector_store.js"
+      },
+      {
+        "from": "src/web_learning/webLearningAgent.ts",
+        "to": "src/learning/continuous_learning_engine.js"
+      },
+      {
+        "from": "src/web_learning/webLearningAgent.ts",
+        "to": "src/learning/learning_storage.js"
+      },
+      {
+        "from": "src/web_learning/webLearningAgent.ts",
+        "to": "src/learning/learning_stats.js"
+      },
+      {
+        "from": "src/web_learning/webLearningAgent.ts",
+        "to": "src/research/knowledge_builder.js"
+      },
+      {
+        "from": "src/youtube_learning/youtubeCrawler.ts",
+        "to": "node:url"
+      },
+      {
+        "from": "src/youtube_learning/youtubeLearningAgent.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/youtube_learning/youtubeLearningAgent.ts",
+        "to": "src/youtube_learning/youtubeCrawler.js"
+      },
+      {
+        "from": "src/youtube_learning/youtubeLearningAgent.ts",
+        "to": "src/youtube_learning/transcriptExtractor.js"
+      },
+      {
+        "from": "src/youtube_learning/youtubeLearningAgent.ts",
+        "to": "src/youtube_learning/videoKnowledgeExtractor.js"
+      },
+      {
+        "from": "src/youtube_learning/youtubeLearningAgent.ts",
+        "to": "src/memory/vector_store.js"
+      },
+      {
+        "from": "src/youtube_learning/youtubeLearningAgent.ts",
+        "to": "src/learning/continuous_learning_engine.js"
+      },
+      {
+        "from": "src/youtube_learning/youtubeLearningAgent.ts",
+        "to": "src/learning/learning_storage.js"
+      },
+      {
+        "from": "src/youtube_learning/youtubeLearningAgent.ts",
+        "to": "src/learning/learning_stats.js"
+      },
+      {
+        "from": "src/core/agent/brain_a_llm.ts",
+        "to": "src/services/groqService.js"
+      },
+      {
+        "from": "src/core/agent/brain_b_reasoning.ts",
+        "to": "src/services/groqService.js"
+      },
+      {
+        "from": "src/core/agent/brain_b_reasoning.ts",
+        "to": "src/services/realtimeService.js"
+      },
+      {
+        "from": "src/core/agent/brain_router.ts",
+        "to": "src/guardrails/input_filter.js"
+      },
+      {
+        "from": "src/core/agent/brain_router.ts",
+        "to": "src/guardrails/output_filter.js"
+      },
+      {
+        "from": "src/core/agent/brain_router.ts",
+        "to": "src/guardrails/policy_engine.js"
+      },
+      {
+        "from": "src/core/agent/brain_router.ts",
+        "to": "src/services/groqService.js"
+      },
+      {
+        "from": "src/core/agent/brain_router.ts",
+        "to": "src/services/realtimeService.js"
+      },
+      {
+        "from": "src/core/agent/brain_router.ts",
+        "to": "src/core/agent/brain_a_llm.js"
+      },
+      {
+        "from": "src/core/agent/brain_router.ts",
+        "to": "src/core/agent/brain_b_reasoning.js"
+      },
+      {
+        "from": "src/core/agent/brain_router.ts",
+        "to": "src/core/safety/router_logs.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/core/safety/auditService.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/core/safety/safetyService.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/core/memory/memoryService.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/services/chatService.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/evaluation/performance_metrics.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/evaluation/response_evaluator.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/knowledge/knowledge_compressor.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/planning/step_executor.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/planning/task_planner.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/research/knowledge_builder.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/skills/skill_system.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/skills/skill_tracker.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/skills/skill_engine.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/training/dataset_builder.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/training/micro_model_trainer.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/tools/file_tools.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/tools/git_tools.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/tools/terminal_tools.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/tools/web_tools.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/core/self_reflection/reflection_engine.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/curriculum/curriculum_engine.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/agents/agent_orchestrator.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/intelligence/intelligence_graph.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/learning/continuous_learning_engine.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/meta_intelligence/meta_controller.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/autonomous_research/research_scheduler.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/self_improvement/performance_analyzer.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/self_improvement/mistake_detector.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/self_improvement/improvement_planner.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/awareness/self_awareness_engine.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/memory/vector_store.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/memory/semantic_search.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/memory/retrieval_engine.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/memory/context_builder.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/goals/goal_registry.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/goals/goal_scheduler.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/goals/goal_tracker.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/goals/goal_evaluator.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/tools/tool_registry.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/tools/tool_permissions.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/tools/tool_executor.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/tools/tool_router.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/task_memory/task_store.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/task_memory/task_patterns.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/task_memory/task_success_rate.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/task_memory/task_reuse.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/self_evolution/architecture_analyzer.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/self_evolution/code_optimizer.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/self_evolution/performance_monitor.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/self_evolution/evolution_planner.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/self_evolution/upgrade_executor.js"
+      },
+      {
+        "from": "src/core/agent/controller.ts",
+        "to": "src/agents/base_agent.js"
+      },
+      {
+        "from": "src/core/memory/memoryService.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/core/memory/memoryService.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/core/memory/memoryService.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/core/memory/personalAssistantService.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/core/memory/personalAssistantService.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/core/memory/personalAssistantService.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/core/os/system_state_manager.ts",
+        "to": "src/core/os/core_controller.js"
+      },
+      {
+        "from": "src/core/os/task_router.ts",
+        "to": "src/core/os/core_controller.js"
+      },
+      {
+        "from": "src/core/safety/auditService.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/core/safety/auditService.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/core/safety/auditService.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/core/safety/router_logs.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/core/safety/router_logs.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/core/safety/router_logs.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/core/safety/safetyService.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/core/self_reflection/reflection_engine.ts",
+        "to": "src/core/self_reflection/evaluator.js"
+      },
+      {
+        "from": "src/core/self_reflection/reflection_engine.ts",
+        "to": "src/core/self_reflection/review_logs.js"
+      },
+      {
+        "from": "src/core/self_reflection/review_logs.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/core/self_reflection/review_logs.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/core/self_reflection/review_logs.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/core/voice/voiceService.ts",
+        "to": "node:fs"
+      },
+      {
+        "from": "src/core/voice/voiceService.ts",
+        "to": "node:path"
+      },
+      {
+        "from": "src/core/voice/voiceService.ts",
+        "to": "src/config.js"
+      },
+      {
+        "from": "src/skills/analysis/index.ts",
+        "to": "src/skills/types.js"
+      },
+      {
+        "from": "src/skills/automation/index.ts",
+        "to": "src/skills/types.js"
+      },
+      {
+        "from": "src/skills/coding/index.ts",
+        "to": "src/skills/types.js"
+      },
+      {
+        "from": "src/skills/productivity/index.ts",
+        "to": "src/skills/types.js"
+      },
+      {
+        "from": "src/skills/research/index.ts",
+        "to": "src/skills/types.js"
+      }
+    ]
+  },
+  "features": {
+    "implemented": [
+      "coding agent",
+      "learning engine",
+      "voice system",
+      "computer control",
+      "youtube learning",
+      "github learning",
+      "multimodal learning"
+    ],
+    "missing": [],
+    "details": {
+      "coding agent": [
+        "src/agents/agent_orchestrator.ts",
+        "src/agents/coding_agent.ts",
+        "src/code_awareness/featureDetector.ts",
+        "src/meta_intelligence/goal_manager.ts",
+        "src/self_improvement/improvement_engine.ts",
+        "src/tools/tool_permissions.ts",
+        "src/core/agent/controller.ts"
+      ],
+      "learning engine": [
+        "src/code_awareness/featureDetector.ts",
+        "src/curriculum/curriculum_engine.ts",
+        "src/github_learning/githubLearningAgent.ts",
+        "src/learning/continuous_learning_engine.ts",
+        "src/multimodal_learning/multimodalAgent.ts",
+        "src/web_learning/webLearningAgent.ts",
+        "src/youtube_learning/youtubeLearningAgent.ts",
+        "src/core/agent/controller.ts"
+      ],
+      "voice system": [
+        "src/server.ts",
+        "src/code_awareness/featureDetector.ts",
+        "src/routes/extensionRoutes.ts",
+        "src/services/ttsService.ts",
+        "src/core/voice/voiceService.ts"
+      ],
+      "computer control": [
+        "src/agents/agent_orchestrator.ts",
+        "src/agents/automation_agent.ts",
+        "src/code_awareness/featureDetector.ts",
+        "src/tools/terminal_tools.ts",
+        "src/tools/tool_permissions.ts",
+        "src/core/agent/controller.ts"
+      ],
+      "youtube learning": [
+        "src/agents/agent_orchestrator.ts",
+        "src/code_awareness/featureDetector.ts",
+        "src/routes/learningRoutes.ts",
+        "src/youtube_learning/transcriptExtractor.ts",
+        "src/youtube_learning/videoKnowledgeExtractor.ts",
+        "src/youtube_learning/youtubeCrawler.ts",
+        "src/youtube_learning/youtubeLearningAgent.ts"
+      ],
+      "github learning": [
+        "src/agents/agent_orchestrator.ts",
+        "src/code_awareness/featureDetector.ts",
+        "src/github_learning/architectureAnalyzer.ts",
+        "src/github_learning/codeParser.ts",
+        "src/github_learning/githubLearningAgent.ts",
+        "src/github_learning/patternExtractor.ts",
+        "src/github_learning/repoCrawler.ts",
+        "src/routes/learningRoutes.ts"
+      ],
+      "multimodal learning": [
+        "src/agents/agent_orchestrator.ts",
+        "src/code_awareness/featureDetector.ts",
+        "src/multimodal_learning/codeAnalyzer.ts",
+        "src/multimodal_learning/imageAnalyzer.ts",
+        "src/multimodal_learning/multimodalAgent.ts",
+        "src/multimodal_learning/multimodalKnowledgeExtractor.ts",
+        "src/routes/learningRoutes.ts"
+      ]
+    }
+  },
+  "dependencies": [],
+  "devDependencies": [
+    "concurrently"
+  ],
+  "configs": [
+    "tsconfig.json",
+    "package.json"
+  ]
+}

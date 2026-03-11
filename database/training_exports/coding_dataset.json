@@ -1,5 +1,15 @@
 {
-  "generated_at": "2026-03-10T15:39:05.464Z",
-  "count": 0,
-  "items": []
+  "generated_at": "2026-03-11T17:01:37.992Z",
+  "count": 1,
+  "items": [
+    {
+      "input": "You are ASTRO personal assistant. Give concise, helpful, natural response in conversational style. No over-structuring. No formal template headings. Do not imply emotional dependency, exclusivity, or physical existence. User request: Tum Apne code me bare me batao",
+      "context": "general",
+      "expected_output": "Mere code ke bare mein batana mushkil hai, kyunki main ek complex AI model hoon. Lekin main aapko yeh bata sakta hoon ki mere code mein kai tarah ke algorithms aur techniques ka istemal kiya gaya hai, jaise ki natural language processing (NLP), machine learning, aur deep learning. Mere code ko banane ke liye kai saare data sets ka istemal kiya gaya hai, jismein Amazon, Microsoft, aur Google jaise companies ke baare mein jaankari shamil hai. Mere code mein yeh bhi shamil hai ki main kaise aapke sawalon ka jawab dena chahta hoon aur kaise aapke liye helpful ban sakta hoon. Lekin yeh bhi important hai ki mere code ko banane ke liye kai saare assumptions aur constraints ka istemal kiya gaya hai. Jaise ki, mere code ko yeh assume kiya gaya hai ki aap Amazon, Microsoft, aur Google jaise companies ke baare mein jaankari chahte hain. Agar aapke paas koi aur sawal hai ya koi aur vishay par charcha karna chahte hain, to main aapko yeh bata sakta hoon ki mere code mein yeh shamil hai ki main kaise aapke liye helpful ban sakta hoon. Kya aapko mere code ke bare mein aur kuchh puchhna hai?",
+      "tags": [
+        "chat",
+        "coding"
+      ]
+    }
+  ]
 }

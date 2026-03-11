@@ -14,12 +14,14 @@ export function ChatWindow({
   reasoningSteps,
   activeAgent,
   streamChunk,
+  friendlyMessage,
 }: {
   messages: ChatMessage[];
   thinking: boolean;
   reasoningSteps: string[];
   activeAgent: string;
   streamChunk: string;
+  friendlyMessage?: string;
 }) {
   return (
     <Card className="flex h-full min-h-0 flex-col border-slate-800/80 bg-slate-950/65">
@@ -45,14 +47,19 @@ export function ChatWindow({
             <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/10 p-3 text-xs text-cyan-200">
               <div className="font-medium">AI Thinking...</div>
               <ul className="mt-2 list-disc space-y-1 pl-4 text-slate-300">
-                {reasoningSteps.map((s) => <li key={s}>{s}</li>)}
+                {reasoningSteps.map((s, idx) => <li key={`${s}_${idx}`}>{s}</li>)}
               </ul>
               <div className="mt-2 text-cyan-300/80">Agent: {activeAgent}</div>
             </div>
           ) : null}
-          {!thinking && streamChunk ? (
+          {friendlyMessage ? (
+            <div className="rounded-xl border border-slate-700/70 bg-slate-900/70 px-3 py-2 text-xs text-slate-300">
+              {friendlyMessage}
+            </div>
+          ) : null}
+          {streamChunk ? (
             <div className="rounded-xl border border-violet-500/30 bg-violet-500/10 p-3 text-sm text-violet-100">
-              <div className="mb-1 text-xs text-violet-300/80">Final Response</div>
+              <div className="mb-1 text-xs text-violet-300/80">{thinking ? 'Streaming response' : 'Final response'}</div>
               {streamChunk}
             </div>
           ) : null}

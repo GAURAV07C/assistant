@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Sidebar } from '../Sidebar/Sidebar';
 import { ChatInput } from '../Chat/ChatInput';
 import { ChatWindow, type ChatMessage } from '../Chat/ChatWindow';
@@ -13,6 +13,10 @@ import { MetricCard } from '../Common/MetricCard';
 import { useAIOSWebSocket } from '../../lib/useAIOSWebSocket';
 import { AccordionGroup } from '../ui/accordion';
 import type { KeyProvider } from '../../lib/useAIOSWebSocket';
+import { ArchitectureEvolutionPanel } from './ArchitectureEvolutionPanel';
+import { CodeAwarenessPanel } from './CodeAwarenessPanel';
+import { SelfUpgradePanel } from './SelfUpgradePanel';
+import { VoiceControlCenter } from '../Voice/VoiceControlCenter';
 
 export function AIOSDashboardShell({ section }: { section: 'dashboard' | 'chat' | 'agents' | 'memory' | 'skills' | 'research' | 'system' | 'settings' }) {
   const {
@@ -42,6 +46,10 @@ export function AIOSDashboardShell({ section }: { section: 'dashboard' | 'chat' 
   } = useAIOSWebSocket();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [voiceEnabled, setVoiceEnabled] = useState(false);
+  const [voiceMuted, setVoiceMuted] = useState(false);
+  const [voiceSample, setVoiceSample] = useState<File | null>(null);
+  const [voicePreview, setVoicePreview] = useState('');
+  const [selectedVoice, setSelectedVoice] = useState('Aurora');
   const [apiKeyDrafts, setApiKeyDrafts] = useState<Record<KeyProvider, string[]>>({
     groq: [''],
     openrouter: [''],
@@ -53,19 +61,61 @@ export function AIOSDashboardShell({ section }: { section: 'dashboard' | 'chat' 
   const [recallResult, setRecallResult] = useState<any>(null);
   const [recallLoading, setRecallLoading] = useState(false);
   const [recallError, setRecallError] = useState('');
+  const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const streamChunkRef = useRef('');
 
-  const speak = (text: string) => {
-    if (!voiceEnabled || typeof window === 'undefined') return;
+  useEffect(() => {
+    const handler = (event: Event) => {
+      if ('prompt' in event) {
+        event.preventDefault();
+        setInstallPrompt(event as BeforeInstallPromptEvent);
+      }
+    };
+    window.addEventListener('beforeinstallprompt', handler as EventListener);
+    return () => window.removeEventListener('beforeinstallprompt', handler as EventListener);
+  }, []);
+
+  useEffect(() => {
+    if (!voiceSample) {
+      setVoicePreview('');
+      return;
+    }
+    const url = URL.createObjectURL(voiceSample);
+    setVoicePreview(url);
+    return () => URL.revokeObjectURL(url);
+  }, [voiceSample]);
+
+  const speak = useCallback((text: string) => {
+    if (!voiceEnabled || voiceMuted || typeof window === 'undefined') return;
     if (!window.speechSynthesis || typeof window.SpeechSynthesisUtterance === 'undefined') return;
     const t = String(text || '').trim();
     if (!t) return;
     window.speechSynthesis.cancel();
     const utter = new SpeechSynthesisUtterance(t.slice(0, 1200));
+    const voices = window.speechSynthesis.getVoices();
+    if (voices.length) {
+      const match = voices.find((voice) => voice.name.toLowerCase().includes(selectedVoice.toLowerCase()));
+      if (match) utter.voice = match;
+    }
     utter.lang = 'en-IN';
     utter.rate = 1;
     utter.pitch = 1;
     window.speechSynthesis.speak(utter);
-  };
+  }, [voiceEnabled, voiceMuted, selectedVoice]);
+
+  useEffect(() => {
+    if (!streamChunk) {
+      streamChunkRef.current = '';
+      return;
+    }
+    if (streamChunk.length <= streamChunkRef.current.length) {
+      streamChunkRef.current = streamChunk;
+      return;
+    }
+    const delta = streamChunk.slice(streamChunkRef.current.length);
+    streamChunkRef.current = streamChunk;
+    speak(delta);
+  }, [streamChunk, speak]);
   const skillCards = useMemo(() => {
     if (!skills.length) return [];
     return skills.slice(0, 8).map((s: any) => ({
@@ -117,6 +167,48 @@ export function AIOSDashboardShell({ section }: { section: 'dashboard' | 'chat' 
     }));
     return [...logs, ...fromAudit].slice(0, 180);
   }, [logs, auditLogs]);
+
+  const handleSendPrompt = useCallback(async (text: string) => {
+    setMessages((prev) => [...prev, { id: `u_${Date.now()}`, role: 'user', text }]);
+    try {
+      const out = await sendPrompt(text);
+      setMessages((prev) => [...prev, { id: `a_${Date.now()}`, role: 'assistant', text: out.response, executedBy: out.agent, thinking: out.steps }]);
+    } catch (err) {
+      setMessages((prev) => [...prev, { id: `a_${Date.now()}`, role: 'assistant', text: `Socket chat failed: ${String(err)}`, executedBy: 'System Agent' }]);
+    }
+  }, [sendPrompt, speak]);
+
+  const handleVoiceUpload = useCallback((file: File | null) => {
+    setVoiceSample(file);
+  }, []);
+
+  const toggleVoice = useCallback(() => {
+    setVoiceEnabled((prev) => !prev);
+  }, []);
+
+  const toggleMute = useCallback(() => {
+    setVoiceMuted((prev) => !prev);
+  }, []);
+
+  const handleVoiceTrigger = useCallback(() => {
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: `voice_${Date.now()}`,
+        role: 'assistant',
+        text: 'Voice hub ready. Boliye, boss.',
+        executedBy: 'Voice Control',
+      },
+    ]);
+    setVoiceEnabled(true);
+  }, []);
+
+  const friendlyMessage = useMemo(() => {
+    if (!thinking) return '';
+    const agentLabel = activeAgent || 'casual_conversation';
+    if (agentLabel === 'casual_conversation') return '';
+    return `Main ${agentLabel.replace(/_/g, ' ')} agent ke saath gahraai se kaam kar raha hoon. Koi aur hint chahiye?`;
+  }, [thinking, activeAgent]);
 
   useEffect(() => {
     if (!connected) return;
@@ -179,6 +271,87 @@ export function AIOSDashboardShell({ section }: { section: 'dashboard' | 'chat' 
   );
 
   const centerContent = useMemo(() => {
+    if (section === 'dashboard') {
+      const insights = [
+        { label: 'Intelligence', value: snapshot?.system_intelligence_score ?? 'n/a' },
+        { label: 'Knowledge nodes', value: snapshot?.intelligence_graph?.nodes?.length ?? 0 },
+        { label: 'Vector size', value: snapshot?.vector_memory?.total_vectors ?? 0 },
+        { label: 'Active agents', value: agents.length },
+      ];
+      return (
+        <div className="grid min-h-[70vh] gap-4 lg:grid-cols-[1.5fr_1fr]">
+          <div className="space-y-4">
+            <div className="grid gap-4 lg:grid-cols-2">
+              <CodeAwarenessPanel />
+              <ArchitectureEvolutionPanel />
+            </div>
+            <section className="rounded-2xl border border-slate-800/80 bg-slate-900/60 p-4 shadow-2xl shadow-slate-950/30">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs uppercase text-amber-300/80">AI Insights</p>
+                  <h3 className="text-lg font-semibold text-white">System Health</h3>
+                </div>
+                <span className="text-xs text-slate-400">Derived from awareness</span>
+              </div>
+              <div className="mt-4 grid gap-3 text-sm text-slate-200 sm:grid-cols-2">
+                {insights.map((insight) => (
+                  <div key={`insight_${insight.label}`} className="rounded-xl border border-slate-800 bg-black/30 p-3">
+                    <div className="text-xs text-slate-400">{insight.label}</div>
+                    <div className="text-2xl font-semibold text-white">{insight.value}</div>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-xs text-slate-400">
+                Architecture awareness, vector memory, and agent telemetry now feed into this dashboard—sab tumhare liye ready hai.
+              </p>
+            </section>
+            <section className="rounded-2xl border border-slate-800/80 bg-slate-900/40 p-4 shadow-2xl shadow-slate-950/30">
+              <div className="grid gap-4 text-sm">
+                <div className="flex justify-center">
+                  <VoiceControlCenter
+                    voiceEnabled={voiceEnabled}
+                    voiceMuted={voiceMuted}
+                    selectedVoice={selectedVoice}
+                    voiceFile={voiceSample}
+                    voicePreview={voicePreview}
+                    onToggleVoice={toggleVoice}
+                    onToggleMute={toggleMute}
+                    onSelectVoice={setSelectedVoice}
+                    onUploadVoice={handleVoiceUpload}
+                    onTriggerVoiceChat={handleVoiceTrigger}
+                  />
+                </div>
+                <ChatWindow
+                  messages={messages}
+                  thinking={thinking}
+                  reasoningSteps={reasoningSteps}
+                  activeAgent={activeAgent}
+                  streamChunk={streamChunk}
+                  friendlyMessage={friendlyMessage}
+                />
+              </div>
+              <ChatInput
+                disabled={thinking}
+                voiceEnabled={voiceEnabled}
+                onVoiceEnabledChange={setVoiceEnabled}
+                onSend={handleSendPrompt}
+              />
+            </section>
+          </div>
+          <div className="space-y-4">
+            <SelfUpgradePanel />
+            <section className="rounded-2xl border border-slate-800/80 bg-slate-950/70 p-4 shadow-2xl shadow-cyan-800/30">
+              <h3 className="text-sm font-semibold text-cyan-200">Companion Notes</h3>
+              <p className="mt-2 text-xs text-slate-300">
+                Main tumhe real-time me acknowledge karta hoon. Jab bhi kuch heavy chal raha ho, thoda patience rakhna—main tumhare liye detail laata hoon.
+              </p>
+              <p className="mt-3 text-xs text-slate-400">Chat ke neeche wali log window se tum har agent activity, memory trigger, aur architecture event dekh sakte ho.</p>
+            </section>
+          </div>
+        </div>
+      );
+    }
+
     if (section === 'agents') {
       return (
         <AccordionGroup
@@ -477,29 +650,75 @@ export function AIOSDashboardShell({ section }: { section: 'dashboard' | 'chat' 
             reasoningSteps={reasoningSteps}
             activeAgent={activeAgent}
             streamChunk={streamChunk}
+            friendlyMessage={friendlyMessage}
           />
         </div>
         <ChatInput
           disabled={thinking}
           voiceEnabled={voiceEnabled}
           onVoiceEnabledChange={setVoiceEnabled}
-          onSend={async (text) => {
-            setMessages((prev) => [...prev, { id: `u_${Date.now()}`, role: 'user', text }]);
-            try {
-              const out = await sendPrompt(text);
-              setMessages((prev) => [...prev, { id: `a_${Date.now()}`, role: 'assistant', text: out.response, executedBy: out.agent, thinking: out.steps }]);
-              speak(out.response);
-            } catch (err) {
-              setMessages((prev) => [...prev, { id: `a_${Date.now()}`, role: 'assistant', text: `Socket chat failed: ${String(err)}`, executedBy: 'System Agent' }]);
-            }
-          }}
+          onSend={handleSendPrompt}
         />
       </div>
     );
-  }, [section, agents, messages, thinking, reasoningSteps, activeAgent, streamChunk, sendPrompt, snapshot, memoryEntries, skillCards, sendSystemAction, requestRealtimeSnapshot, requestApiKeys, apiKeyDrafts, normalizedDrafts, updateApiKeys, apiKeysInfo, providerModels, requestProviderModels, updateProviderModels, openRouterModelDraft, recallQuery, recallLoading, recallError, recallResult, recallDebug]);
+  }, [
+    section,
+    agents,
+    messages,
+    thinking,
+    reasoningSteps,
+    activeAgent,
+    streamChunk,
+    friendlyMessage,
+    sendPrompt,
+    snapshot,
+    memoryEntries,
+    skillCards,
+    sendSystemAction,
+    requestRealtimeSnapshot,
+    requestApiKeys,
+    apiKeyDrafts,
+    normalizedDrafts,
+    updateApiKeys,
+    apiKeysInfo,
+    providerModels,
+    requestProviderModels,
+    updateProviderModels,
+    openRouterModelDraft,
+    recallQuery,
+    recallLoading,
+    recallError,
+    recallResult,
+    recallDebug,
+    handleSendPrompt,
+    voiceEnabled,
+    voiceMuted,
+    selectedVoice,
+    voiceSample,
+    voicePreview,
+    toggleVoice,
+    toggleMute,
+    handleVoiceUpload,
+    handleVoiceTrigger,
+  ]);
 
   return (
     <main className="min-h-dvh bg-[radial-gradient(circle_at_20%_0%,rgba(6,182,212,0.18),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(139,92,246,0.16),transparent_40%),#020617] p-4 text-slate-100">
+      {installPrompt ? (
+        <div className="mb-2 flex justify-end text-xs text-slate-200">
+          <button
+            type="button"
+            onClick={async () => {
+              if (!installPrompt) return;
+              await installPrompt.prompt();
+              setInstallPrompt(null);
+            }}
+            className="rounded-full border border-cyan-500/60 bg-cyan-500/10 px-3 py-1 text-[11px] text-cyan-100 transition hover:border-cyan-400 hover:bg-cyan-500/20"
+          >
+            Install AI_OS_V3 (PWA)
+          </button>
+        </div>
+      ) : null}
       <div className="grid h-[calc(100dvh-2rem)] grid-cols-12 gap-4">
         <div className="col-span-12 lg:col-span-2">
           <Sidebar />
