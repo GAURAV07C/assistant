@@ -1,0 +1,67 @@
+[
+  {
+    "id": "sm_1773257584623",
+    "feature": "Improve learning engine",
+    "reason": "Automated dashboard request",
+    "steps": [
+      "Analyze existing modules",
+      "Plan safe modifications",
+      "Document changes"
+    ],
+    "created_at": "2026-03-11T19:33:04.623Z",
+    "sandbox_path": "/root/assistant/database/upgrade_data/sandbox/sm_1773257584623",
+    "status": "ready"
+  },
+  {
+    "id": "sm_1773257670774",
+    "feature": "Improve learning engine",
+    "reason": "Automated dashboard request",
+    "steps": [
+      "Analyze existing modules",
+      "Plan safe modifications",
+      "Document changes"
+    ],
+    "created_at": "2026-03-11T19:34:30.774Z",
+    "sandbox_path": "/root/assistant/database/upgrade_data/sandbox/sm_1773257670774",
+    "status": "ready"
+  },
+  {
+    "id": "sm_1773257760971",
+    "feature": "Improve learning engine",
+    "reason": "Automated dashboard request",
+    "steps": [
+      "Analyze existing modules",
+      "Plan safe modifications",
+      "Document changes"
+    ],
+    "created_at": "2026-03-11T19:36:00.971Z",
+    "sandbox_path": "/root/assistant/database/upgrade_data/sandbox/sm_1773257760971",
+    "status": "ready"
+  },
+  {
+    "id": "sm_1773257889848",
+    "feature": "Improve learning engine",
+    "reason": "Automated dashboard request",
+    "steps": [
+      "Analyze existing modules",
+      "Plan safe modifications",
+      "Document changes"
+    ],
+    "created_at": "2026-03-11T19:38:09.848Z",
+    "sandbox_path": "/root/assistant/database/upgrade_data/sandbox/sm_1773257889848",
+    "status": "ready"
+  },
+  {
+    "id": "sm_1773284990360",
+    "feature": "Improve learning engine",
+    "reason": "Automated dashboard request",
+    "steps": [
+      "Analyze existing modules",
+      "Plan safe modifications",
+      "Document changes"
+    ],
+    "created_at": "2026-03-12T03:09:50.360Z",
+    "sandbox_path": "/root/assistant/database/upgrade_data/sandbox/sm_1773284990360",
+    "status": "ready"
+  }
+]

@@ -63,6 +63,7 @@ export function AIOSDashboardShell({ section }: { section: 'dashboard' | 'chat' 
   const [recallError, setRecallError] = useState('');
   const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const streamChunkRef = useRef('');
+  const lastVoiceNoteAt = useRef(0);
 
   useEffect(() => {
     const handler = (event: Event) => {
@@ -191,6 +192,9 @@ export function AIOSDashboardShell({ section }: { section: 'dashboard' | 'chat' 
   }, []);
 
   const handleVoiceTrigger = useCallback(() => {
+    const now = Date.now();
+    if (now - lastVoiceNoteAt.current < 12000) return;
+    lastVoiceNoteAt.current = now;
     setMessages((prev) => [
       ...prev,
       {

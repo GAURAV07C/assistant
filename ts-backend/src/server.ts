@@ -1051,8 +1051,12 @@ app.post('/tts', async (req, res) => {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const frontendDir = path.resolve(process.cwd(), '..', 'frontend');
+const nextDevUrl = 'http://localhost:5174';
 
-if (fs.existsSync(frontendDir)) {
+if (process.env.NODE_ENV !== 'production') {
+  app.get('/app', (_req, res) => res.redirect(nextDevUrl));
+  app.get('/app/*', (_req, res) => res.redirect(nextDevUrl));
+} else if (fs.existsSync(frontendDir)) {
   app.use('/app', express.static(frontendDir));
   app.get('/app/*', (_req, res) => {
     res.sendFile(path.join(frontendDir, 'index.html'));

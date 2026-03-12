@@ -45,3 +45,10 @@ Prefers:
 - Strategic explanation
 - High-level architecture clarity
 - Then deep technical breakdown
+
+Learning Data Strategy:
+- Treat every conversation as a structured datapoint: tag entries with the topic (`system_design`, `dsd`, `voice_persona`, etc.) so retrieval targets the right knowledge buckets.
+- After each dialog, ensure personal facts, goals, interests, and follow-up tasks flow into the vector store and `database/learning_runtime/knowledge_graph.json` so Astro can cite them later.
+- Capture learning momentum in the daily logs (`database/dataset/daily_logs/YYYY-MM-DD.jsonl`) and mark highlights in `database/learning_runtime/behavior_profile.json`.
+- Maintain a timeline of system-context updates (`database/learning_data/system_context.txt`) so the AI references the most recent growth goals and tone rules.
+- Use the personalized datapoints when building templates like `Astro note: ...` so the assistant feels more human and remembers your trajectory across days.

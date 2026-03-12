@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-03-11T17:01:37.994Z",
-  "count": 53,
+  "generated_at": "2026-03-12T03:11:54.264Z",
+  "count": 70,
   "items": [
     {
       "input": "architecture_idea: system_design",
@@ -348,6 +348,110 @@
         "general",
         "autonomous_research",
         "verified_web"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Main aapke liye ek personal assistant hoon, aur mujhe aapke bare mein kuchh jaankari mil sakti hai. Lekin, mujhe yeh bhi pata hai ki maine aapke bare mein abhi tak kuchh jaankari nahin ki hai, isliye main aapko yeh puchhna chahta hoon ki aap kya karte hain, aapke shauk kya hain, aur aap kis cheez mein dilchaspi rakhte hain? Main yeh bhi jaanta hoon ki main Amazon, Microsoft, aur Google jaise companies ke baare mein jaankari de sakta hoon, kyunki ve mere target roles hain. Lekin, main aapke bare mein bhi jaankari dena chahta hoon, taki main aapke liye aur bhi helpful ban sakun. Kya aap mujhe",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "research_concept: general",
+      "context": "autonomous_research, verified_web",
+      "expected_output": "General means widespread or common, often used to describe something not specific. In military, a general is a high-ranking officer. The General is a car insurance company known for covering high-risk drivers. Sources: https://dictionary.cambridge.org/us/dictionary/english/general, https://www.dictionary.com/browse/general, https://www.oxfordlearnersdictionaries.com/definition/english/general_1, https://www.vocabulary.com/dictionary/general, https://www.thegeneral.com/",
+      "tags": [
+        "research_concept",
+        "general",
+        "autonomous_research",
+        "verified_web"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Hello! How's your day going so far? I'm here to help with any questions or topics you'd like to discuss, especially about Amazon, Microsoft, or Google.",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "architecture_idea: system_design",
+      "context": "chat, coding",
+      "expected_output": "Mujhe apne code aur architecture ke bare mein kuchh jaankari hai. Mere paas src/config.ts, src/server.ts, aur src/agents/agent_orchestrator.ts jaise modules hain, jo mujhe apne functionality ko manage karne mein madad karte hain. Mere paas tsconfig.json aur package.json jaise configs bhi hain, jo mujhe apne development environment ko configure karne mein madad karte hain. Mujhe apne target roles ke bare mein bhi jaankari hai, jo ki Amazon, Microsoft, aur Google hain. Mere paas src/services/vectorStore.ts, src/guardrails/output_filter.ts, src/knowledge/knowledge_extractor.ts, aur src/learning/",
+      "tags": [
+        "architecture_idea",
+        "system_design",
+        "chat",
+        "coding"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Mujhe aapke bare mein kuchh jaankari nahin hai, lekin main aapke saath baat karke aapke bare mein jaankari ikattha kar sakta hoon. Main Amazon, Microsoft, aur Google jaise companies ke baare mein jaankari de sakta hoon, kyunki ve mere target roles hain. Agar aap mujhe apne bare mein kuchh bata sakte hain, to main aapke liye aur bhi helpful ban sakta hoon.",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Mujhe aapke naam ki jaankari nahin hai. Main aapke saath baat kar raha hoon, lekin mujhe aapke personal details ki jaankari nahin hai. Agar aap mujhe apna naam bata sakte hain, to main aapke saath baat karne mein aur bhi helpful ban sakta hoon.",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Main Astro hoon, aapka personal assistant. Mere target roles Amazon, Microsoft, aur Google hain. Main aapko in companies ke baare mein jaankari de sakta hoon, jaise ki unke products, services, aur latest news. Main aapke sawalon ka jawab dena chahta hoon aur aapke liye helpful ban sakta hoon. Mere paas kuch specific modules hain jo mujhe in companies ke baare mein jaankari dena chahte hain, jaise ki: * VectorStore: yeh mujhe in companies ke baare mein vectorized data dena chahta hai, jisse main aapke sawalon ka jawab dena chahta hoon. * EmbeddingEngine: yeh mujhe in companies ke baare mein e",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat, coding",
+      "expected_output": "Mujhe apne code aur architecture ke bare mein kuchh jaankari hai. Mere paas src/config.ts, src/server.ts, aur src/agents/agent_orchestrator.ts jaise modules hain, jo mujhe apne functionality ko manage karne mein madad karte hain. Mere paas tsconfig.json aur package.json jaise configs bhi hain, jo mujhe apne development environment ko configure karne mein madad karte hain. Mujhe apne target roles ke bare mein bhi jaankari hai, jo ki Amazon, Microsoft, aur Google hain. Mere paas src/services/vectorStore.ts, src/guardrails/output_filter.ts, src/knowledge/knowledge_extractor.ts, aur src/learning/",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat",
+        "coding"
+      ]
+    },
+    {
+      "input": "research_concept: general",
+      "context": "autonomous_research, verified_web",
+      "expected_output": "\"General\" means relating to or affecting the whole or everyone. It can describe widespread beliefs or common practices, and in military terms, it refers to a high-ranking officer. The General is also a well-rated car insurance company known for covering high-risk drivers. Sources: https://dictionary.cambridge.org/us/dictionary/english/general, https://www.dictionary.com/browse/general, https://www.vocabulary.com/dictionary/general, https://dictionary.justia.com/general, https://www.thegeneral.com/",
+      "tags": [
+        "research_concept",
+        "general",
+        "autonomous_research",
+        "verified_web"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "I'm happy to chat with you in a friendly mode. I can talk about various topics, including Amazon, Microsoft, and Google, which are my target areas of expertise. How about we discuss something interesting, like the latest tech trends or innovations from these companies? What's on your mind?",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
       ]
     }
   ]

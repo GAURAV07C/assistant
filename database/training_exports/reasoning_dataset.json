@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-03-11T17:01:37.993Z",
-  "count": 1,
+  "generated_at": "2026-03-12T03:11:54.261Z",
+  "count": 2,
   "items": [
     {
       "input": "architecture_idea: system_design",
@@ -10,6 +10,17 @@
         "architecture_idea",
         "system_design",
         "chat"
+      ]
+    },
+    {
+      "input": "architecture_idea: system_design",
+      "context": "chat, coding",
+      "expected_output": "Mujhe apne code aur architecture ke bare mein kuchh jaankari hai. Mere paas src/config.ts, src/server.ts, aur src/agents/agent_orchestrator.ts jaise modules hain, jo mujhe apne functionality ko manage karne mein madad karte hain. Mere paas tsconfig.json aur package.json jaise configs bhi hain, jo mujhe apne development environment ko configure karne mein madad karte hain. Mujhe apne target roles ke bare mein bhi jaankari hai, jo ki Amazon, Microsoft, aur Google hain. Mere paas src/services/vectorStore.ts, src/guardrails/output_filter.ts, src/knowledge/knowledge_extractor.ts, aur src/learning/",
+      "tags": [
+        "architecture_idea",
+        "system_design",
+        "chat",
+        "coding"
       ]
     }
   ]
