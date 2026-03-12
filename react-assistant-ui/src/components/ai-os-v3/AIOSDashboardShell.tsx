@@ -18,6 +18,11 @@ import { CodeAwarenessPanel } from './CodeAwarenessPanel';
 import { SelfUpgradePanel } from './SelfUpgradePanel';
 import { VoiceControlCenter } from '../Voice/VoiceControlCenter';
 
+type BeforeInstallPromptEvent = Event & {
+  prompt: () => Promise<void>;
+  userChoice?: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
+};
+
 export function AIOSDashboardShell({ section }: { section: 'dashboard' | 'chat' | 'agents' | 'memory' | 'skills' | 'research' | 'system' | 'settings' }) {
   const {
     connected,

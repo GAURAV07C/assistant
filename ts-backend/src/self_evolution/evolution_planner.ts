@@ -9,9 +9,15 @@ export interface EvolutionPlan {
   created_at: string;
 }
 
+export interface EvolutionContext {
+  weaknesses?: string[];
+  optimizer_suggestions?: unknown;
+  health?: string;
+}
+
 export class EvolutionPlanner {
-  plan(): EvolutionPlan[] {
-    const proposals = (readUpgradeRecords('improvement_proposals.json') as ImprovementProposal[]).filter((p) => p.status === 'pending');
+  plan(_context?: EvolutionContext): EvolutionPlan[] {
+    const proposals = readUpgradeRecords<ImprovementProposal>('improvement_proposals.json').filter((p) => p.status === 'pending');
     if (proposals.length === 0) return [];
     const plans: EvolutionPlan[] = proposals.slice(-5).map((proposal) => {
       const impact = proposal.impact;

@@ -63,7 +63,7 @@ export class ImprovementEngine {
   }
 
   listPending(): ImprovementProposal[] {
-    return readUpgradeRecords('improvement_proposals.json') as ImprovementProposal[];
+    return readUpgradeRecords<ImprovementProposal>('improvement_proposals.json');
   }
 
   private simplifySource(request: string): string {

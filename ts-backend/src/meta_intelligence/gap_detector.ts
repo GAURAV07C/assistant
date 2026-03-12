@@ -28,7 +28,7 @@ export class GapDetector {
   }
 
   detect(): KnowledgeGap[] {
-    const records = readUpgradeRecords('knowledge_gaps.json');
+    const records = readUpgradeRecords<KnowledgeGap>('knowledge_gaps.json');
     return records.map((r) => r as KnowledgeGap).slice(-20);
   }
 

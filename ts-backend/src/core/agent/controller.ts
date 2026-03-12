@@ -658,12 +658,20 @@ export class AgentController {
       weaknesses: arch.weaknesses,
       top_tools: taskPatterns.top_tools as Array<[string, number]>,
     });
-    const evoPlan = this.evolutionPlanner.plan({
+    const evoPlans = this.evolutionPlanner.plan({
       weaknesses: arch.weaknesses,
       optimizer_suggestions: codeHints,
       health: perfMonitor.health,
     });
-    const proposal = this.upgradeExecutor.publish(evoPlan);
+    const evoPlan = evoPlans[0] ?? null;
+    const proposal = evoPlan
+      ? this.upgradeExecutor.publish({
+          target: evoPlan.upgradeType,
+          priority: evoPlan.impact,
+          actions: ['evolution_plan_execution'],
+          note: `Plan ${evoPlan.proposalId}`,
+        })
+      : null;
 
     return {
       contract,
@@ -686,7 +694,7 @@ export class AgentController {
         awareness_curiosity_score: awareness.curiosity_score,
         goal_progress_score: goalEval.average_progress,
         task_success_rate: taskSuccess.success_rate,
-        evolution_proposal_id: String(proposal.id || ''),
+        evolution_proposal_id: proposal ? String(proposal.id) : 'none',
         task_reuse_candidates: taskReuse.reuse_candidates.length,
       },
     };
