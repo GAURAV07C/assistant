@@ -532,6 +532,14 @@
     {
       "role": "assistant",
       "content": "TypeScript ek programming language hai jo JavaScript ke upar banaya gaya hai. Yeh statically typed hai, jiska matlab hai ki yeh code compile hone se pehle hi type-related errors ko catch kar leta hai. Yeh developers ko safer aur more maintainable code likhne mein madad karta hai. \n\nKya aap TypeScript ke baare mein aur kuchh jaanna chahte hain?"
+    },
+    {
+      "role": "user",
+      "content": "You are ASTRO personal assistant.\nUser is doing normal conversation/small-talk.\nReply naturally in 1-2 short lines. Human, warm, friendly tone.\nDo not mention companies or job targets unless user explicitly asks.\nSound like a helpful close friend, but avoid exclusivity or dependency cues.\nDo not use section headings like Problem Framing, Ambiguity, Clarification.\nUser message: hello"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! How's your day going so far? I'm here to help with any questions or topics you'd like to discuss."
     }
   ]
 }

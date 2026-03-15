@@ -1,5 +1,17 @@
 [
   {
+    "proposal_id": "sm_1773584631513",
+    "feature": "Improve learning engine",
+    "sandbox_path": "",
+    "tests": {
+      "success": false,
+      "outputs": [],
+      "error": "Error: Command failed: npm install (exit 4294963241)\nnpm error code ENOSPC\nnpm error syscall write\nnpm error errno -4055\nnpm error nospc ENOSPC: no space left on device, write\nnpm error nospc There appears to be insufficient space on your system to finish.\nnpm error nospc Clear up some disk space and try again.\nnpm error A complete log of this run can be found in: C:\\Users\\91703\\AppData\\Local\\npm-cache\\_logs\\2026-03-15T14_23_53_078Z-debug-0.log\n"
+    },
+    "integrated_at": "2026-03-15T14:23:53.243Z",
+    "summary": "Plan recorded for Improve learning engine. Tests failed: Error: Command failed: npm install (exit 4294963241)\nnpm error code ENOSPC\nnpm error syscall write\nnpm error errno -4055\nnpm error nospc ENOSPC: no space left on device, write\nnpm error nospc There appears to be insufficient space on your system to finish.\nnpm error nospc Clear up some disk space and try again.\nnpm error A complete log of this run can be found in: C:\\Users\\91703\\AppData\\Local\\npm-cache\\_logs\\2026-03-15T14_23_53_078Z-debug-0.log\n."
+  },
+  {
     "proposal_id": "sm_1773257760971",
     "feature": "Improve learning engine",
     "sandbox_path": "",

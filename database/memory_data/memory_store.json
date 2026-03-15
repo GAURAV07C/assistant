@@ -27,7 +27,7 @@
         "fact",
         "name"
       ],
-      "updated_at": "2026-03-15T14:13:53.444Z"
+      "updated_at": "2026-03-15T14:23:42.207Z"
     },
     {
       "namespace": "personal_facts",
@@ -42,7 +42,7 @@
         "fact",
         "role"
       ],
-      "updated_at": "2026-03-15T14:13:53.448Z"
+      "updated_at": "2026-03-15T14:23:42.208Z"
     },
     {
       "namespace": "personal_facts",
@@ -57,7 +57,7 @@
         "goal",
         "mission"
       ],
-      "updated_at": "2026-03-15T14:13:53.454Z"
+      "updated_at": "2026-03-15T14:23:42.209Z"
     }
   ]
 }
