@@ -13,6 +13,51 @@
         "faang"
       ],
       "updated_at": "2026-03-03T17:02:19.431Z"
+    },
+    {
+      "namespace": "personal_facts",
+      "key": "name",
+      "value": {
+        "value": "Gaurav Kumar",
+        "confidence": 95,
+        "source": "userdata.txt"
+      },
+      "tags": [
+        "personal",
+        "fact",
+        "name"
+      ],
+      "updated_at": "2026-03-15T14:13:53.444Z"
+    },
+    {
+      "namespace": "personal_facts",
+      "key": "role",
+      "value": {
+        "value": "AI System Architect & Builder",
+        "confidence": 95,
+        "source": "userdata.txt"
+      },
+      "tags": [
+        "personal",
+        "fact",
+        "role"
+      ],
+      "updated_at": "2026-03-15T14:13:53.448Z"
+    },
+    {
+      "namespace": "personal_facts",
+      "key": "mission",
+      "value": {
+        "value": "Build a multi-layer autonomous AI system (Jarvis) that goes beyond a coding assistant and evolves as a long-term intelligence system.",
+        "confidence": 90,
+        "source": "userdata.txt"
+      },
+      "tags": [
+        "personal",
+        "goal",
+        "mission"
+      ],
+      "updated_at": "2026-03-15T14:13:53.454Z"
     }
   ]
 }

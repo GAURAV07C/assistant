@@ -122,19 +122,31 @@ export class MemoryService {
     if (!raw) return [];
     const out: PersonalFact[] = [];
 
-    const name = raw.match(/\b(?:my name is|i am|i'm)\s+([a-z][a-z\s]{1,40})/i);
-    if (name?.[1]) out.push({ key: 'name', value: name[1].trim(), confidence: 85, source: 'message_pattern' });
+    // Name patterns - expanded to catch more variations
+    const namePatterns = [
+      /\b(?:my name is|i am|i'm)\s+([a-z][a-z\s]{1,40})/i,
+      /\b(?:naam)\s+(?:mera|hi|hai)\s+([a-z][a-z\s]{1,40})/i,
+      /\bcall me\s+([a-z][a-z\s]{1,40})/i,
+      /\b(?:i go by)\s+([a-z][a-z\s]{1,40})/i,
+    ];
+    for (const pattern of namePatterns) {
+      const name = raw.match(pattern);
+      if (name?.[1]) {
+        out.push({ key: 'name', value: name[1].trim(), confidence: 85, source: 'message_pattern' });
+        break; // Only add once
+      }
+    }
 
-    const from = raw.match(/\b(?:i am from|i'm from|i live in|my city is)\s+([a-z][a-z\s,]{1,60})/i);
+    const from = raw.match(/\b(?:i am from|i'm from|i live in|my city is|mera shehar)\s+([a-z][a-z\s,]{1,60})/i);
     if (from?.[1]) out.push({ key: 'location', value: from[1].trim(), confidence: 80, source: 'message_pattern' });
 
-    const prefers = raw.match(/\b(?:i prefer|please use|use)\s+(.{3,80})$/i);
+    const prefers = raw.match(/\b(?:i prefer|please use|use|prefer)\s+(.{3,80})$/i);
     if (prefers?.[1]) out.push({ key: 'preference', value: prefers[1].trim(), confidence: 72, source: 'message_pattern' });
 
-    const goal = raw.match(/\b(?:my goal is|i want to|i wanna|i need to)\s+(.{4,120})$/i);
+    const goal = raw.match(/\b(?:my goal is|i want to|i wanna|i need to|mera laddu)\s+(.{4,120})$/i);
     if (goal?.[1]) out.push({ key: 'goal', value: goal[1].trim(), confidence: 78, source: 'message_pattern' });
 
-    const role = raw.match(/\b(?:i am a|i'm a)\s+([a-z][a-z\s]{2,50})/i);
+    const role = raw.match(/\b(?:i am a|i'm a|i work as|mera kaam)\s+([a-z][a-z\s]{2,50})/i);
     if (role?.[1]) out.push({ key: 'role', value: role[1].trim(), confidence: 70, source: 'message_pattern' });
 
     return out.slice(0, 8);
@@ -159,6 +171,51 @@ export class MemoryService {
       stored: facts.length,
       facts: facts.map((f) => ({ key: f.key, value: f.value })),
     };
+  }
+
+  // Sync user context from text files into memory store for better recall
+  syncFromUserContext(): { synced: number } {
+    const context = loadUserContext();
+    if (!context.trim()) return { synced: 0 };
+    
+    let synced = 0;
+    const lines = context.split('\n');
+    
+    // Extract key facts from the context text
+    const nameMatch = context.match(/(?:Name|User Name):\s*(.+)/i);
+    if (nameMatch?.[1]) {
+      this.upsert({
+        namespace: 'personal_facts',
+        key: 'name',
+        value: { value: nameMatch[1].trim(), confidence: 95, source: 'userdata.txt' },
+        tags: ['personal', 'fact', 'name'],
+      });
+      synced++;
+    }
+    
+    const roleMatch = context.match(/Role:\s*(.+)/i);
+    if (roleMatch?.[1]) {
+      this.upsert({
+        namespace: 'personal_facts', 
+        key: 'role',
+        value: { value: roleMatch[1].trim(), confidence: 95, source: 'userdata.txt' },
+        tags: ['personal', 'fact', 'role'],
+      });
+      synced++;
+    }
+    
+    const missionMatch = context.match(/Primary Mission:\s*([\s\S]+?)(?:\n\n|\n[A-Z])/i);
+    if (missionMatch?.[1]) {
+      this.upsert({
+        namespace: 'personal_facts',
+        key: 'mission',
+        value: { value: missionMatch[1].trim(), confidence: 90, source: 'userdata.txt' },
+        tags: ['personal', 'goal', 'mission'],
+      });
+      synced++;
+    }
+    
+    return { synced };
   }
 
   buildRecallContext(query: string, limit = 8): {

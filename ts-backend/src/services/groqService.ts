@@ -15,6 +15,7 @@ import {
   OPENROUTER_API_KEYS,
   OPENROUTER_MODEL,
   OPENROUTER_MODELS,
+  loadUserContext,
 } from '../config.js';
 import { getTimeInformation } from '../utils/timeInfo.js';
 import { withRetry } from '../utils/retry.js';
@@ -316,6 +317,13 @@ export class GroqService {
     const confidence = Math.max(0, Math.min(1, topScore / 5));
 
     let system = JARVIS_SYSTEM_PROMPT;
+    
+    // CRITICAL FIX: Inject user context from text files
+    const userContext = loadUserContext();
+    if (userContext.trim()) {
+      system += `\n\n## User Context (ALWAYS remember this information):\n${userContext}`;
+    }
+    
     system += `\n\nCurrent time and date:\n${getTimeInformation()}`;
     if (contextText.trim()) {
       system += `\n\nRelevant context:\n${escapeCurlyBraces(contextText)}`;

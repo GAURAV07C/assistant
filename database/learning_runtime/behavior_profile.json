@@ -2,7 +2,7 @@
   "coding_style": {
     "indentation": "unknown",
     "semicolons": "mixed",
-    "quote_style": "single"
+    "quote_style": "mixed"
   },
   "framework_usage": {},
   "architecture_patterns": {
@@ -10,5 +10,5 @@
   },
   "tool_usage_patterns": {},
   "explanation_style": "mixed",
-  "updated_at": "2026-03-15T13:46:05.322Z"
+  "updated_at": "2026-03-15T14:10:09.849Z"
 }

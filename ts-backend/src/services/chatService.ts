@@ -37,6 +37,14 @@ export class ChatService {
     private memoryService?: MemoryService,
   ) {
     this.brainRouter = new BrainRouter(groqService, realtimeService);
+    // CRITICAL: Sync user context from text files on startup
+    if (this.memoryService && typeof (this.memoryService as any).syncFromUserContext === 'function') {
+      try {
+        (this.memoryService as any).syncFromUserContext();
+      } catch {
+        // Keep resilient
+      }
+    }
   }
 
   private capturePersonalFacts(userMessage: string): void {
@@ -51,9 +59,33 @@ export class ChatService {
   private withMemoryRecall(userMessage: string): string {
     if (!this.memoryService) return userMessage;
     try {
+      // First sync user context from text files to memory store
+      if (typeof (this.memoryService as any).syncFromUserContext === 'function') {
+        try {
+          (this.memoryService as any).syncFromUserContext();
+        } catch {
+          // Keep resilient
+        }
+      }
+      
       const recall = this.memoryService.buildRecallContext(userMessage, 8);
       const rag = this.buildRagContext(userMessage);
       const sections: string[] = [];
+      
+      // Also load user context directly from text files
+      const { loadUserContext } = require('../config.js');
+      const userContext = loadUserContext();
+      
+      if (userContext.trim()) {
+        sections.push('User profile context:');
+        // Extract key info for recall
+        const nameMatch = userContext.match(/(?:Name|User Name):\s*(.+)/i);
+        const roleMatch = userContext.match(/Role:\s*(.+)/i);
+        if (nameMatch?.[1]) sections.push(`- name: ${nameMatch[1].trim()}`);
+        if (roleMatch?.[1]) sections.push(`- role: ${roleMatch[1].trim()}`);
+        sections.push('');
+      }
+      
       if (recall.facts.length) {
         sections.push('High-priority personal memory recall (apply naturally, do not expose raw internals):');
         sections.push(...recall.facts.map((fact) => `- ${fact}`));

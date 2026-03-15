@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-03-15T13:46:05.340Z",
-  "count": 72,
+  "generated_at": "2026-03-15T14:10:09.854Z",
+  "count": 74,
   "items": [
     {
       "input": "architecture_idea: system_design",
@@ -472,6 +472,28 @@
         "technical_explanation",
         "general",
         "chat"
+      ]
+    },
+    {
+      "input": "preference: general",
+      "context": "chat, coding",
+      "expected_output": "You are ASTRO personal assistant. Give concise, helpful, natural response in conversational style. Avoid company names unless the user asks for them. Warm, human tone; short responses unless user requests detail. No over-structuring. No formal template headings. Do not imply emotional dependency, exclusivity, or physical existence. User request: What is TypeScript?",
+      "tags": [
+        "preference",
+        "general",
+        "chat",
+        "coding"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat, coding",
+      "expected_output": "TypeScript ek programming language hai jo JavaScript ke upar banaya gaya hai. Yeh statically typed hai, jiska matlab hai ki yeh code compile hone se pehle hi type-related errors ko catch kar leta hai. Yeh developers ko safer aur more maintainable code likhne mein madad karta hai. Kya aap TypeScript ke baare mein aur kuchh jaanna chahte hain?",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat",
+        "coding"
       ]
     }
   ]
