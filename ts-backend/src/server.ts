@@ -1017,11 +1017,11 @@ app.post('/extension/chat/realtime/stream', async (req, res) => {
 });
 app.use(createExtensionRouter({
   getChatService: () => chatService,
+  getAgentController: () => agentController,
   memoryService,
   auditService,
   safetyService,
   voiceService,
-  agentController,
 }));
 
 app.use(createLearningRouter());

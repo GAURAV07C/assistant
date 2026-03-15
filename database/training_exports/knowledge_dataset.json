@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-03-12T03:11:54.264Z",
-  "count": 70,
+  "generated_at": "2026-03-15T13:46:05.340Z",
+  "count": 72,
   "items": [
     {
       "input": "architecture_idea: system_design",
@@ -448,6 +448,26 @@
       "input": "technical_explanation: general",
       "context": "chat",
       "expected_output": "I'm happy to chat with you in a friendly mode. I can talk about various topics, including Amazon, Microsoft, and Google, which are my target areas of expertise. How about we discuss something interesting, like the latest tech trends or innovations from these companies? What's on your mind?",
+      "tags": [
+        "technical_explanation",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "preference: general",
+      "context": "chat",
+      "expected_output": "You are ASTRO personal assistant. Give concise, helpful, natural response in conversational style. Avoid company names unless the user asks for them. Warm, human tone; short responses unless user requests detail. No over-structuring. No formal template headings. Do not imply emotional dependency, exclusivity, or physical existence. User request: Hello, how are you?",
+      "tags": [
+        "preference",
+        "general",
+        "chat"
+      ]
+    },
+    {
+      "input": "technical_explanation: general",
+      "context": "chat",
+      "expected_output": "Hello! I'm doing well, thanks for asking. It's great to chat with you. How about you, how's your day going so far? I'm here to help with any questions or topics you'd like to discuss.",
       "tags": [
         "technical_explanation",
         "general",

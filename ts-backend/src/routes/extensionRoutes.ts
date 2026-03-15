@@ -67,11 +67,11 @@ function parseJson<T>(raw: string, fallback: T): T {
 
 export function createExtensionRouter(deps: {
   getChatService: () => ChatService;
+  getAgentController: () => AgentController;
   memoryService: MemoryService;
   auditService: AuditService;
   safetyService: SafetyService;
   voiceService: VoiceService;
-  agentController: AgentController;
 }): Router {
   const router = Router();
   const WORKSPACE_ROOT = path.resolve(process.cwd(), '..');
@@ -181,7 +181,7 @@ export function createExtensionRouter(deps: {
     const userQuery = String(body.user_query || '').trim();
     if (!userQuery) return { statusCode: 400, payload: { detail: 'user_query is required' }, sessionId: sid };
 
-    const contract = deps.agentController.buildInternalContract(userQuery, body.forced_mode);
+    const contract = deps.getAgentController().buildInternalContract(userQuery, body.forced_mode);
 
     return {
       payload: {
@@ -214,7 +214,7 @@ export function createExtensionRouter(deps: {
       return { statusCode: 403, payload: { detail: pathSafety.reason }, sessionId: sid };
     }
 
-    const decision = deps.agentController.checkAction('execute', {
+    const decision = deps.getAgentController().checkAction('execute', {
       intent: instruction,
       confirm: Boolean(body.confirm),
       destructive: Boolean(body.destructive),
@@ -233,7 +233,7 @@ export function createExtensionRouter(deps: {
       };
     }
 
-    const result = await deps.agentController.run({
+    const result = await deps.getAgentController().run({
       sessionId: sid,
       message: instruction,
       context: { ...ctx, confirm: !!body.confirm },
@@ -706,7 +706,7 @@ ${body.file_content || ''}` });
 
   router.get('/evolution/status', (_req, res) => {
     try {
-      const status = deps.agentController.getEvolutionStatus();
+      const status = deps.getAgentController().getEvolutionStatus();
       return res.json({ status: 'ok', ...status });
     } catch (err) {
       return res.status(500).json({ detail: String(err) });
@@ -716,7 +716,7 @@ ${body.file_content || ''}` });
   router.get('/reflection/recent', (req, res) => {
     try {
       const limit = Math.max(1, Math.min(100, Number(req.query.limit || 20)));
-      const status = deps.agentController.getEvolutionStatus();
+      const status = deps.getAgentController().getEvolutionStatus();
       return res.json({ status: 'ok', count: Math.min(limit, status.recent_reflections.length), reviews: status.recent_reflections.slice(0, limit) });
     } catch (err) {
       return res.status(500).json({ detail: String(err) });
@@ -725,7 +725,7 @@ ${body.file_content || ''}` });
 
   router.get('/curriculum/next', (_req, res) => {
     try {
-      const status = deps.agentController.getEvolutionStatus();
+      const status = deps.getAgentController().getEvolutionStatus();
       return res.json({
         status: 'ok',
         next_task: status.next_task,
@@ -738,7 +738,7 @@ ${body.file_content || ''}` });
 
   router.get('/skills/list', (_req, res) => {
     try {
-      const skills = deps.agentController.listSkills();
+      const skills = deps.getAgentController().listSkills();
       return res.json({ status: 'ok', count: skills.length, skills });
     } catch (err) {
       return res.status(500).json({ detail: String(err) });
@@ -749,7 +749,7 @@ ${body.file_content || ''}` });
     try {
       const skillId = String(req.params.skill_id || '').trim().toLowerCase();
       if (!skillId) return res.status(400).json({ detail: 'skill_id is required' });
-      const details = deps.agentController.getSkillDetails(skillId);
+      const details = deps.getAgentController().getSkillDetails(skillId);
       if (!details) return res.status(404).json({ detail: 'skill not found' });
       return res.json({ status: 'ok', ...details });
     } catch (err) {
@@ -762,7 +762,7 @@ ${body.file_content || ''}` });
       const skillId = String(req.body?.skill_id || '').trim().toLowerCase();
       const enabled = Boolean(req.body?.enabled);
       if (!skillId) return res.status(400).json({ detail: 'skill_id is required' });
-      const updated = deps.agentController.setSkillEnabled(skillId, enabled);
+      const updated = deps.getAgentController().setSkillEnabled(skillId, enabled);
       if (!updated) return res.status(404).json({ detail: 'skill not found' });
       deps.auditService.log({
         ts: new Date().toISOString(),
@@ -781,7 +781,7 @@ ${body.file_content || ''}` });
     try {
       const task = String(req.body?.task || '').trim();
       if (!task) return res.status(400).json({ detail: 'task is required' });
-      const learned = deps.agentController.learnSkill({
+      const learned = deps.getAgentController().learnSkill({
         task,
         conversation: String(req.body?.conversation || ''),
         assistantResponse: String(req.body?.assistant_response || ''),
@@ -806,7 +806,7 @@ ${body.file_content || ''}` });
       const notes = String(req.body?.notes || '');
       if (!skillId) return res.status(400).json({ detail: 'skill_id is required' });
       if (!['success', 'partial', 'failure'].includes(result)) return res.status(400).json({ detail: 'result must be success|partial|failure' });
-      const updated = deps.agentController.evolveSkill(skillId, result, notes);
+      const updated = deps.getAgentController().evolveSkill(skillId, result, notes);
       if (!updated) return res.status(404).json({ detail: 'skill not found' });
       deps.auditService.log({
         ts: new Date().toISOString(),
@@ -826,7 +826,7 @@ ${body.file_content || ''}` });
       const skillId = String(req.body?.skill_id || '').trim().toLowerCase();
       const message = String(req.body?.message || '').trim();
       if (!skillId || !message) return res.status(400).json({ detail: 'skill_id and message are required' });
-      const result = deps.agentController.runSkill(skillId, { message, context: req.body?.context || {} });
+      const result = deps.getAgentController().runSkill(skillId, { message, context: req.body?.context || {} });
       if (!result) return res.status(404).json({ detail: 'skill not found or not executable' });
       return res.json({ status: 'ok', skill_id: skillId, result });
     } catch (err) {

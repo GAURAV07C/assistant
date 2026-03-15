@@ -25,6 +25,7 @@ type PendingRequest = {
   resolve: (v: { response: string; steps: string[]; agent: string }) => void;
   reject: (e: Error) => void;
   startedAt: number;
+  timeoutId: ReturnType<typeof setTimeout>;
 };
 
 function nowIso() {
@@ -67,6 +68,8 @@ export function useAIOSWebSocket() {
   const wsRef = useRef<WebSocket | null>(null);
   const pendingRef = useRef<Map<string, PendingRequest>>(new Map());
   const activeAgentRef = useRef('');
+  const reconnectTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const reconnectAttemptsRef = useRef(0);
 
   const wsUrl = useMemo(() => process.env.NEXT_PUBLIC_AIOS_WS_URL || 'ws://localhost:8000/ws/ai-os-v3', []);
   const apiBaseUrl = useMemo(() => process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000', []);
@@ -97,13 +100,33 @@ export function useAIOSWebSocket() {
 
   useEffect(() => {
     let cancelled = false;
+    let ws: WebSocket | null = null;
 
-    try {
-      const ws = new WebSocket(wsUrl);
-      wsRef.current = ws;
+    const rejectPending = (reason: string) => {
+      for (const [, pending] of pendingRef.current.entries()) {
+        clearTimeout(pending.timeoutId);
+        pending.reject(new Error(reason));
+      }
+      pendingRef.current.clear();
+    };
+
+    const connect = () => {
+      try {
+        ws = new WebSocket(wsUrl);
+        wsRef.current = ws;
+      } catch (err) {
+        pushLog(mkLog(`WebSocket init failed: ${String(err)}`, 'error'));
+        setConnected(false);
+        return;
+      }
 
       ws.onopen = () => {
         if (cancelled) return;
+        reconnectAttemptsRef.current = 0;
+        if (reconnectTimerRef.current) {
+          clearTimeout(reconnectTimerRef.current);
+          reconnectTimerRef.current = null;
+        }
         setConnected(true);
         pushLog(mkLog('WebSocket connected'));
         requestRealtimeSnapshot();
@@ -209,7 +232,10 @@ export function useAIOSWebSocket() {
             const pending = pendingRef.current.get(requestId);
             if (pending) {
               pendingRef.current.delete(requestId);
+              clearTimeout(pending.timeoutId);
               setThinking(false);
+              setActiveAgent('');
+              setStreamChunk('');
               pending.resolve({
                 response: String(payload.response || ''),
                 steps: Array.isArray(payload.steps) ? payload.steps.map(String) : [],
@@ -223,7 +249,9 @@ export function useAIOSWebSocket() {
             const pending = pendingRef.current.get(requestId);
             if (pending) {
               pendingRef.current.delete(requestId);
+              clearTimeout(pending.timeoutId);
               setThinking(false);
+              setActiveAgent('');
               pending.reject(new Error(String(payload.error || 'chat_error')));
             }
             return;
@@ -237,28 +265,33 @@ export function useAIOSWebSocket() {
         if (cancelled) return;
         setConnected(false);
         setThinking(false);
-        for (const [, p] of pendingRef.current.entries()) {
-          p.reject(new Error('WebSocket closed'));
-        }
-        pendingRef.current.clear();
+        setActiveAgent('');
+        setReasoningSteps([]);
+        rejectPending('WebSocket closed');
         pushLog(mkLog('WebSocket disconnected', 'warn'));
+        const attempt = reconnectAttemptsRef.current + 1;
+        reconnectAttemptsRef.current = attempt;
+        const delayMs = Math.min(10000, attempt * 1500);
+        reconnectTimerRef.current = setTimeout(() => {
+          if (!cancelled) connect();
+        }, delayMs);
       };
 
       ws.onerror = () => {
         if (cancelled) return;
         pushLog(mkLog('WebSocket error', 'error'));
       };
-    } catch (err) {
-      pushLog(mkLog(`WebSocket init failed: ${String(err)}`, 'error'));
-      setConnected(false);
-    }
+    };
+
+    connect();
 
     return () => {
       cancelled = true;
-      for (const [, p] of pendingRef.current.entries()) {
-        p.reject(new Error('WebSocket cleanup'));
+      if (reconnectTimerRef.current) {
+        clearTimeout(reconnectTimerRef.current);
+        reconnectTimerRef.current = null;
       }
-      pendingRef.current.clear();
+      rejectPending('WebSocket cleanup');
       if (wsRef.current) wsRef.current.close();
     };
   }, [pushLog, requestRealtimeSnapshot, wsUrl]);
@@ -274,7 +307,22 @@ export function useAIOSWebSocket() {
 
     const requestId = `req_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
     const promise = new Promise<{ response: string; steps: string[]; agent: string }>((resolve, reject) => {
-      pendingRef.current.set(requestId, { resolve, reject, startedAt: Date.now() });
+      const timeoutId = setTimeout(() => {
+        const pending = pendingRef.current.get(requestId);
+        if (!pending) return;
+        pendingRef.current.delete(requestId);
+        setThinking(false);
+        setActiveAgent('');
+        pushLog(mkLog(`Prompt timed out after 90s: ${prompt.slice(0, 90)}`, 'warn'));
+        reject(new Error('Request timed out after 90 seconds'));
+      }, 90000);
+
+      pendingRef.current.set(requestId, {
+        resolve,
+        reject,
+        startedAt: Date.now(),
+        timeoutId,
+      });
     });
 
     try {
@@ -285,7 +333,11 @@ export function useAIOSWebSocket() {
       });
       pushLog(mkLog(`Prompt sent via websocket: ${prompt.slice(0, 90)}`));
     } catch (err) {
-      pendingRef.current.delete(requestId);
+      const pending = pendingRef.current.get(requestId);
+      if (pending) {
+        clearTimeout(pending.timeoutId);
+        pendingRef.current.delete(requestId);
+      }
       setThinking(false);
       throw err instanceof Error ? err : new Error(String(err));
     }
